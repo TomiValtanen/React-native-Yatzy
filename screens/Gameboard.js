@@ -39,6 +39,7 @@ function throwDices(){
     }
     setNbrOfThrowsLeft(prev=>prev -1)
     setSum(sum)
+    console.log(board)
 }
 
 function checkWinner(){
@@ -75,7 +76,7 @@ for(let i =0 ; i < NBR_OF_DICES;i++){
 
     )
 }
-
+console.log(row)
     return(
         <View style={Styles.gameboard}>
             <View style={Styles.flex}>
