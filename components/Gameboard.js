@@ -2,6 +2,8 @@ import { useEffect, useState } from "react"
 import { Pressable, Text, View } from "react-native"
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { Styles } from "../styles/Styles";
+import Header from "./Header";
+import Footer from "./Footer";
 
 
 
@@ -39,7 +41,6 @@ function throwDices(){
     }
     setNbrOfThrowsLeft(prev=>prev -1)
     setSum(sum)
-    console.log(board)
 }
 
 function checkWinner(){
@@ -76,9 +77,11 @@ for(let i =0 ; i < NBR_OF_DICES;i++){
 
     )
 }
-console.log(row)
+
     return(
         <View style={Styles.gameboard}>
+            <Header/>
+            
             <View style={Styles.flex}>
                 {row}
             </View>
@@ -92,7 +95,7 @@ console.log(row)
                  >
                     <Text style={Styles.buttonText}>Throw Dices</Text>
                 </Pressable>
-            
+            <Footer/>
         </View>
     )
 }
