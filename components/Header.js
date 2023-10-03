@@ -5,7 +5,7 @@ import {Styles} from "../styles/Styles"
 function Header(){
     return(
         <View style={Styles.header}>
-            <Text style={Styles.title}>Dices game</Text>
+            <Text style={Styles.title}>Mini-Yahtzee</Text>
         </View>
     )
 }export default Header
