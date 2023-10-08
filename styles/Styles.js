@@ -12,6 +12,7 @@ const Styles= StyleSheet.create({
     flexDirection: 'row',
   },
   footer: {
+    
     marginTop: 20,
     backgroundColor: 'skyblue',
     flexDirection: 'row'
@@ -33,11 +34,13 @@ const Styles= StyleSheet.create({
     margin: 10,
   },
   gameboard: {
+    flex:1,
     backgroundColor: '#fff',
-    alignItems: 'center',
+    alignItems: "stretch",
     justifyContent: 'center'
   },
   gameinfo: {
+    
     backgroundColor: '#fff',
     textAlign: 'center',
     justifyContent: 'center',

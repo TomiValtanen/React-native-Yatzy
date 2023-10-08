@@ -61,7 +61,7 @@ export default function App() {
         <Tab.Screen
           name="Gameboard"
           component={Gameboard}
-
+          options={{ headerShown: false }}
       
         />
         <Tab.Screen
