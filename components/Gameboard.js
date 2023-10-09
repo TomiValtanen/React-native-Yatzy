@@ -153,7 +153,7 @@ function Gameboard({ navigation, route }) {
         const arr = []
         console.log(item)
         //const sum = pairCheck(dices, false)
-        const sum = straight(dices,false)
+        const sum = yatzy(dices)
         console.log(sum, "Summa selectDown")
         down.map(down => {
             if (item.name === down.name) {
@@ -340,9 +340,33 @@ function Gameboard({ navigation, route }) {
         return JSON.stringify(a) === JSON.stringify(b);
     }
 
+    function chance(numbers){
+        const numbersArray=[]
+        let sum=0
+        numbers.map(number =>
+             numbersArray.push(number.value))
 
+            sum=numbersArray.reduce(chanceSum)
 
-    
+            return sum
+    }
+
+function chanceSum(total, num) {
+  return total + num;
+}
+function yatzy(numbers){
+    const numbersArray=[]
+    let sum=0
+    numbers.map(number =>
+         numbersArray.push(number.value))
+
+         if(allEqual(numbersArray)){
+            sum=50
+         }
+         console.log("YATZY")
+         return sum
+}
+const allEqual = arr => arr.every(val => val === arr[0])
     //console.log(dices)
     //console.log(upper)
     //console.log(down)
