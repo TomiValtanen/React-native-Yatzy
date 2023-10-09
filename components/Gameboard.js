@@ -16,8 +16,9 @@ function Gameboard({ navigation, route }) {
     const [playerName, setPlayerName] = useState("")
     const [dices, setDices] = useState(makeDices())
     const [upper, setUpper] = useState(makeUpperSection())
-    const [upperTotal,setUpperTotal]=useState(0)
-    const [down,setDown]=useState(makeDownSection())
+    const [upperTotal, setUpperTotal] = useState(0)
+    const [down, setDown] = useState(makeDownSection())
+    const [downTotal,setDownTotal]=useState(0)
     const [numberOfThrows, setNumberOfThrows] = useState(NBR_OF_THROWS)
     const [status, setStatus] = useState("Start round")
 
@@ -58,11 +59,11 @@ function Gameboard({ navigation, route }) {
         return arr
     }
 
-    function makeDownSection(){
-        const arr=[]
-        const downSection=["Yksi pari","Kaksi paria","Kolmoisluku","Neloisluku","Pieni suora","Suuri suora","Täyskäsi","Sattuma","Yatzy"]
-        for(let i=0;i<downSection.length;i++){
-            arr.push({name:downSection[i],used:false,score:0,icon:"cards"})
+    function makeDownSection() {
+        const arr = []
+        const downSection = ["Yksi pari", "Kaksi paria", "Kolmoisluku", "Neloisluku", "Pieni suora", "Suuri suora", "Täyskäsi", "Sattuma", "Yatzy"]
+        for (let i = 0; i < downSection.length; i++) {
+            arr.push({ name: downSection[i], used: false, score: 0, icon: "cards" })
         }
         return arr
     }
@@ -142,47 +143,216 @@ function Gameboard({ navigation, route }) {
         return counter
     }
 
+    function selectDown(item) {
+        if (numberOfThrows !== 0) {
+            return Alert.alert("Info", "Heitä kaikki kerrat loppuun ja valitse sitten")
+        }
+        if (item.used === true) {
+            return Alert.alert("Info", "Et voi valita tätä uudestaan")
+        }
+        const arr = []
+        console.log(item)
+        //const sum = pairCheck(dices, false)
+        const sum = triplets(dices,false)
+        console.log(sum, "Summa selectDown")
+        down.map(down => {
+            if (item.name === down.name) {
+                arr.push({ ...down, used: true, score: sum })
+            } else {
+                arr.push(down)
+            }
+        })
+        setDown(arr)
+        setDownTotal(prev => prev + sum)
+        setNumberOfThrows(3)
+        unSelectAllDices()
+
+    }
+
+    function pairCheck(numbers, onePair) {
+        const numbersArray = []
+        const pair = []
+        const secondPair = []
+        let pairSum = 0
+        let secondPairSum = 0
+        console.log(numbers, "Pair check")
+        numbers.map(number =>
+            numbersArray.push(number.value)
+        )
+        console.log(numbersArray, "ARRAY")
+
+        for (let i = 0; i < numbersArray.length; i++) {
+            for (let j = i + 1; j < numbersArray.length + 1; j++) {
+                if (numbersArray[i] === numbersArray[j]) {
+                    if (pair.length !== 0 && pair.indexOf(numbersArray[i]) === -1) {
+                        console.log(pair, "if lauseen sisällä forrissa")
+                        console.log(numbersArray[i], "Yksittäinen iffinsisäsässä")
+                        pair.push(numbersArray[j], numbersArray[i])
+
+                    } else if (pair.length === 0) {
+                        pair.push(numbersArray[j], numbersArray[i])
+                    }
+
+                }
+            }
+        }
+        console.log(pair, "Parit forrien jälkeen")
+
+        if (pair.length === 3) {
+            pair.splice(2)
+        }
+        else if (pair.length === 4) {
+            secondPair.push(pair[2], pair[3])
+            pair.splice(2)
+        }
+
+        if (onePair === true) {
+            if (secondPair.length !== 0) {
+                for (let i = 0; i < pair.length; i++) {
+                    pairSum += pair[i]
+                }
+                for (let i = 0; i < secondPair.length; i++) {
+                    secondPairSum += secondPair[i]
+                }
+                return pairSum >= secondPairSum ? pairSum : secondPairSum
+            } else {
+                for (let i = 0; i < pair.length; i++) {
+                    pairSum += pair[i]
+                }
+                return pairSum
+            }
+
+        } else {
+            if (secondPair.length !== 0) {
+                for (let i = 0; i < pair.length; i++) {
+                    pairSum += pair[i]
+                }
+                for (let i = 0; i < secondPair.length; i++) {
+                    secondPairSum += secondPair[i]
+                }
+                return pairSum + secondPairSum
+            } else {
+                for (let i = 0; i < pair.length; i++) {
+                    pairSum += pair[i]
+                }
+                return pairSum
+            }
+
+        }
+    }
+
+    function triplets(numbers,tripletScore){
+        const numbersArray=[]
+        const checkingNumbers=[]
+        let tripletSum=0
+        
+        numbers.map(number =>
+             numbersArray.push(number.value))
+
+        const numbersSet = new Set(numbersArray)
+
+        numbersSet.forEach(function(value){
+            checkingNumbers.push(value)
+        })
+
+        
+        const sameNum=sameNumbersCalculate(numbersArray,checkingNumbers)
+        
+        
+        if(sameNum){
+            if(tripletScore===true){
+                if(Number(sameNum[0].index)===4){
+                    tripletSum= Number(sameNum[0].numero) * Number(sameNum[0].index-1)
+                }
+                else if(Number(sameNum[0].index)===5){
+                    tripletSum= Number(sameNum[0].numero) * Number(sameNum[0].index-2)
+                }
+                else{
+                    tripletSum= Number(sameNum[0].numero) * Number(sameNum[0].index)
+                }
+            }
+            if(tripletScore===false){
+                if(Number(sameNum[0].index)===4){
+                    tripletSum= Number(sameNum[0].numero) * Number(sameNum[0].index)
+                }
+                else if(Number(sameNum[0].index)===5){
+                    tripletSum= Number(sameNum[0].numero) * Number(sameNum[0].index-1)
+                }
+                else{
+                    tripletSum=0
+                }
+            }
+            
+        }else{
+            tripletSum=0
+        }
+        
+
+        console.log(numbers, "triplets check")
+        console.log(numbersArray, "ARRAY")
+        console.log(numbersSet,"setti")
+        console.log(checkingNumbers,"tarkistus numerot array")
+        console.log(sameNum,"testin jälkeen")
+        return tripletSum
+    }
+    const indexOfAll = (arr, val) => arr.reduce((acc, el, i) => (el === val ? [...acc, i] : acc), []);
+
+    function sameNumbersCalculate(numbersArray,checkingNumbers){
+        let array=[]
+        let result=[]
+        for(let i =0;i<checkingNumbers.length;i++){
+            array=indexOfAll(numbersArray,checkingNumbers[i])
+            if(array.length >=3){
+                result.push({numero:checkingNumbers[i],index:array.length})
+                return result
+            }
+                
+        }
+        return result=false
+    }
+
+
     //console.log(dices)
     //console.log(upper)
-    console.log(down)
+    //console.log(down)
     return (
         <View style={Styles.gameboard}>
             <Header />
-            <View style={{flex:6,flexDirection:"row",justifyContent:"space-between",alignItems:"center",gap:15,padding:5}}>
-            <View style={{ flex: 1, alignItems: "left", width: "30%" }}>
-                <Text style={{ textAlign: "center" }}>Yläosa</Text>
-                <FlatList
-                    data={upper}
-                    extraData={upper}
-                    renderItem={({ item }) =>
-                        <UpperSectionCard
-                            item={item}
-                            handlePress={selectUpper}
+            <View style={{ flex: 6, flexDirection: "row", justifyContent: "space-between", alignItems: "center", gap: 15, padding: 5 }}>
+                <View style={{ flex: 1, alignItems: "left", width: "30%" }}>
+                    <Text style={{ textAlign: "center" }}>Yläosa</Text>
+                    <FlatList
+                        data={upper}
+                        extraData={upper}
+                        renderItem={({ item }) =>
+                            <UpperSectionCard
+                                item={item}
+                                handlePress={selectUpper}
 
-                        />
-                    }
+                            />
+                        }
 
-                />
-                <Text>Total: {upperTotal} </Text>
-            </View>
-            <View style={{ flex: 1, alignItems: "left", width: "30%" }}>
-                <Text style={{ textAlign: "center" }}>Yläosa</Text>
-                <FlatList
-                    data={down}
-                    extraData={down}
-                    renderItem={({ item,index }) =>
-                        <DownSectionCard
-                        item={item}
-                        handlePress={()=>console.log("Painoit")}
-                        index={index}
-                        />
-                    }
+                    />
+                    <Text>Total: {upperTotal} </Text>
+                </View>
+                <View style={{ flex: 1, alignItems: "left", width: "30%" }}>
+                    <Text style={{ textAlign: "center" }}>Yläosa</Text>
+                    <FlatList
+                        data={down}
+                        extraData={down}
+                        renderItem={({ item, index }) =>
+                            <DownSectionCard
+                                item={item}
+                                handlePress={selectDown}
+                                index={index}
+                            />
+                        }
 
-                />
-                <Text>Total: {upperTotal} </Text>
+                    />
+                    <Text>Total: {downTotal} </Text>
+                </View>
             </View>
-            </View>
-            
+
             <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
                 <FlatList
                     data={dices}
