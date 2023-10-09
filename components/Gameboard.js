@@ -153,7 +153,7 @@ function Gameboard({ navigation, route }) {
         const arr = []
         console.log(item)
         //const sum = pairCheck(dices, false)
-        const sum = triplets(dices,false)
+        const sum = straight(dices,false)
         console.log(sum, "Summa selectDown")
         down.map(down => {
             if (item.name === down.name) {
@@ -311,7 +311,38 @@ function Gameboard({ navigation, route }) {
         return result=false
     }
 
+    function straight(numbers,smallStraight){
+        const numbersArray=[]
+        const smallStraightValues=[1,2,3,4,5]
+        const bigStraightValues=[2,3,4,5,6]
+        let sum=0
+        numbers.map(number =>
+             numbersArray.push(number.value))
 
+             numbersArray.sort(function(a,b){return a-b})
+
+             if(smallStraight){
+                if(equalsCheck(numbersArray,smallStraightValues)) {
+                    sum=15
+                  }
+             }else{
+                if(equalsCheck(numbersArray,bigStraightValues)){
+                    sum=20
+                }
+             }
+             console.log(numbersArray,"ARRAy")
+             return sum
+
+             
+
+    }
+    const equalsCheck = (a, b) => {
+        return JSON.stringify(a) === JSON.stringify(b);
+    }
+
+
+
+    
     //console.log(dices)
     //console.log(upper)
     //console.log(down)
