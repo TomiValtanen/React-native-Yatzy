@@ -18,7 +18,7 @@ function Gameboard({ navigation, route }) {
     const [upper, setUpper] = useState(makeUpperSection())
     const [upperTotal, setUpperTotal] = useState(0)
     const [down, setDown] = useState(makeDownSection())
-    const [downTotal,setDownTotal]=useState(0)
+    const [downTotal, setDownTotal] = useState(0)
     const [numberOfThrows, setNumberOfThrows] = useState(NBR_OF_THROWS)
     const [status, setStatus] = useState("Start round")
 
@@ -153,39 +153,39 @@ function Gameboard({ navigation, route }) {
         const arr = []
         console.log(item)
         //const sum = pairCheck(dices, false)
-        let sum=""
+        let sum = ""
         switch (item.name) {
             case "Yksi pari":
-              sum = pairCheck(dices,true);
-              break;
+                sum = pairCheck(dices, true);
+                break;
             case "Kaksi paria":
-              sum = pairCheck(dices,false);
-              break;
-              case "Kolmoisluku":
-              sum = triplets(dices,true);
-              break;
-              case "Neloisluku":
-              sum = triplets(dices,false);
-              break;
-              case "Pieni suora":
-              sum = straight(dices,true);
-              break;
-              case "Suuri suora":
-              sum = straight(dices,false);
-              break;
-              case "Täyskäsi":
-              sum = chance(dices);
-              break;
-              case "Sattuma":
-              sum = chance(dices);
-              break;
-              case "Yatzy":
-              sum = yatzy(dices);
-              break;
+                sum = pairCheck(dices, false);
+                break;
+            case "Kolmoisluku":
+                sum = triplets(dices, true);
+                break;
+            case "Neloisluku":
+                sum = triplets(dices, false);
+                break;
+            case "Pieni suora":
+                sum = straight(dices, true);
+                break;
+            case "Suuri suora":
+                sum = straight(dices, false);
+                break;
+            case "Täyskäsi":
+                sum = chance(dices);
+                break;
+            case "Sattuma":
+                sum = chance(dices);
+                break;
+            case "Yatzy":
+                sum = yatzy(dices);
+                break;
             default:
-              console.log("MENI VITUIKSI");
-          }
-        
+                console.log("MENI VITUIKSI");
+        }
+
         console.log(sum, "Summa selectDown")
         down.map(down => {
             if (item.name === down.name) {
@@ -273,132 +273,132 @@ function Gameboard({ navigation, route }) {
         }
     }
 
-    function triplets(numbers,tripletScore){
-        const numbersArray=[]
-        const checkingNumbers=[]
-        let tripletSum=0
-        
+    function triplets(numbers, tripletScore) {
+        const numbersArray = []
+        const checkingNumbers = []
+        let tripletSum = 0
+
         numbers.map(number =>
-             numbersArray.push(number.value))
+            numbersArray.push(number.value))
 
         const numbersSet = new Set(numbersArray)
 
-        numbersSet.forEach(function(value){
+        numbersSet.forEach(function (value) {
             checkingNumbers.push(value)
         })
 
-        
-        const sameNum=sameNumbersCalculate(numbersArray,checkingNumbers)
-        
-        
-        if(sameNum){
-            if(tripletScore===true){
-                if(Number(sameNum[0].index)===4){
-                    tripletSum= Number(sameNum[0].numero) * Number(sameNum[0].index-1)
+
+        const sameNum = sameNumbersCalculate(numbersArray, checkingNumbers)
+
+
+        if (sameNum) {
+            if (tripletScore === true) {
+                if (Number(sameNum[0].index) === 4) {
+                    tripletSum = Number(sameNum[0].numero) * Number(sameNum[0].index - 1)
                 }
-                else if(Number(sameNum[0].index)===5){
-                    tripletSum= Number(sameNum[0].numero) * Number(sameNum[0].index-2)
+                else if (Number(sameNum[0].index) === 5) {
+                    tripletSum = Number(sameNum[0].numero) * Number(sameNum[0].index - 2)
                 }
-                else{
-                    tripletSum= Number(sameNum[0].numero) * Number(sameNum[0].index)
-                }
-            }
-            if(tripletScore===false){
-                if(Number(sameNum[0].index)===4){
-                    tripletSum= Number(sameNum[0].numero) * Number(sameNum[0].index)
-                }
-                else if(Number(sameNum[0].index)===5){
-                    tripletSum= Number(sameNum[0].numero) * Number(sameNum[0].index-1)
-                }
-                else{
-                    tripletSum=0
+                else {
+                    tripletSum = Number(sameNum[0].numero) * Number(sameNum[0].index)
                 }
             }
-            
-        }else{
-            tripletSum=0
+            if (tripletScore === false) {
+                if (Number(sameNum[0].index) === 4) {
+                    tripletSum = Number(sameNum[0].numero) * Number(sameNum[0].index)
+                }
+                else if (Number(sameNum[0].index) === 5) {
+                    tripletSum = Number(sameNum[0].numero) * Number(sameNum[0].index - 1)
+                }
+                else {
+                    tripletSum = 0
+                }
+            }
+
+        } else {
+            tripletSum = 0
         }
-        
+
 
         console.log(numbers, "triplets check")
         console.log(numbersArray, "ARRAY")
-        console.log(numbersSet,"setti")
-        console.log(checkingNumbers,"tarkistus numerot array")
-        console.log(sameNum,"testin jälkeen")
+        console.log(numbersSet, "setti")
+        console.log(checkingNumbers, "tarkistus numerot array")
+        console.log(sameNum, "testin jälkeen")
         return tripletSum
     }
     const indexOfAll = (arr, val) => arr.reduce((acc, el, i) => (el === val ? [...acc, i] : acc), []);
 
-    function sameNumbersCalculate(numbersArray,checkingNumbers){
-        let array=[]
-        let result=[]
-        for(let i =0;i<checkingNumbers.length;i++){
-            array=indexOfAll(numbersArray,checkingNumbers[i])
-            if(array.length >=3){
-                result.push({numero:checkingNumbers[i],index:array.length})
+    function sameNumbersCalculate(numbersArray, checkingNumbers) {
+        let array = []
+        let result = []
+        for (let i = 0; i < checkingNumbers.length; i++) {
+            array = indexOfAll(numbersArray, checkingNumbers[i])
+            if (array.length >= 3) {
+                result.push({ numero: checkingNumbers[i], index: array.length })
                 return result
             }
-                
+
         }
-        return result=false
+        return result = false
     }
 
-    function straight(numbers,smallStraight){
-        const numbersArray=[]
-        const smallStraightValues=[1,2,3,4,5]
-        const bigStraightValues=[2,3,4,5,6]
-        let sum=0
+    function straight(numbers, smallStraight) {
+        const numbersArray = []
+        const smallStraightValues = [1, 2, 3, 4, 5]
+        const bigStraightValues = [2, 3, 4, 5, 6]
+        let sum = 0
         numbers.map(number =>
-             numbersArray.push(number.value))
+            numbersArray.push(number.value))
 
-             numbersArray.sort(function(a,b){return a-b})
+        numbersArray.sort(function (a, b) { return a - b })
 
-             if(smallStraight){
-                if(equalsCheck(numbersArray,smallStraightValues)) {
-                    sum=15
-                  }
-             }else{
-                if(equalsCheck(numbersArray,bigStraightValues)){
-                    sum=20
-                }
-             }
-             console.log(numbersArray,"ARRAy")
-             return sum
+        if (smallStraight) {
+            if (equalsCheck(numbersArray, smallStraightValues)) {
+                sum = 15
+            }
+        } else {
+            if (equalsCheck(numbersArray, bigStraightValues)) {
+                sum = 20
+            }
+        }
+        console.log(numbersArray, "ARRAy")
+        return sum
 
-             
+
 
     }
     const equalsCheck = (a, b) => {
         return JSON.stringify(a) === JSON.stringify(b);
     }
 
-    function chance(numbers){
-        const numbersArray=[]
-        let sum=0
+    function chance(numbers) {
+        const numbersArray = []
+        let sum = 0
         numbers.map(number =>
-             numbersArray.push(number.value))
+            numbersArray.push(number.value))
 
-            sum=numbersArray.reduce(chanceSum)
+        sum = numbersArray.reduce(chanceSum)
 
-            return sum
+        return sum
     }
 
-function chanceSum(total, num) {
-  return total + num;
-}
-function yatzy(numbers){
-    const numbersArray=[]
-    let sum=0
-    numbers.map(number =>
-         numbersArray.push(number.value))
+    function chanceSum(total, num) {
+        return total + num;
+    }
+    function yatzy(numbers) {
+        const numbersArray = []
+        let sum = 0
+        numbers.map(number =>
+            numbersArray.push(number.value))
 
-         if(allEqual(numbersArray)){
-            sum=50
-         }
-         console.log("YATZY")
-         return sum
-}
-const allEqual = arr => arr.every(val => val === arr[0])
+        if (allEqual(numbersArray)) {
+            sum = 50
+        }
+        console.log("YATZY")
+        return sum
+    }
+    const allEqual = arr => arr.every(val => val === arr[0])
     //console.log(dices)
     //console.log(upper)
     //console.log(down)
@@ -423,7 +423,7 @@ const allEqual = arr => arr.every(val => val === arr[0])
                     <Text>Total: {upperTotal} </Text>
                 </View>
                 <View style={{ flex: 1, alignItems: "left", width: "30%" }}>
-                    <Text style={{ textAlign: "center" }}>Yläosa</Text>
+                    <Text style={{ textAlign: "center" }}>Alaosa</Text>
                     <FlatList
                         data={down}
                         extraData={down}
