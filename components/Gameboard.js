@@ -153,7 +153,39 @@ function Gameboard({ navigation, route }) {
         const arr = []
         console.log(item)
         //const sum = pairCheck(dices, false)
-        const sum = yatzy(dices)
+        let sum=""
+        switch (item.name) {
+            case "Yksi pari":
+              sum = pairCheck(dices,true);
+              break;
+            case "Kaksi paria":
+              sum = pairCheck(dices,false);
+              break;
+              case "Kolmoisluku":
+              sum = triplets(dices,true);
+              break;
+              case "Neloisluku":
+              sum = triplets(dices,false);
+              break;
+              case "Pieni suora":
+              sum = straight(dices,true);
+              break;
+              case "Suuri suora":
+              sum = straight(dices,false);
+              break;
+              case "Täyskäsi":
+              sum = chance(dices);
+              break;
+              case "Sattuma":
+              sum = chance(dices);
+              break;
+              case "Yatzy":
+              sum = yatzy(dices);
+              break;
+            default:
+              console.log("MENI VITUIKSI");
+          }
+        
         console.log(sum, "Summa selectDown")
         down.map(down => {
             if (item.name === down.name) {
