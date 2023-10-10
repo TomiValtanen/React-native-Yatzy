@@ -174,7 +174,7 @@ function Gameboard({ navigation, route }) {
                 sum = straight(dices, false);
                 break;
             case "Täyskäsi":
-                sum = chance(dices);
+                sum = fullHouse(dices);
                 break;
             case "Sattuma":
                 sum = chance(dices);
@@ -399,6 +399,63 @@ function Gameboard({ navigation, route }) {
         return sum
     }
     const allEqual = arr => arr.every(val => val === arr[0])
+
+    function fullHouse(numbers) {
+        const numbersArray = []
+        const checkingNumbers = []
+        let sum = 0
+
+        numbers.map(number =>
+            numbersArray.push(number.value))
+
+        const numbersSet = new Set(numbersArray)
+
+        numbersSet.forEach(function (value) {
+            checkingNumbers.push(value)
+        })
+
+
+        if (checkingNumbers.length === 2) {
+            console.log("Käyty iffissä sameNumberFullHouse")
+            sum = sameNumbersFullHouse(numbersArray, checkingNumbers)
+        }
+
+
+        console.log(checkingNumbers, "checkingnumbers")
+        console.log(sum, "sum")
+        return sum
+
+
+
+    }
+    function sameNumbersFullHouse(numbersArray, checkingNumbers) {
+        let array = []
+        let pair = []
+        let triplets = []
+        let sum = 0
+        for (let i = 0; i < checkingNumbers.length; i++) {
+            array = indexOfAll(numbersArray, checkingNumbers[i])
+            if (array.length === 3) {
+                triplets.push({ numero: checkingNumbers[i], index: array.length })
+                array = []
+            } else if (array.length === 2) {
+                pair.push({ numero: checkingNumbers[i], index: array.length })
+                array = []
+            }
+
+        }
+        console.log(pair,"Pair FUll house hommassa")
+        console.log(triplets,"Triplets fullhouse hommassa")
+        if (pair[0].index === 2 && triplets[0].index === 3) {
+            const tripletsSum = Number(triplets[0].numero) * Number(triplets[0].index)
+            const pairSum= Number(pair[0].numero) * Number(pair[0].index)
+            sum= tripletsSum + pairSum
+            
+        }
+        console.log(sum,"SUMMA LOPUSSA")
+        return sum
+    }
+
     //console.log(dices)
     //console.log(upper)
     //console.log(down)
