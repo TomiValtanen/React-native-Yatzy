@@ -1,4 +1,5 @@
 import { StyleSheet } from 'react-native';
+import Constants from "expo-constants";
 
 const Styles= StyleSheet.create({
   container: {
@@ -6,14 +7,12 @@ const Styles= StyleSheet.create({
     backgroundColor: '#fff'
   },
   header: {
-    marginTop: 30,
-    marginBottom: 15,
+
+    marginTop: Constants.statusBarHeight+5,
     backgroundColor: 'skyblue',
     flexDirection: 'row',
   },
   footer: {
-    
-    marginTop: 20,
     backgroundColor: 'skyblue',
     flexDirection: 'row'
   },
@@ -21,7 +20,7 @@ const Styles= StyleSheet.create({
     color: '#fff',
     fontWeight: 'bold',
     flex: 1,
-    fontSize: 23,
+    fontSize: 15,
     textAlign: 'center',
     margin: 10,
   },

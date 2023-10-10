@@ -19,16 +19,32 @@ function Gameboard({ navigation, route }) {
     const [upperTotal, setUpperTotal] = useState(0)
     const [down, setDown] = useState(makeDownSection())
     const [downTotal, setDownTotal] = useState(0)
+    const [bonus,setBonus]=useState(0)
+    const [totalPoints,setTotalPoints]=useState(0)
     const [numberOfThrows, setNumberOfThrows] = useState(NBR_OF_THROWS)
     const [status, setStatus] = useState("Start round")
+    const [gameIsOn,setGameIsOn]=useState(true)
 
 
     useEffect(() => {
         if (playerName === "" && route.params?.player) {
             setPlayerName(route.params.player)
+            
         }
     }, [])
+useEffect(()=>{
+if(gameIsOn===false){
+Alert.alert("Peli loppui",`Pelaaja: ${playerName}\nPisteet:\nYläosasta: ${upperTotal}\nAlaosasta: ${downTotal}\nBonus: ${bonus}\n\nYhteensä: ${totalPoints}`, [
+    {
+      text: 'Aloita uudestaan',
+      onPress: () => newGame(),
+      style: 'cancel',
+    },
+    {text: 'OK', onPress: () => console.log('OK Pressed')},
+  ])
+}
 
+},[gameIsOn])
     useEffect(() => {
         if (numberOfThrows === 0) {
             setStatus("Spend your points")
@@ -39,6 +55,31 @@ function Gameboard({ navigation, route }) {
             setStatus("Start round")
         }
     }, [numberOfThrows])
+
+    useEffect(()=>{
+        const checkUpper = Array.prototype.every.call(upper, (item) => item.used === true)
+        const checkDown = Array.prototype.every.call(down, (item) => item.used === true)
+        console.log(checkUpper,"UseEffect checkkeri Bonukselle")
+        if(checkUpper && upperTotal>=BONUS_POINTS_LIMIT){
+            setBonus(BONUS_POINTS)
+        }
+        if(checkDown && checkUpper){
+            setTotalPoints(bonus + upperTotal + downTotal)
+            setGameIsOn(false)
+       }
+
+    },[upper,down])
+
+    function newGame(){
+        setGameIsOn(true)
+        setDices(makeDices())
+        setUpper(makeUpperSection())
+        setDown(makeDownSection())
+        setDownTotal(0)
+        setUpperTotal(0)
+        setBonus(0)
+        
+    }
 
 
     function makeDices() {
@@ -263,10 +304,7 @@ function Gameboard({ navigation, route }) {
                     secondPairSum += secondPair[i]
                 }
                 return pairSum + secondPairSum
-            } else {
-                for (let i = 0; i < pair.length; i++) {
-                    pairSum += pair[i]
-                }
+            } else { 
                 return pairSum
             }
 
@@ -462,7 +500,7 @@ function Gameboard({ navigation, route }) {
     return (
         <View style={Styles.gameboard}>
             <Header />
-            <View style={{ flex: 6, flexDirection: "row", justifyContent: "space-between", alignItems: "center", gap: 15, padding: 5 }}>
+            <View style={{ flex: 7.5,borderWidth:1, flexDirection: "row", justifyContent: "space-between", alignItems: "center", gap: 15, padding: 5 }}>
                 <View style={{ flex: 1, alignItems: "left", width: "30%" }}>
                     <Text style={{ textAlign: "center" }}>Yläosa</Text>
                     <FlatList
@@ -477,7 +515,8 @@ function Gameboard({ navigation, route }) {
                         }
 
                     />
-                    <Text>Total: {upperTotal} </Text>
+                    <Text>Bonus: {bonus} </Text>
+                    <Text>Yläosan pisteet: {upperTotal} </Text>
                 </View>
                 <View style={{ flex: 1, alignItems: "left", width: "30%" }}>
                     <Text style={{ textAlign: "center" }}>Alaosa</Text>
@@ -493,11 +532,11 @@ function Gameboard({ navigation, route }) {
                         }
 
                     />
-                    <Text>Total: {downTotal} </Text>
+                    <Text>Alaosan pisteet: {downTotal} </Text>
                 </View>
             </View>
 
-            <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
+            <View style={{ flex: 1,borderWidth:1, alignItems: "center", justifyContent: "center" }}>
                 <FlatList
                     data={dices}
                     extraData={dices}
@@ -516,7 +555,7 @@ function Gameboard({ navigation, route }) {
 
 
             </View>
-            <View style={{ justifyContent: "center", alignItems: "center" }}>
+            <View style={{ justifyContent: "center", alignItems: "center",borderWidth:1 }}>
                 <Text>Throws left:{numberOfThrows}</Text>
                 <Button title={status} onPress={numberOfThrows === 0 ? () => null : throwDices}></Button>
 
