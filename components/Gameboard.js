@@ -444,15 +444,15 @@ function Gameboard({ navigation, route }) {
             }
 
         }
-        console.log(pair,"Pair FUll house hommassa")
-        console.log(triplets,"Triplets fullhouse hommassa")
+        console.log(pair, "Pair FUll house hommassa")
+        console.log(triplets, "Triplets fullhouse hommassa")
         if (pair[0].index === 2 && triplets[0].index === 3) {
             const tripletsSum = Number(triplets[0].numero) * Number(triplets[0].index)
-            const pairSum= Number(pair[0].numero) * Number(pair[0].index)
-            sum= tripletsSum + pairSum
-            
+            const pairSum = Number(pair[0].numero) * Number(pair[0].index)
+            sum = tripletsSum + pairSum
+
         }
-        console.log(sum,"SUMMA LOPUSSA")
+        console.log(sum, "SUMMA LOPUSSA")
         return sum
     }
 
