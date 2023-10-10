@@ -40,7 +40,7 @@ Alert.alert("Peli loppui",`Pelaaja: ${playerName}\nPisteet:\nYläosasta: ${upper
       onPress: () => newGame(),
       style: 'cancel',
     },
-    {text: 'OK', onPress: () => console.log('OK Pressed')},
+    {text: 'Tallenna pisteesi', onPress: () => navigateScore()},
   ])
 }
 
@@ -80,7 +80,10 @@ Alert.alert("Peli loppui",`Pelaaja: ${playerName}\nPisteet:\nYläosasta: ${upper
         setBonus(0)
         
     }
-
+function navigateScore(){  
+    navigation.navigate("Scoreboard")
+    newGame()
+}
 
     function makeDices() {
         const arr = []
