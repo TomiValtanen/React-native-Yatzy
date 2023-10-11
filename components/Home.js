@@ -27,29 +27,30 @@ function Home({ navigation }) {
 
 
     return (
-        <>
+        <View style={{flex:1,justifyContent:"center",alignItems:"strech",backgroundColor:"#1e1e40"}}>
             <Header />
-            <View>
+            <View style={{flex:1,justifyContent:"center",alignItems:"center",gap:20}}>
                 <MaterialCommunityIcons
                     name="information"
                     size={90}
-                    color={"steelblue"}
+                    color={"#faa449"}
                 />
                 {!hasPlayerName ?
                     <>
-                        <Text>For scoreboard enter your name...</Text>
+                        <Text style={{color:"white"}}>For scoreboard enter your name...</Text>
                         <TextInput
+                            style={{backgroundColor:"#ffffff",width:"50%",height:40}}
                             onChangeText={setPlayerName}
                             autoFocus={true}
 
                         />
                         <Pressable onPress={() => handlePLayerName(playerName)}>
-                            <Text>OK</Text>
+                            <Text style={[Styles.splashText,{width:150,textAlign:"center",backgroundColor:"#faa449"}]}>OK</Text>
                         </Pressable>
                     </>
                     :
                     <>
-                        <Text multiline="true">
+                        <Text style={{color:"white"}} multiline="true">
                             THE GAME: Upper section of the classic Yahtzee
                             dice game. You have {NBR_OF_DICES} dices and
                             for the every dice you have {NBR_OF_THROWS}
@@ -60,7 +61,7 @@ function Home({ navigation }) {
                             Game ends when all points have been selected.
                             The order for selecting those is free.
                         </Text>
-                        <Text multiline="true">
+                        <Text style={{color:"white"}} multiline="true">
                             POINTS: After each turn game calculates the sum
                             for the dices you selected. Only the dices having
                             the same spot count are calculated. Inside the
@@ -69,7 +70,7 @@ function Home({ navigation }) {
 
                         </Text>
 
-                        <Text multiline="true">
+                        <Text style={{color:"white"}} multiline="true">
 
                             GOAL: To get points as much as possible.
                             {BONUS_POINTS_LIMIT} points is the limit of
@@ -78,9 +79,9 @@ function Home({ navigation }) {
                         </Text>
 
 
-                        <Text> Good luck , {playerName}</Text>
+                        <Text style={{color:"white"}}> Good luck , {playerName}</Text>
                         <Pressable onPress={() => navigation.navigate("Gameboard", { player: playerName })}>
-                            <Text>Play</Text>
+                            <Text style={[Styles.splashText,{width:150,textAlign:"center",backgroundColor:"#faa449"}]}>Play</Text>
                         </Pressable>
 
                     </>
@@ -90,7 +91,7 @@ function Home({ navigation }) {
             </View>
             <Footer />
 
-        </>
+        </View>
     )
 }
 

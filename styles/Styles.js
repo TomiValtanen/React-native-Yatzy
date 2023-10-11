@@ -1,19 +1,30 @@
 import { StyleSheet } from 'react-native';
 import Constants from "expo-constants";
 
-const Styles= StyleSheet.create({
+const Styles = StyleSheet.create({
+  splash: {
+    marginTop: Constants.statusBarHeight + 5,
+    flex: 1
+  },
+  splashText: {
+    backgroundColor:"#ff00ff",
+    fontSize:35,
+    padding:10,
+    borderRadius:8,
+
+  },
   container: {
     flex: 1,
     backgroundColor: '#fff'
   },
   header: {
 
-    marginTop: Constants.statusBarHeight+5,
-    backgroundColor: 'skyblue',
+    marginTop: Constants.statusBarHeight + 5,
+    backgroundColor: '#faa449',
     flexDirection: 'row',
   },
   footer: {
-    backgroundColor: 'skyblue',
+    backgroundColor: '#faa449',
     flexDirection: 'row'
   },
   title: {
@@ -33,13 +44,13 @@ const Styles= StyleSheet.create({
     margin: 10,
   },
   gameboard: {
-    flex:1,
+    flex: 1,
     backgroundColor: '#fff',
     alignItems: "stretch",
     justifyContent: 'center'
   },
   gameinfo: {
-    
+
     backgroundColor: '#fff',
     textAlign: 'center',
     justifyContent: 'center',
@@ -64,10 +75,10 @@ const Styles= StyleSheet.create({
     alignItems: 'center'
   },
   buttonText: {
-    color:"#2B2B52",
+    color: "#2B2B52",
     fontSize: 20
   }
 });
 
 
-export {Styles}
+export { Styles }

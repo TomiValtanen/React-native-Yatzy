@@ -9,6 +9,8 @@ import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
 import Home from './components/Home';
 import { NavigationContainer } from '@react-navigation/native';
 import Scoreboard from './components/Scoreboard';
+import Splash from './components/Splash';
+
 
 const Tab = createBottomTabNavigator();
 
@@ -17,6 +19,7 @@ export default function App() {
     <NavigationContainer>
       <Tab.Navigator
         //initialRouteName="Home"
+        
         sceneContainerStyle={{ backgroundColor: "transparent" }}
         screenOptions={({ route }) => ({
           tabBarIcon: ({ focused, color, size }) => {
@@ -52,22 +55,32 @@ export default function App() {
       >
 
         <Tab.Screen
+          name="Splash"
+          component={Splash}
+          options={{
+            tabBarStyle: { display: "none"},
+            headerShown:false,
+            tabBarShowLabel:false
+          }}
+        />
+        <Tab.Screen
           name="Home"
           component={Home}
           options={{
-            tabBarStyle: {display:"none"}
+            tabBarStyle: { display: "none" },
+            headerShown:false 
           }}
         />
         <Tab.Screen
           name="Gameboard"
           component={Gameboard}
           options={{ headerShown: false }}
-      
+
         />
         <Tab.Screen
           name="Scoreboard"
           component={Scoreboard}
-    
+
         />
 
       </Tab.Navigator>
