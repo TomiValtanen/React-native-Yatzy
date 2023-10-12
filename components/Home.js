@@ -1,4 +1,4 @@
-import { View } from "react-native";
+import { ScrollView, View } from "react-native";
 import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
 import { NBR_OF_DICES, NBR_OF_THROWS, MIN_SPOT, MAX_SPOT, BONUS_POINTS, BONUS_POINTS_LIMIT } from "../constants/Game";
 import { Styles } from "../styles/Styles";
@@ -27,9 +27,9 @@ function Home({ navigation }) {
 
 
     return (
-        <View style={{flex:1,justifyContent:"center",alignItems:"strech",backgroundColor:"#1e1e40"}}>
+        <View style={{ flex: 1, justifyContent: "center", alignItems: "strech", backgroundColor: "#1e1e40" }}>
             <Header />
-            <View style={{flex:1,justifyContent:"center",alignItems:"center",gap:20}}>
+            <View style={{ flex: 1, justifyContent: "center", alignItems: "center", gap: 20 }}>
                 <MaterialCommunityIcons
                     name="information"
                     size={90}
@@ -37,54 +37,70 @@ function Home({ navigation }) {
                 />
                 {!hasPlayerName ?
                     <>
-                        <Text style={{color:"white"}}>For scoreboard enter your name...</Text>
+                        <Text style={{ color: "white" }}>Anna nimesi pistetilastointia varten...</Text>
                         <TextInput
-                            style={{backgroundColor:"#ffffff",width:"50%",height:40}}
+                            style={{ backgroundColor: "#ffffff", width: "50%", height: 40 }}
                             onChangeText={setPlayerName}
                             autoFocus={true}
+                            inputMode="text"
+                            keyboardType="default"
+                            maxLength={10}
+                            placeholder="Nimi"
+                            textAlign="center"
 
                         />
                         <Pressable onPress={() => handlePLayerName(playerName)}>
-                            <Text style={[Styles.splashText,{width:150,textAlign:"center",backgroundColor:"#faa449"}]}>OK</Text>
+                            <Text style={[Styles.splashText, { width: 150, textAlign: "center", backgroundColor: "#faa449" }]}>OK</Text>
                         </Pressable>
                     </>
                     :
-                    <>
-                        <Text style={{color:"white"}} multiline="true">
-                            THE GAME: Upper section of the classic Yahtzee
-                            dice game. You have {NBR_OF_DICES} dices and
-                            for the every dice you have {NBR_OF_THROWS}
-                            throws. After each throw you can keep dices in
-                            order to get same dice spot counts as many as
-                            possible. In the end of the turn you must select
-                            your points from {MIN_SPOT} to {MAX_SPOT}.
-                            Game ends when all points have been selected.
-                            The order for selecting those is free.
+                    <ScrollView style={{flexGrow:1,marginBottom:20,marginTop:20}}>
+                    <View style={{flex:1,justifyContent:"center",alignItems:"center",gap:20}}>
+                        <Text style={{ color: "white", textAlign: "justify", paddingLeft: 15, paddingRight: 15 }} multiline="true">
+                            Yatzy:{"\n"}
+                            Pöytäkirja jakautuu kahteen osaa: ylä- ja alapuoleen.{"\n"}
+                            Yläpuolella on kohdat:{"\n"}
+                            Ykköset{"\n"}
+                            Kakkoset{"\n"}
+                            Kolmoset{"\n"}
+                            Neloset{"\n"}
+                            Viitoset{"\n"}
+                            Kuutoset{"\n"}
+                            Välisumma{"\n"}
+                            Bonus{"\n"}{"\n"}
+                            Yläpuolen kohdissa lasketaan yksinkertaisesti kyseisten numeroiden summa.{"\n"}Ykkösiin lasketaan siis noppien ykköset, kakkosiin kakkoset ja niin edelleen.{"\n"}Tulos 3-3-3-6-6 olisi kolmosissa 9 pistettä ja kuutosissa 12 pistettä.
+                            Välisummaan lasketaan kaikkien kuuden numerokentän summa. Jos siihen tulee vähintään {BONUS_POINTS_LIMIT} pistettä, pelaaja saa kirjata itselleen {BONUS_POINTS} pisteen bonuksen. {BONUS_POINTS_LIMIT} pistettä saavuttaa, kun saa jokaiseen kohtaan vähintään kolme oikeaa numeroa.{"\n"}{"\n"}
+                            Alapuolella on kohdat:{"\n"}
+                            Yksi pari: kaksi kertaa sama silmäluku. 1-3-4-4-6 = 4+4 = 8 pistettä.{"\n"}
+                            Kaksi paria: kaksi eri paria. 1-1-4-4-6 = 1+1 + 4+4 = 10 pistettä.{"\n"}
+                            Kolmoisluku: kolme samaa silmälukua. 1-3-3-3-6 = 3+3+3 = 9 pistettä.{"\n"}
+                            Neloisluku: neljä samaa silmälukua. 1-3-3-3-3 = 3+3+3+3 = 12 pistettä.{"\n"}
+                            Pieni suora: numerot 1-2-3-4-5. 15 pistettä.{"\n"}
+                            Suuri suora: numerot 2-3-4-5-6. 20 pistettä.{"\n"}
+                            Täyskäsi eli mökki: kolmoisluku ja pari. 3-3-3-5-5 = 3+3+3+5+5 = 19 pistettä.{"\n"}
+                            Sattuma: mitä tahansa. Tähän kelpaa mitä tahansa, pisteiksi lasketaan silmälukujen summa.{"\n"}
+                            Yatzy: viisi samaa silmälukua. {BONUS_POINTS} pistettä.{"\n"}
+                            Pelaajan peli on ohi, kun kaikki kohdat pöytäkirjasta on täytetty. Lopputulos saadaan laskemalla pelaajan pisteet yhteen.
                         </Text>
-                        <Text style={{color:"white"}} multiline="true">
-                            POINTS: After each turn game calculates the sum
-                            for the dices you selected. Only the dices having
-                            the same spot count are calculated. Inside the
-                            game you can not select same points from
-                            {MIN_SPOT} to {MAX_SPOT} again.
+                        <Text style={{ color: "white", textAlign: "justify", paddingLeft: 15, paddingRight: 15 }} multiline="true">
+                            PISTEYTYS: Pisteet voidaan laitta ylä- tai alapuoleen, kun on heittänyt noppia kolme kertaa. Pisteytys jakautuu yllä olevien ohjeiden mukaisesti.
 
                         </Text>
 
-                        <Text style={{color:"white"}} multiline="true">
+                        <Text style={{ color: "white", textAlign: "justify", paddingLeft: 15, paddingRight: 15 }} multiline="true">
 
-                            GOAL: To get points as much as possible.
-                            {BONUS_POINTS_LIMIT} points is the limit of
-                            getting bonus which gives you {BONUS_POINTS}
-                            points more
+                            TAVOITE: Saada mahdollisimman paljon pisteitä pelin aikana.
+                            Yläosasta on mahdollista saada bonus pisteitä {BONUS_POINTS} , jos saa yläosasta yhteensä {BONUS_POINTS_LIMIT} pistettä tai enemmän.
                         </Text>
 
 
-                        <Text style={{color:"white"}}> Good luck , {playerName}</Text>
+                        <Text style={{ color: "white" }}> Mukavia peli hetkiä sinulle , {playerName}</Text>
                         <Pressable onPress={() => navigation.navigate("Gameboard", { player: playerName })}>
-                            <Text style={[Styles.splashText,{width:150,textAlign:"center",backgroundColor:"#faa449"}]}>Play</Text>
+                            <Text style={[Styles.splashText, { width: 150, textAlign: "center", backgroundColor: "#faa449" }]}>Play</Text>
                         </Pressable>
 
-                    </>
+                    </View>
+                    </ScrollView>
 
 
                 }

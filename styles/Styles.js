@@ -45,7 +45,7 @@ const Styles = StyleSheet.create({
   },
   gameboard: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: "#6060c7",
     alignItems: "stretch",
     justifyContent: 'center'
   },

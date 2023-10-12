@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import { FlatList, Pressable, Text, View } from "react-native"
+import { FlatList, Pressable, Text, TouchableOpacity, View } from "react-native"
 import { Styles } from "../styles/Styles";
 import Header from "./Header";
 import Footer from "./Footer";
@@ -9,6 +9,7 @@ import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons"
 import { Dice, DownSectionCard, UpperSectionCard } from "./Components";
 import { Button } from "react-native";
 import { Alert } from "react-native";
+import { FontAwesome } from '@expo/vector-icons';
 
 
 
@@ -19,32 +20,32 @@ function Gameboard({ navigation, route }) {
     const [upperTotal, setUpperTotal] = useState(0)
     const [down, setDown] = useState(makeDownSection())
     const [downTotal, setDownTotal] = useState(0)
-    const [bonus,setBonus]=useState(0)
-    const [totalPoints,setTotalPoints]=useState(0)
+    const [bonus, setBonus] = useState(0)
+    const [totalPoints, setTotalPoints] = useState(0)
     const [numberOfThrows, setNumberOfThrows] = useState(NBR_OF_THROWS)
     const [status, setStatus] = useState("Start round")
-    const [gameIsOn,setGameIsOn]=useState(true)
+    const [gameIsOn, setGameIsOn] = useState(true)
 
 
     useEffect(() => {
         if (playerName === "" && route.params?.player) {
             setPlayerName(route.params.player)
-            
+
         }
     }, [])
-useEffect(()=>{
-if(gameIsOn===false){
-Alert.alert("Peli loppui",`Pelaaja: ${playerName}\nPisteet:\nYläosasta: ${upperTotal}\nAlaosasta: ${downTotal}\nBonus: ${bonus}\n\nYhteensä: ${totalPoints}`, [
-    {
-      text: 'Aloita uudestaan',
-      onPress: () => newGame(),
-      style: 'cancel',
-    },
-    {text: 'Tallenna pisteesi', onPress: () => navigateScore()},
-  ])
-}
+    useEffect(() => {
+        if (gameIsOn === false) {
+            Alert.alert("Peli loppui", `Pelaaja: ${playerName}\nPisteet:\nYläosasta: ${upperTotal}\nAlaosasta: ${downTotal}\nBonus: ${bonus}\n\nYhteensä: ${totalPoints}`, [
+                {
+                    text: 'Aloita uudestaan',
+                    onPress: () => newGame(),
+                    style: 'cancel',
+                },
+                { text: 'Tallenna pisteesi', onPress: () => navigateScore() },
+            ])
+        }
 
-},[gameIsOn])
+    }, [gameIsOn])
     useEffect(() => {
         if (numberOfThrows === 0) {
             setStatus("Spend your points")
@@ -56,21 +57,21 @@ Alert.alert("Peli loppui",`Pelaaja: ${playerName}\nPisteet:\nYläosasta: ${upper
         }
     }, [numberOfThrows])
 
-    useEffect(()=>{
+    useEffect(() => {
         const checkUpper = Array.prototype.every.call(upper, (item) => item.used === true)
         const checkDown = Array.prototype.every.call(down, (item) => item.used === true)
-        console.log(checkUpper,"UseEffect checkkeri Bonukselle")
-        if(checkUpper && upperTotal>=BONUS_POINTS_LIMIT){
+        console.log(checkUpper, "UseEffect checkkeri Bonukselle")
+        if (checkUpper && upperTotal >= BONUS_POINTS_LIMIT) {
             setBonus(BONUS_POINTS)
         }
-        if(checkDown && checkUpper){
+        if (checkDown && checkUpper) {
             setTotalPoints(bonus + upperTotal + downTotal)
             setGameIsOn(false)
-       }
+        }
 
-    },[upper,down])
+    }, [upper, down])
 
-    function newGame(){
+    function newGame() {
         setGameIsOn(true)
         setDices(makeDices())
         setUpper(makeUpperSection())
@@ -78,12 +79,12 @@ Alert.alert("Peli loppui",`Pelaaja: ${playerName}\nPisteet:\nYläosasta: ${upper
         setDownTotal(0)
         setUpperTotal(0)
         setBonus(0)
-        
+
     }
-function navigateScore(){  
-    navigation.navigate("Scoreboard")
-    newGame()
-}
+    function navigateScore() {
+        navigation.navigate("Scoreboard")
+        newGame()
+    }
 
     function makeDices() {
         const arr = []
@@ -307,7 +308,7 @@ function navigateScore(){
                     secondPairSum += secondPair[i]
                 }
                 return pairSum + secondPairSum
-            } else { 
+            } else {
                 return pairSum
             }
 
@@ -503,9 +504,9 @@ function navigateScore(){
     return (
         <View style={Styles.gameboard}>
             <Header />
-            <View style={{ flex: 7.5,borderWidth:1, flexDirection: "row", justifyContent: "space-between", alignItems: "center", gap: 15, padding: 5 }}>
+            <View style={{ flex: 7.5, borderWidth: 1, flexDirection: "row", justifyContent: "space-between", alignItems: "center", gap: 15, padding: 5 }}>
                 <View style={{ flex: 1, alignItems: "left", width: "30%" }}>
-                    <Text style={{ textAlign: "center" }}>Yläosa</Text>
+                    <Text style={{ textAlign: "center", color: "white" }}>Yläosa</Text>
                     <FlatList
                         data={upper}
                         extraData={upper}
@@ -518,11 +519,12 @@ function navigateScore(){
                         }
 
                     />
-                    <Text>Bonus: {bonus} </Text>
-                    <Text>Yläosan pisteet: {upperTotal} </Text>
+                    <Text style={{ color: "white" }}>Player: {playerName}</Text>
+                    <Text style={{ color: "white" }}>Bonus: {bonus} </Text>
+                    <Text style={{ color: "white" }}>Yläosan pisteet: {upperTotal} </Text>
                 </View>
                 <View style={{ flex: 1, alignItems: "left", width: "30%" }}>
-                    <Text style={{ textAlign: "center" }}>Alaosa</Text>
+                    <Text style={{ textAlign: "center", color: "white" }}>Alaosa</Text>
                     <FlatList
                         data={down}
                         extraData={down}
@@ -535,11 +537,12 @@ function navigateScore(){
                         }
 
                     />
-                    <Text>Alaosan pisteet: {downTotal} </Text>
+                    <Text style={{ color: "white" }}>Alaosan pisteet: {downTotal} </Text>
                 </View>
             </View>
 
-            <View style={{ flex: 1,borderWidth:1, alignItems: "center", justifyContent: "center" }}>
+            <View style={{flex:1, borderWidth: 1, alignItems: "center", justifyContent: "center", backgroundColor: "white" }}>
+
                 <FlatList
                     data={dices}
                     extraData={dices}
@@ -547,7 +550,7 @@ function navigateScore(){
                     renderItem={({ item }) =>
 
                         <Dice
-
+                            throws={numberOfThrows}
                             item={item}
                             handlePress={selectDice}
                         />
@@ -558,12 +561,46 @@ function navigateScore(){
 
 
             </View>
-            <View style={{ justifyContent: "center", alignItems: "center",borderWidth:1 }}>
-                <Text>Throws left:{numberOfThrows}</Text>
-                <Button title={status} onPress={numberOfThrows === 0 ? () => null : throwDices}></Button>
 
-                <Text>Player: {playerName}</Text>
+
+            <View style={{ flex: 1, flexDirection: "row" }}>
+
+
+                <TouchableOpacity style={{ flex: 1, flexDirection: "row" }} onPress={numberOfThrows === 0 ? () => null : throwDices}>
+                    <View style={{ flex: 1, justifyContent: "center", alignItems: "center", borderWidth: 1, padding: 8 }}>
+                        <Text>{status}</Text>
+
+                    </View>
+                </TouchableOpacity>
+
+
+                <View style={{ flex: 1, flexDirection: "column" }}>
+                <Text style={{textAlign:"center"}}>Throws left:</Text>
+                    <View style={{ flex: 1, flexDirection: "row", justifyContent: "space-around", alignItems: "center" }}>
+                        
+                        <View >
+                            {numberOfThrows >= 1 ?
+                                <MaterialCommunityIcons name="numeric-1-circle" size={30} color="white" /> :
+                                <FontAwesome name="circle" size={30} color="black" />}
+                        </View>
+
+                        <View>
+                            {numberOfThrows >= 2 ?
+                                <MaterialCommunityIcons name="numeric-2-circle" size={30} color="white" /> :
+                                <FontAwesome name="circle" size={30} color="black" />}
+                        </View>
+
+                        <View>
+                            {numberOfThrows === 3 ?
+                                <MaterialCommunityIcons name="numeric-3-circle" size={30} color="white" /> :
+                                <FontAwesome name="circle" size={30} color="black" />}
+                        </View>
+
+                    </View>
+                </View>
             </View>
+
+
 
             <Footer />
         </View>
