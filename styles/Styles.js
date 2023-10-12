@@ -18,10 +18,9 @@ const Styles = StyleSheet.create({
     backgroundColor: '#fff'
   },
   header: {
-
-    marginTop: Constants.statusBarHeight + 5,
     backgroundColor: '#faa449',
     flexDirection: 'row',
+    
   },
   footer: {
     backgroundColor: '#faa449',
@@ -45,6 +44,7 @@ const Styles = StyleSheet.create({
   },
   gameboard: {
     flex: 1,
+    marginTop: Constants.statusBarHeight + 5,
     backgroundColor: "#6060c7",
     alignItems: "stretch",
     justifyContent: 'center'

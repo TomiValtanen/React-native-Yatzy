@@ -7,7 +7,7 @@ import { Styles } from "../styles/Styles";
 function Footer(){
     return(
         <View style={Styles.footer}>
-            <Text style={Styles.author}>Author: Tomi Valtanen</Text>
+            <Text style={Styles.author}>Tekijä: Tomi Valtanen</Text>
         </View>
     )
 }

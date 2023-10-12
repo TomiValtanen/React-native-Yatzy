@@ -27,7 +27,7 @@ function Home({ navigation }) {
 
 
     return (
-        <View style={{ flex: 1, justifyContent: "center", alignItems: "strech", backgroundColor: "#1e1e40" }}>
+        <View style={[Styles.splash,{ justifyContent: "center", alignItems: "strech", backgroundColor: "#1e1e40" }]}>
             <Header />
             <View style={{ flex: 1, justifyContent: "center", alignItems: "center", gap: 20 }}>
                 <MaterialCommunityIcons
@@ -96,7 +96,7 @@ function Home({ navigation }) {
 
                         <Text style={{ color: "white" }}> Mukavia peli hetkiä sinulle , {playerName}</Text>
                         <Pressable onPress={() => navigation.navigate("Gameboard", { player: playerName })}>
-                            <Text style={[Styles.splashText, { width: 150, textAlign: "center", backgroundColor: "#faa449" }]}>Play</Text>
+                            <Text style={[Styles.splashText, { width: 150, textAlign: "center", backgroundColor: "#faa449" }]}>Yatzy</Text>
                         </Pressable>
 
                     </View>

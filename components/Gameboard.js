@@ -48,12 +48,12 @@ function Gameboard({ navigation, route }) {
     }, [gameIsOn])
     useEffect(() => {
         if (numberOfThrows === 0) {
-            setStatus("Spend your points")
+            setStatus("Käytä pisteesi")
         } else if (numberOfThrows > 0 && numberOfThrows < 3) {
-            setStatus("Throw dices")
+            setStatus("Heitä noppaa")
         }
         else {
-            setStatus("Start round")
+            setStatus("Aloita kierros")
         }
     }, [numberOfThrows])
 
@@ -567,15 +567,15 @@ function Gameboard({ navigation, route }) {
 
 
                 <TouchableOpacity style={{ flex: 1, flexDirection: "row" }} onPress={numberOfThrows === 0 ? () => null : throwDices}>
-                    <View style={{ flex: 1, justifyContent: "center", alignItems: "center", borderWidth: 1, padding: 8 }}>
-                        <Text>{status}</Text>
+                    <View style={{ flex: 1, justifyContent: "center", alignItems: "center", borderWidth: 1, padding: 8 ,backgroundColor:"#ff8800"}}>
+                        <Text style={{fontSize:20,fontWeight:"400"}}>{status}</Text>
 
                     </View>
                 </TouchableOpacity>
 
 
                 <View style={{ flex: 1, flexDirection: "column" }}>
-                <Text style={{textAlign:"center"}}>Throws left:</Text>
+                <Text style={{textAlign:"center"}}>Heittoja jäljellä:</Text>
                     <View style={{ flex: 1, flexDirection: "row", justifyContent: "space-around", alignItems: "center" }}>
                         
                         <View >
