@@ -18,11 +18,13 @@ const Styles = StyleSheet.create({
     backgroundColor: '#fff'
   },
   header: {
+    
     backgroundColor: '#faa449',
     flexDirection: 'row',
     
   },
   footer: {
+    
     backgroundColor: '#faa449',
     flexDirection: 'row'
   },

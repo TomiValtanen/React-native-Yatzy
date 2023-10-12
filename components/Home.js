@@ -27,7 +27,7 @@ function Home({ navigation }) {
 
 
     return (
-        <View style={[Styles.splash,{ justifyContent: "center", alignItems: "strech", backgroundColor: "#1e1e40" }]}>
+        <View style={[Styles.splash,{ justifyContent: "center", alignItems: "strech", backgroundColor: "#6060c7" }]}>
             <Header />
             <View style={{ flex: 1, justifyContent: "center", alignItems: "center", gap: 20 }}>
                 <MaterialCommunityIcons

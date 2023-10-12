@@ -82,7 +82,7 @@ function Gameboard({ navigation, route }) {
 
     }
     function navigateScore() {
-        navigation.navigate("Scoreboard")
+        navigation.navigate("Scoreboard",{score:{name:playerName,score:totalPoints}})
         newGame()
     }
 
@@ -543,7 +543,14 @@ function Gameboard({ navigation, route }) {
 
             <View style={{flex:1, borderWidth: 1, alignItems: "center", justifyContent: "center", backgroundColor: "white" }}>
 
-                <FlatList
+                {numberOfThrows===3?
+                    
+                <View >
+                <MaterialCommunityIcons name="dice-multiple" size={60} color="black" />
+                </View>
+
+                    :
+                    <FlatList
                     data={dices}
                     extraData={dices}
                     horizontal={true}
@@ -558,7 +565,7 @@ function Gameboard({ navigation, route }) {
                     }
 
                 />
-
+}
 
             </View>
 

@@ -80,7 +80,7 @@ export default function App() {
         <Tab.Screen
           name="Scoreboard"
           component={Scoreboard}
-
+          options={{ headerShown: false }}
         />
 
       </Tab.Navigator>
