@@ -9,7 +9,7 @@ import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
 import Home from './components/Home';
 import { NavigationContainer } from '@react-navigation/native';
 import Scoreboard from './components/Scoreboard';
-import Splash from './components/Splash';
+
 
 
 const Tab = createBottomTabNavigator();
@@ -53,16 +53,6 @@ export default function App() {
           tabBarInactiveTintColor: "gray"
         })}
       >
-
-        <Tab.Screen
-          name="Splash"
-          component={Splash}
-          options={{
-            tabBarStyle: { display: "none"},
-            headerShown:false,
-            tabBarShowLabel:false
-          }}
-        />
         <Tab.Screen
           name="Home"
           component={Home}

@@ -9,7 +9,8 @@ import Footer from "./Footer";
 import { TextInput } from "react-native";
 import { Pressable } from "react-native";
 import { Text } from "react-native";
-
+import { Image } from "react-native";
+import YatzyLogo from "../assets/Yatzy_logo11.png"
 
 
 
@@ -27,35 +28,47 @@ function Home({ navigation }) {
 
 
     return (
-        <View style={[Styles.splash,{ justifyContent: "center", alignItems: "strech", backgroundColor: "#6060c7" }]}>
+        <View style={[Styles.splash, { justifyContent: "center", alignItems: "strech", backgroundColor: "#6060c7" }]}>
             <Header />
-            <View style={{ flex: 1, justifyContent: "center", alignItems: "center", gap: 20 }}>
-                <MaterialCommunityIcons
-                    name="information"
-                    size={90}
-                    color={"#faa449"}
-                />
-                {!hasPlayerName ?
-                    <>
-                        <Text style={{ color: "white" }}>Anna nimesi pistetilastointia varten...</Text>
-                        <TextInput
-                            style={{ backgroundColor: "#ffffff", width: "50%", height: 40 }}
-                            onChangeText={setPlayerName}
-                            autoFocus={true}
-                            inputMode="text"
-                            keyboardType="default"
-                            maxLength={10}
-                            placeholder="Nimi"
-                            textAlign="center"
+            <View style={{ flex: 3, justifyContent: "center", alignItems: "center", gap: 20 }}>
+                <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
+                    <Image
+                        source={YatzyLogo}
+                        resizeMode="contain"
+                        style={{ flex: 1 }}
+                    />
+                </View>
+            </View>
 
-                        />
-                        <Pressable onPress={() => handlePLayerName(playerName)}>
-                            <Text style={[Styles.splashText, { width: 150, textAlign: "center", backgroundColor: "#faa449" }]}>OK</Text>
-                        </Pressable>
-                    </>
-                    :
-                    <ScrollView style={{flexGrow:1,marginBottom:20,marginTop:20}}>
-                    <View style={{flex:1,justifyContent:"center",alignItems:"center",gap:20}}>
+            {!hasPlayerName ?
+                <View style={{ flex: 4, alignItems: "center", justifyContent: "center" ,gap:20}}>
+                    <Text style={{ color: "white" }}>Anna nimesi pistetilastointia varten...</Text>
+                    <TextInput
+                        style={{ backgroundColor: "#ffffff", width: "50%", height: 40 }}
+                        onChangeText={setPlayerName}
+                        autoFocus={true}
+                        inputMode="text"
+                        keyboardType="default"
+                        maxLength={10}
+                        placeholder="Nimi"
+                        textAlign="center"
+
+                    />
+                    <Pressable onPress={() => handlePLayerName(playerName)}>
+                        <Text style={[Styles.splashText, { width: 150, textAlign: "center", backgroundColor: "#faa449" }]}>OK</Text>
+                    </Pressable>
+                </View>
+                :
+                <View style={{flex:5}}>
+                <ScrollView
+                contentContainerStyle={{justifyContent:"center",alignItems:"center"}}
+                style={{ flexGrow: 1, marginBottom: 20, marginTop: 20 }}>
+                    <MaterialCommunityIcons
+                        name="information"
+                        size={90}
+                        color={"#faa449"}
+                    />
+                    <View style={{ flex: 1, justifyContent: "center", alignItems: "center", gap: 20 }}>
                         <Text style={{ color: "white", textAlign: "justify", paddingLeft: 15, paddingRight: 15 }} multiline="true">
                             Yatzy:{"\n"}
                             Pöytäkirja jakautuu kahteen osaa: ylä- ja alapuoleen.{"\n"}
@@ -100,14 +113,14 @@ function Home({ navigation }) {
                         </Pressable>
 
                     </View>
-                    </ScrollView>
+                </ScrollView>
+                </View>
 
+            }
 
-                }
-            </View>
             <Footer />
 
-        </View>
+        </View >
     )
 }
 

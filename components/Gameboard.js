@@ -504,8 +504,8 @@ function Gameboard({ navigation, route }) {
     return (
         <View style={Styles.gameboard}>
             <Header />
-            <View style={{ flex: 7.5, borderWidth: 1, flexDirection: "row", justifyContent: "space-between", alignItems: "center", gap: 15, padding: 5 }}>
-                <View style={{ flex: 1, alignItems: "left", width: "30%" }}>
+            <View style={{ flex: 10, borderWidth: 1, flexDirection: "row", justifyContent: "space-between", alignItems: "center", gap: 15, padding: 5 }}>
+                <View style={{ flex: 1, alignItems: "left", width: "30%" ,justifyContent:"flex-end"}}>
                     <Text style={{ textAlign: "center", color: "white" }}>Yläosa</Text>
                     <FlatList
                         data={upper}
@@ -519,9 +519,11 @@ function Gameboard({ navigation, route }) {
                         }
 
                     />
+                    <View style={{flexGrow:1,marginTop:2,position:"absolute",bottom:0}}>
                     <Text style={{ color: "white" }}>Player: {playerName}</Text>
                     <Text style={{ color: "white" }}>Bonus: {bonus} </Text>
                     <Text style={{ color: "white" }}>Yläosan pisteet: {upperTotal} </Text>
+                    </View>
                 </View>
                 <View style={{ flex: 1, alignItems: "left", width: "30%" }}>
                     <Text style={{ textAlign: "center", color: "white" }}>Alaosa</Text>
@@ -537,11 +539,14 @@ function Gameboard({ navigation, route }) {
                         }
 
                     />
+                    <View style={{flexGrow:1,marginTop:2,position:"absolute",bottom:0}}>
                     <Text style={{ color: "white" }}>Alaosan pisteet: {downTotal} </Text>
+                    </View>
+                    
                 </View>
             </View>
 
-            <View style={{flex:1, borderWidth: 1, alignItems: "center", justifyContent: "center", backgroundColor: "white" }}>
+            <View style={{flex:1.25, borderWidth: 1, alignItems: "center", justifyContent: "center", backgroundColor: "white" }}>
 
                 {numberOfThrows===3?
                     
@@ -582,7 +587,7 @@ function Gameboard({ navigation, route }) {
 
 
                 <View style={{ flex: 1, flexDirection: "column" }}>
-                <Text style={{textAlign:"center"}}>Heittoja jäljellä:</Text>
+                <Text style={{textAlign:"center",color:"white"}}>Heittoja jäljellä:</Text>
                     <View style={{ flex: 1, flexDirection: "row", justifyContent: "space-around", alignItems: "center" }}>
                         
                         <View >

@@ -18,15 +18,19 @@ const Styles = StyleSheet.create({
     backgroundColor: '#fff'
   },
   header: {
-    
+    flex:0.5,
     backgroundColor: '#faa449',
     flexDirection: 'row',
+    padding:5,
+    alignItems:"center"
     
   },
   footer: {
-    
+    flex:0.5,
     backgroundColor: '#faa449',
-    flexDirection: 'row'
+    flexDirection: 'row',
+    padding:5,
+    alignItems:"center"
   },
   title: {
     color: '#fff',
@@ -34,7 +38,6 @@ const Styles = StyleSheet.create({
     flex: 1,
     fontSize: 15,
     textAlign: 'center',
-    margin: 10,
   },
   author: {
     color: '#fff',
@@ -42,7 +45,7 @@ const Styles = StyleSheet.create({
     flex: 1,
     fontSize: 15,
     textAlign: 'center',
-    margin: 10,
+    
   },
   gameboard: {
     flex: 1,
