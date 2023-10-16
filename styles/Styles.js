@@ -2,35 +2,68 @@ import { StyleSheet } from 'react-native';
 import Constants from "expo-constants";
 
 const Styles = StyleSheet.create({
-  splash: {
+
+  container: {
     marginTop: Constants.statusBarHeight + 5,
-    flex: 1
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "strech",
+    backgroundColor: "#F1EFDC"
   },
-  splashText: {
-    backgroundColor:"#ff00ff",
-    fontSize:35,
-    padding:10,
-    borderRadius:8,
+  logoContainer: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center"
 
   },
-  container: {
-    flex: 1,
-    backgroundColor: '#fff'
-  },
-  header: {
-    flex:0.5,
-    backgroundColor: '#faa449',
-    flexDirection: 'row',
-    padding:5,
-    alignItems:"center"
+  giveNameContainer: {
+    flex: 5,
+    alignItems:"stretch",
+    justifyContent: "center",
     
   },
-  footer: {
-    flex:0.5,
-    backgroundColor: '#faa449',
+  nameInputContainer:{
+    flex:1,
+    justifyContent: "center",
+    alignItems: "center",
+    gap: 10, padding: 10,
+    height: "40%" 
+  },
+  nameText: {
+    color: "#000000"
+  },
+  textInput: {
+    backgroundColor: "#ffffff",
+    width: "50%",
+    height: 40
+  },
+  pressableContainer:{
+    borderWidth:1,
+    width:"40%",
+    height:"30%",
+    justifyContent:"center",
+    alignSelf:"center",
+    alignItems:"center",
+    backgroundColor:"#D36B00",
+    borderRadius:5
+    
+  },
+  pressableText:{
+    padding:10
+  },
+  header: {
+    height: "5%",
+    backgroundColor: '#D36B00',
     flexDirection: 'row',
-    padding:5,
-    alignItems:"center"
+    padding: 5,
+    alignItems: "center"
+  },
+  footer: {
+    height: "5%",
+    backgroundColor: '#D36B00',
+    flexDirection: 'row',
+    padding: 5,
+    alignItems: "center"
   },
   title: {
     color: '#fff',
@@ -45,12 +78,12 @@ const Styles = StyleSheet.create({
     flex: 1,
     fontSize: 15,
     textAlign: 'center',
-    
+
   },
   gameboard: {
     flex: 1,
     marginTop: Constants.statusBarHeight + 5,
-    backgroundColor: "#6060c7",
+    backgroundColor: "#F1EFDC",
     alignItems: "stretch",
     justifyContent: 'center'
   },

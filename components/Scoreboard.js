@@ -71,10 +71,10 @@ function Scoreboard({ navigation, route }) {
 
     console.log(scoreData, "scoreData")
     return (
-        <View style={Styles.splash}>
+        <View style={Styles.container}>
             <Header />
-            <View style={{ flex: 4, flexDirection: "column", justifyContent: "center", alignItems: "center", backgroundColor: "#6060c7", padding: 10 }}>
-                <Text style={{fontSize:20,color:"white",marginBottom:10}}>Top 5:</Text>
+            <View style={{ flex: 1, flexDirection: "column", justifyContent: "center", alignItems: "center", backgroundColor: "#F1EFDC", padding: 10 }}>
+                <Text style={{fontSize:20,color:"black",marginBottom:10}}>Top 5:</Text>
                 <FlatList
                     data={scoreData}
                     extraData={scoreData}

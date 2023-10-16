@@ -506,7 +506,7 @@ function Gameboard({ navigation, route }) {
             <Header />
             <View style={{ flex: 10, borderWidth: 1, flexDirection: "row", justifyContent: "space-between", alignItems: "center", gap: 15, padding: 5 }}>
                 <View style={{ flex: 1, alignItems: "left", width: "30%" ,justifyContent:"flex-end"}}>
-                    <Text style={{ textAlign: "center", color: "white" }}>Yläosa</Text>
+                    <Text style={{ textAlign: "center", color: "black" }}>Yläosa</Text>
                     <FlatList
                         data={upper}
                         extraData={upper}
@@ -519,14 +519,14 @@ function Gameboard({ navigation, route }) {
                         }
 
                     />
-                    <View style={{flexGrow:1,marginTop:2,position:"absolute",bottom:0}}>
-                    <Text style={{ color: "white" }}>Player: {playerName}</Text>
-                    <Text style={{ color: "white" }}>Bonus: {bonus} </Text>
-                    <Text style={{ color: "white" }}>Yläosan pisteet: {upperTotal} </Text>
+                    <View style={{flexGrow:1,marginTop:2,position:"absolute",bottom:0,width:"100%",backgroundColor:"#F1EFDC"}}>
+                    <Text style={{ color: "black" }}>Player: {playerName}</Text>
+                    <Text style={{ color: "black" }}>Bonus: {bonus} </Text>
+                    <Text style={{ color: "black" }}>Yläosan pisteet: {upperTotal} </Text>
                     </View>
                 </View>
                 <View style={{ flex: 1, alignItems: "left", width: "30%" }}>
-                    <Text style={{ textAlign: "center", color: "white" }}>Alaosa</Text>
+                    <Text style={{ textAlign: "center", color: "black" }}>Alaosa</Text>
                     <FlatList
                         data={down}
                         extraData={down}
@@ -539,14 +539,14 @@ function Gameboard({ navigation, route }) {
                         }
 
                     />
-                    <View style={{flexGrow:1,marginTop:2,position:"absolute",bottom:0}}>
-                    <Text style={{ color: "white" }}>Alaosan pisteet: {downTotal} </Text>
+                    <View style={{flexGrow:1,marginTop:5,position:"absolute",bottom:0,width:"100%",backgroundColor:"#F1EFDC"}}>
+                    <Text style={{ color: "black" }}>Alaosan pisteet: {downTotal} </Text>
                     </View>
                     
                 </View>
             </View>
 
-            <View style={{flex:1.25, borderWidth: 1, alignItems: "center", justifyContent: "center", backgroundColor: "white" }}>
+            <View style={{flex:1.25, borderWidth: 1, alignItems: "center", justifyContent: "center", backgroundColor: "#E6D2AA" }}>
 
                 {numberOfThrows===3?
                     
@@ -579,33 +579,33 @@ function Gameboard({ navigation, route }) {
 
 
                 <TouchableOpacity style={{ flex: 1, flexDirection: "row" }} onPress={numberOfThrows === 0 ? () => null : throwDices}>
-                    <View style={{ flex: 1, justifyContent: "center", alignItems: "center", borderWidth: 1, padding: 8 ,backgroundColor:"#ff8800"}}>
-                        <Text style={{fontSize:20,fontWeight:"400"}}>{status}</Text>
+                    <View style={{ flex: 1, justifyContent: "center", alignItems: "center", borderWidth: 1, padding: 8 ,backgroundColor:"#42032C"}}>
+                        <Text style={{fontSize:20,fontWeight:"400",color:"white"}}>{status}</Text>
 
                     </View>
                 </TouchableOpacity>
 
 
                 <View style={{ flex: 1, flexDirection: "column" }}>
-                <Text style={{textAlign:"center",color:"white"}}>Heittoja jäljellä:</Text>
+                <Text style={{textAlign:"center",color:"black"}}>Heittoja jäljellä:</Text>
                     <View style={{ flex: 1, flexDirection: "row", justifyContent: "space-around", alignItems: "center" }}>
                         
                         <View >
                             {numberOfThrows >= 1 ?
-                                <MaterialCommunityIcons name="numeric-1-circle" size={30} color="white" /> :
-                                <FontAwesome name="circle" size={30} color="black" />}
+                                <MaterialCommunityIcons name="numeric-1-circle" size={30} color="#D36B00" /> :
+                                <FontAwesome name="circle" size={30} color="#42032C" />}
                         </View>
 
                         <View>
                             {numberOfThrows >= 2 ?
-                                <MaterialCommunityIcons name="numeric-2-circle" size={30} color="white" /> :
-                                <FontAwesome name="circle" size={30} color="black" />}
+                                <MaterialCommunityIcons name="numeric-2-circle" size={30} color="#D36B00" /> :
+                                <FontAwesome name="circle" size={30} color="#42032C" />}
                         </View>
 
                         <View>
                             {numberOfThrows === 3 ?
-                                <MaterialCommunityIcons name="numeric-3-circle" size={30} color="white" /> :
-                                <FontAwesome name="circle" size={30} color="black" />}
+                                <MaterialCommunityIcons name="numeric-3-circle" size={30} color="#D36B00" /> :
+                                <FontAwesome name="circle" size={30} color="#42032C" />}
                         </View>
 
                     </View>
