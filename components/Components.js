@@ -135,6 +135,7 @@ function CustomFlatlist({ data, handleSelect, text, horizontal,dice }) {
     return (
         <>
             <FlatList
+                contentContainerStyle={{ paddingBottom: 20 }}
                 data={data}
                 extraData={data}
                 horizontal={horizontal}
@@ -155,7 +156,7 @@ function CustomFlatlist({ data, handleSelect, text, horizontal,dice }) {
 function Selection({ data, handleSelect, text, textPara, horizontal,dice }) {
     return (
         <View style={Styles.flatlistContainer}>
-            <Text style={{ textAlign: "center", color: "black" }}>{text}</Text>
+            {!dice && <Text style={{ textAlign: "center", color: "black" }}>{text}</Text>}
             <CustomFlatlist
                 data={data}
                 handleSelect={handleSelect}
@@ -163,7 +164,7 @@ function Selection({ data, handleSelect, text, textPara, horizontal,dice }) {
                 horizontal={horizontal}
                 dice={dice}
             />
-            <View style={{ flexGrow: 1, marginTop: 2, position: "absolute", bottom: 0, width: "100%", backgroundColor: "#F1EFDC" }}>
+            <View style={{ flexGrow: 1,position:"absolute",bottom:0, marginTop: 2, width: "100%", backgroundColor: "#F1EFDC" }}>
                 {textPara.map((text, index) => <CustomText key={index} text={text} />)}
             </View>
         </View>
@@ -177,7 +178,7 @@ function Card({ dice ,item,handlePress,index}) {
             handlePress={handlePress}
                />
             :
-            <DownSectionCard
+            <SectionCard
             item={item}
             handlePress={handlePress}
             index={index}
@@ -185,7 +186,7 @@ function Card({ dice ,item,handlePress,index}) {
         </>
     )
 }
-function DownSectionCard({ item, handlePress, index }) {
+function SectionCard({ item, handlePress, index }) {
     return (
         <Pressable onPress={() => handlePress(item)}>
             <View key={index} style={{ flex: 1, flexDirection: "row", borderWidth: 1, alignItems: "center", justifyContent: "space-between", padding: 5, marginTop: 5, marginBottom: 5, backgroundColor: item.used ? '#D36B00' : "#E6D2AA" }}>
@@ -209,4 +210,4 @@ function Dice({ item, handlePress }) {
     )
 }
 
-export { Dice, DownSectionCard, Logo, GiveName, PressableButton, Rules, CustomFlatlist, Selection }
+export { Dice, SectionCard, Logo, GiveName, PressableButton, Rules, CustomFlatlist, Selection }

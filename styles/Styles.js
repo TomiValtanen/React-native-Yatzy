@@ -79,7 +79,7 @@ const Styles = StyleSheet.create({
   },
   textContainer:{
     flex: 1,
-    justifyContent: "center",
+    justifyContent:"center",
     alignItems: "stretch",
     gap: 20
   },

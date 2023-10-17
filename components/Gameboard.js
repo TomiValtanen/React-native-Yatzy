@@ -533,20 +533,14 @@ function Gameboard({ navigation, route }) {
                 </View>
 
                     :
-                    <FlatList
+                    <CustomFlatlist
                     data={dices}
-                    extraData={dices}
+                    handleSelect={selectDice}
                     horizontal={true}
-                    renderItem={({ item }) =>
-
-                        <Dice
-                            item={item}
-                            handlePress={selectDice}
-                        />
-
-                    }
-
-                />
+                    dice={true}
+                    
+                    />
+                    
 }
 
             </View>
