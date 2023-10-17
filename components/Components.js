@@ -135,7 +135,7 @@ function CustomFlatlist({ data, handleSelect, text, horizontal,dice }) {
     return (
         <>
             <FlatList
-                contentContainerStyle={{ paddingBottom: 20 }}
+                contentContainerStyle={{ paddingBottom: dice? 0: 20 }}
                 data={data}
                 extraData={data}
                 horizontal={horizontal}
