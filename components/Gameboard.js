@@ -508,12 +508,16 @@ function Gameboard({ navigation, route }) {
                 <Selection 
                 data={upper}
                 handleSelect={selectUpper}
+                horizontal={false}
+                dice={false}
                 text={"Yläosa"}
                 textPara={[`Player: ${playerName}`,`Bonus: ${bonus}`,`Yläosan pisteet: ${upperTotal}`]}
                 />
                 <Selection 
                 data={down}
                 handleSelect={selectDown}
+                horizontal={false}
+                dice={false}
                 text={"Alaosa"}
                 textPara={[`Alaosan pisteet: ${downTotal}`]}
                 />

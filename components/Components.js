@@ -131,15 +131,16 @@ function CustomText({ text }) {
         </View>
     )
 }
-function CustomFlatlist({data,handleSelect,text}) {
+function CustomFlatlist({ data, handleSelect, text, horizontal,dice }) {
     return (
         <>
-            <Text style={{ textAlign: "center", color: "black" }}>{text}</Text>
             <FlatList
                 data={data}
                 extraData={data}
-                renderItem={({ item ,index}) =>
-                    <DownSectionCard
+                horizontal={horizontal}
+                renderItem={({ item, index }) =>
+                    <Card
+                        dice={dice}
                         item={item}
                         handlePress={handleSelect}
                         index={`${text}${index}`}
@@ -151,21 +152,39 @@ function CustomFlatlist({data,handleSelect,text}) {
         </>
     )
 }
-function Selection({data,handleSelect,text,textPara}){
-    return(
+function Selection({ data, handleSelect, text, textPara, horizontal,dice }) {
+    return (
         <View style={Styles.flatlistContainer}>
+            <Text style={{ textAlign: "center", color: "black" }}>{text}</Text>
             <CustomFlatlist
-            data={data}
-            handleSelect={handleSelect}
-            text={text}
+                data={data}
+                handleSelect={handleSelect}
+                text={text}
+                horizontal={horizontal}
+                dice={dice}
             />
-             <View style={{flexGrow:1,marginTop:2,position:"absolute",bottom:0,width:"100%",backgroundColor:"#F1EFDC"}}>
-                 {textPara.map((text,index) =>  <CustomText key={index} text={text} />)}
-                    </View>
+            <View style={{ flexGrow: 1, marginTop: 2, position: "absolute", bottom: 0, width: "100%", backgroundColor: "#F1EFDC" }}>
+                {textPara.map((text, index) => <CustomText key={index} text={text} />)}
+            </View>
         </View>
     )
 }
-
+function Card({ dice ,item,handlePress,index}) {
+    return (
+        <>
+            {dice ?<Dice
+             item={item}
+            handlePress={handlePress}
+               />
+            :
+            <DownSectionCard
+            item={item}
+            handlePress={handlePress}
+            index={index}
+            />}
+        </>
+    )
+}
 function DownSectionCard({ item, handlePress, index }) {
     return (
         <Pressable onPress={() => handlePress(item)}>
@@ -178,10 +197,10 @@ function DownSectionCard({ item, handlePress, index }) {
     )
 }
 
-function Dice({ item, handlePress, throws }) {
+function Dice({ item, handlePress }) {
     return (
         <Pressable onPress={() => handlePress(item.key)}>
-            <View style={{ flex: 1, justifyContent: "center", alignItems: "center"}} key={item.key}>
+            <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }} key={item.key}>
                 <MaterialCommunityIcons name={`dice-${item.value}`} size={60} color={item.selected ? '#D36B00' : "#42032C"} />
             </View>
         </Pressable>
@@ -190,4 +209,4 @@ function Dice({ item, handlePress, throws }) {
     )
 }
 
-export { Dice, DownSectionCard, Logo, GiveName, PressableButton, Rules ,CustomFlatlist,Selection}
+export { Dice, DownSectionCard, Logo, GiveName, PressableButton, Rules, CustomFlatlist, Selection }
