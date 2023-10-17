@@ -6,7 +6,7 @@ import Footer from "./Footer";
 import { NBR_OF_DICES, NBR_OF_THROWS, MIN_SPOT, MAX_SPOT, BONUS_POINTS, BONUS_POINTS_LIMIT } from "../constants/Game";
 import { Container, Row, Col } from 'react-native-flex-grid';
 import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons"
-import { Dice, DownSectionCard, UpperSectionCard } from "./Components";
+import { CustomFlatlist, Dice, DownSectionCard, UpperSectionCard, Selection } from "./Components";
 import { Button } from "react-native";
 import { Alert } from "react-native";
 import { FontAwesome } from '@expo/vector-icons';
@@ -98,7 +98,7 @@ function Gameboard({ navigation, route }) {
         const arr = []
         const yläosa = ["Ykköset", "Kakkoset", "Kolmoset", "Neloset", "Viitoset", "Kuutoset"]
         for (let i = 0; i < yläosa.length; i++) {
-            arr.push({ rightValue: i + 1, name: yläosa[i], used: false, score: 0 })
+            arr.push({ rightValue: i + 1, name: yläosa[i], used: false, score: 0,icon:`dice-${i+1}` })
         }
         //console.log(arr,"MakeUpper")
         return arr
@@ -505,45 +505,19 @@ function Gameboard({ navigation, route }) {
         <View style={Styles.gameboard}>
             <Header />
             <View style={{ flex: 10, borderWidth: 1, flexDirection: "row", justifyContent: "space-between", alignItems: "center", gap: 15, padding: 5 }}>
-                <View style={{ flex: 1, alignItems: "left", width: "30%" ,justifyContent:"flex-end"}}>
-                    <Text style={{ textAlign: "center", color: "black" }}>Yläosa</Text>
-                    <FlatList
-                        data={upper}
-                        extraData={upper}
-                        renderItem={({ item }) =>
-                            <UpperSectionCard
-                                item={item}
-                                handlePress={selectUpper}
-
-                            />
-                        }
-
-                    />
-                    <View style={{flexGrow:1,marginTop:2,position:"absolute",bottom:0,width:"100%",backgroundColor:"#F1EFDC"}}>
-                    <Text style={{ color: "black" }}>Player: {playerName}</Text>
-                    <Text style={{ color: "black" }}>Bonus: {bonus} </Text>
-                    <Text style={{ color: "black" }}>Yläosan pisteet: {upperTotal} </Text>
-                    </View>
-                </View>
-                <View style={{ flex: 1, alignItems: "left", width: "30%" }}>
-                    <Text style={{ textAlign: "center", color: "black" }}>Alaosa</Text>
-                    <FlatList
-                        data={down}
-                        extraData={down}
-                        renderItem={({ item, index }) =>
-                            <DownSectionCard
-                                item={item}
-                                handlePress={selectDown}
-                                index={index}
-                            />
-                        }
-
-                    />
-                    <View style={{flexGrow:1,marginTop:5,position:"absolute",bottom:0,width:"100%",backgroundColor:"#F1EFDC"}}>
-                    <Text style={{ color: "black" }}>Alaosan pisteet: {downTotal} </Text>
-                    </View>
-                    
-                </View>
+                <Selection 
+                data={upper}
+                handleSelect={selectUpper}
+                text={"Yläosa"}
+                textPara={[`Player: ${playerName}`,`Bonus: ${bonus}`,`Yläosan pisteet: ${upperTotal}`]}
+                />
+                <Selection 
+                data={down}
+                handleSelect={selectDown}
+                text={"Alaosa"}
+                textPara={[`Alaosan pisteet: ${downTotal}`]}
+                />
+                
             </View>
 
             <View style={{flex:1.25, borderWidth: 1, alignItems: "center", justifyContent: "center", backgroundColor: "#E6D2AA" }}>
@@ -562,7 +536,6 @@ function Gameboard({ navigation, route }) {
                     renderItem={({ item }) =>
 
                         <Dice
-                            throws={numberOfThrows}
                             item={item}
                             handlePress={selectDice}
                         />

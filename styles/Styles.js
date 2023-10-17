@@ -11,7 +11,7 @@ const Styles = StyleSheet.create({
     backgroundColor: "#F1EFDC"
   },
   logoContainer: {
-    flex: 1,
+    flex: 3,
     justifyContent: "center",
     alignItems: "center"
 
@@ -38,9 +38,6 @@ const Styles = StyleSheet.create({
     height: 40
   },
   pressableContainer:{
-    borderWidth:1,
-    width:"40%",
-    height:"30%",
     justifyContent:"center",
     alignSelf:"center",
     alignItems:"center",
@@ -80,12 +77,30 @@ const Styles = StyleSheet.create({
     textAlign: 'center',
 
   },
+  textContainer:{
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "stretch",
+    gap: 20
+  },
+  customText:{
+    color: "black",
+    textAlign: "left",
+    paddingLeft: 15,
+    paddingRight: 15 
+  },
   gameboard: {
     flex: 1,
     marginTop: Constants.statusBarHeight + 5,
     backgroundColor: "#F1EFDC",
     alignItems: "stretch",
     justifyContent: 'center'
+  },
+  flatlistContainer:{
+    flex: 1,
+    alignItems: "left",
+    width: "30%",
+    justifyContent: "flex-end" 
   },
   gameinfo: {
 

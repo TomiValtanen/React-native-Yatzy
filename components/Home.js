@@ -1,15 +1,10 @@
-import { ScrollView, View } from "react-native";
-import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
-import { NBR_OF_DICES, NBR_OF_THROWS, MIN_SPOT, MAX_SPOT, BONUS_POINTS, BONUS_POINTS_LIMIT, RULES, POINTS, AIM } from "../constants/Game";
+import { View } from "react-native";
+import { RULES, POINTS, AIM } from "../constants/Game";
 import { Styles } from "../styles/Styles";
 import { useState } from "react";
 import { Keyboard } from "react-native";
 import Header from "./Header";
 import Footer from "./Footer";
-import { TextInput } from "react-native";
-import { Pressable } from "react-native";
-import { Text } from "react-native";
-import { Image } from "react-native";
 import { GiveName, Logo, Rules } from "./Components";
 
 
@@ -30,27 +25,25 @@ function Home({ navigation }) {
     return (
         <View style={Styles.container}>
             <Header />
-            <View style={{ flex: 3, justifyContent: "center", alignItems: "center", gap: 20 }}>
-                <Logo/>
-            </View>
+
+            <Logo />
+
 
             {!hasPlayerName ?
                 <GiveName
-                setPlayerName={setPlayerName}
-                text={"Anna nimesi pistetilastointia varten..."}
-                placeholder={"Nimi"}
-                maxLength={10}
-                playerName={playerName}
-                handlePress={handlePLayerName}
-                buttonText={"OK"}
+                    setPlayerName={setPlayerName}
+                    text={"Anna nimesi pistetilastointia varten..."}
+                    placeholder={"Nimi"}
+                    maxLength={10}
+                    handlePress={() => handlePLayerName(playerName)}
+                    buttonText={"OK"}
                 />
                 :
                 <Rules
-                playerName={playerName}
-                RULES={RULES}
-                POINTS={POINTS}
-                AIM={AIM}
-                navigation={navigation}
+                    text={` Mukavia peli hetkiä sinulle , ${playerName}`}
+                    textParas={[RULES, POINTS, AIM]}
+                    navigation={() => navigation.navigate("Gameboard", { player: playerName })}
+                    buttonText={"Yatzy"}
                 />
 
             }

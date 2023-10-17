@@ -4,20 +4,11 @@ import { Pressable } from "react-native";
 import { Text } from "react-native";
 import { Styles } from "../styles/Styles"
 import YatzyLogo from "../assets/Yatzy_logo11.png"
+import { FlatList } from "react-native";
 
 
 
-function Dice({ item, handlePress, throws }) {
-    return (
-        <Pressable onPress={() => handlePress(item.key)}>
-            <View style={{ flex: 1, justifyContent: "center", alignItems: "center", display: throws === 3 ? "none" : "flex" }} key={item.key}>
-                <MaterialCommunityIcons name={`dice-${item.value}`} size={60} color={item.selected ? '#D36B00' : "#42032C"} />
-            </View>
-        </Pressable>
 
-
-    )
-}
 
 function Logo() {
     return (
@@ -41,25 +32,46 @@ function GiveName({ setPlayerName, text, placeholder, maxLength, playerName, han
                 setPlayerName={setPlayerName}
                 maxLength={maxLength}
                 placeholder={placeholder}
+
             />
 
-            <View style={{ flex: 1, justifyContent: "flex-start", alignItems: "stretch" }}>
-                <PressableButton
-                    handlePress={handlePress}
-                    playerName={playerName}
-                    buttonText={buttonText}
-                />
-            </View>
+
+            <PressableButton
+                handlePress={handlePress}
+                buttonText={buttonText}
+                width={"50%"}
+                height={"30%"}
+            />
+
         </View>
     )
 }
 
-function PressableButton({ handlePress, playerName, buttonText }) {
+function PressableButton({ handlePress, buttonText, width, height }) {
     return (
-        <TouchableOpacity style={Styles.pressableContainer} onPress={() => handlePress(playerName)}>
-            <Text style={Styles.pressableText}>{buttonText}</Text>
-        </TouchableOpacity>
+        <View style={{ flex: 1, justifyContent: "flex-start", alignItems: "stretch" }}>
+            <TouchableOpacity style={[Styles.pressableContainer, { width: width, height: height }]} onPress={handlePress}>
+                <Text style={Styles.pressableText}>{buttonText}</Text>
+            </TouchableOpacity>
+        </View>
 
+    )
+}
+
+function NavigationTextButton({ navigation, buttonText, text, width, height }) {
+    return (
+        <View style={{ flex: 1, justifyContent: "center", alignItems: "stretch", gap: 10 }}>
+
+            <Text style={{ color: "black" }}>{text}</Text>
+
+
+            <PressableButton
+                handlePress={navigation}
+                buttonText={buttonText}
+                width={width}
+                height={height}
+            />
+        </View>
     )
 }
 
@@ -84,39 +96,29 @@ function CustomTextInput({ text, setPlayerName, maxLength, placeholder }) {
     )
 }
 
-function Rules({ playerName, RULES, POINTS, AIM ,navigation}) {
+function Rules({ text, textParas, navigation, buttonText }) {
     return (
         <View style={{ flex: 5 }}>
             <ScrollView
-                contentContainerStyle={{ justifyContent: "center", alignItems: "center",gap:30 }}
+                contentContainerStyle={{ justifyContent: "center", alignItems: "center", gap: 30 }}
                 style={{ flexGrow: 1, marginBottom: 20, marginTop: 20 }}>
                 <MaterialCommunityIcons
                     name="information"
                     size={90}
                     color={"#faa449"}
                 />
-                <View style={{ flex: 1, justifyContent: "center", alignItems: "stretch", gap: 20 }}>
-
-                    <CustomText
-                        text={RULES}
-                    />
-                    <CustomText
-                        text={POINTS}
-                    />
-                    <CustomText
-                        text={AIM}
-                    />
-
+                <View style={Styles.textContainer}>
+                    {
+                        textParas.map((para, index) => <CustomText key={index} text={para} />)
+                    }
                 </View>
-                <View style={{flex:1,justifyContent:"center",alignItems:"center",gap:10}}>
-                <Text style={{ color: "black" }}> Mukavia peli hetkiä sinulle , {playerName}</Text>
-                <Pressable onPress={() => navigation.navigate("Gameboard", { player: playerName })}>
-                    <Text style={[Styles.splashText, { width: 150, textAlign: "center", backgroundColor: "#D36B00" }]}>Yatzy</Text>
-                </Pressable>
-                </View>
-               
-
-
+                <NavigationTextButton
+                    navigation={navigation}
+                    text={text}
+                    buttonText={buttonText}
+                    width={"100%"}
+                    height={"100%"}
+                />
             </ScrollView>
         </View>
     )
@@ -125,22 +127,42 @@ function Rules({ playerName, RULES, POINTS, AIM ,navigation}) {
 function CustomText({ text }) {
     return (
         <View style={{ flex: 1 }}>
-            <Text style={{ color: "black", textAlign: "left", paddingLeft: 15, paddingRight: 15 }} multiline="true">{text}</Text>
-
+            <Text style={Styles.customText} multiline="true">{text}</Text>
         </View>
     )
 }
-
-
-function UpperSectionCard({ item, handlePress }) {
+function CustomFlatlist({data,handleSelect,text}) {
     return (
-        <Pressable onPress={() => handlePress(item)}>
-            <View key={item.rightValue} style={{ flex: 1, flexDirection: "row", borderWidth: 1, alignItems: "center", justifyContent: "space-between", padding: 5, marginTop: 5, marginBottom: 5, backgroundColor: item.used ? '#D36B00' : "#E6D2AA" }}>
-                <MaterialCommunityIcons name={`dice-${item.rightValue}`} size={30} color="#42032C" />
-                <Text>{item.name}</Text>
-                <Text>{item.score}</Text>
-            </View>
-        </Pressable>
+        <>
+            <Text style={{ textAlign: "center", color: "black" }}>{text}</Text>
+            <FlatList
+                data={data}
+                extraData={data}
+                renderItem={({ item ,index}) =>
+                    <DownSectionCard
+                        item={item}
+                        handlePress={handleSelect}
+                        index={`${text}${index}`}
+
+                    />
+                }
+
+            />
+        </>
+    )
+}
+function Selection({data,handleSelect,text,textPara}){
+    return(
+        <View style={Styles.flatlistContainer}>
+            <CustomFlatlist
+            data={data}
+            handleSelect={handleSelect}
+            text={text}
+            />
+             <View style={{flexGrow:1,marginTop:2,position:"absolute",bottom:0,width:"100%",backgroundColor:"#F1EFDC"}}>
+                 {textPara.map((text,index) =>  <CustomText key={index} text={text} />)}
+                    </View>
+        </View>
     )
 }
 
@@ -156,4 +178,16 @@ function DownSectionCard({ item, handlePress, index }) {
     )
 }
 
-export { Dice, UpperSectionCard, DownSectionCard, Logo, GiveName, PressableButton, Rules }
+function Dice({ item, handlePress, throws }) {
+    return (
+        <Pressable onPress={() => handlePress(item.key)}>
+            <View style={{ flex: 1, justifyContent: "center", alignItems: "center"}} key={item.key}>
+                <MaterialCommunityIcons name={`dice-${item.value}`} size={60} color={item.selected ? '#D36B00' : "#42032C"} />
+            </View>
+        </Pressable>
+
+
+    )
+}
+
+export { Dice, DownSectionCard, Logo, GiveName, PressableButton, Rules ,CustomFlatlist,Selection}
