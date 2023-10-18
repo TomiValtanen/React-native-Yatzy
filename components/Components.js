@@ -24,7 +24,7 @@ function Logo() {
     )
 }
 
-function GiveName({ setPlayerName, text, placeholder, maxLength, playerName, handlePress, buttonText }) {
+function GiveName({ setPlayerName, text, placeholder, maxLength, stylesheet, handlePress, buttonText }) {
     return (
         <View style={Styles.giveNameContainer}>
             <CustomTextInput
@@ -41,24 +41,25 @@ function GiveName({ setPlayerName, text, placeholder, maxLength, playerName, han
                 buttonText={buttonText}
                 width={"50%"}
                 height={"30%"}
+                stylesheet={stylesheet}
             />
 
         </View>
     )
 }
 
-function PressableButton({ handlePress, buttonText, width, height }) {
+function PressableButton({ handlePress, buttonText, width, height ,stylesheet}) {
     return (
         <View style={{ flex: 1, justifyContent: "flex-start", alignItems: "stretch" }}>
-            <TouchableOpacity style={[Styles.pressableContainer, { width: width, height: height }]} onPress={handlePress}>
-                <Text style={Styles.pressableText}>{buttonText}</Text>
+            <TouchableOpacity style={[stylesheet.pressableContainer, { width: width, height: height }]} onPress={handlePress}>
+                <Text style={stylesheet.pressableText}>{buttonText}</Text>
             </TouchableOpacity>
         </View>
 
     )
 }
 
-function NavigationTextButton({ navigation, buttonText, text, width, height }) {
+function NavigationTextButton({ navigation,stylesheet, buttonText, text, width, height }) {
     return (
         <View style={{ flex: 1, justifyContent: "center", alignItems: "stretch", gap: 10 }}>
 
@@ -70,6 +71,7 @@ function NavigationTextButton({ navigation, buttonText, text, width, height }) {
                 buttonText={buttonText}
                 width={width}
                 height={height}
+                stylesheet={stylesheet}
             />
         </View>
     )
@@ -96,7 +98,7 @@ function CustomTextInput({ text, setPlayerName, maxLength, placeholder }) {
     )
 }
 
-function Rules({ text, textParas, navigation, buttonText }) {
+function Rules({ text, textParas, navigation, buttonText,stylesheet }) {
     return (
         <View style={{ flex: 5 }}>
             <ScrollView
@@ -118,6 +120,7 @@ function Rules({ text, textParas, navigation, buttonText }) {
                     buttonText={buttonText}
                     width={"100%"}
                     height={"100%"}
+                    stylesheet={stylesheet}
                 />
             </ScrollView>
         </View>

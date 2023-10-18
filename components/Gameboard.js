@@ -1,15 +1,18 @@
 import { useEffect, useState } from "react"
 import { FlatList, Pressable, Text, TouchableOpacity, View } from "react-native"
-import { Styles } from "../styles/Styles";
+import { GameboardStyles, Styles } from "../styles/Styles";
 import Header from "./Header";
 import Footer from "./Footer";
 import { NBR_OF_DICES, NBR_OF_THROWS, MIN_SPOT, MAX_SPOT, BONUS_POINTS, BONUS_POINTS_LIMIT } from "../constants/Game";
 import { Container, Row, Col } from 'react-native-flex-grid';
 import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons"
-import { CustomFlatlist, Dice, DownSectionCard, UpperSectionCard, Selection } from "./Components";
+import { CustomFlatlist, Dice, DownSectionCard, UpperSectionCard, Selection, PressableButton } from "./Components";
 import { Button } from "react-native";
 import { Alert } from "react-native";
 import { FontAwesome } from '@expo/vector-icons';
+import YatzySelection from "./YatzySelection";
+import DiceSelection from "./DiceSelection";
+import ThrowSelection from "./ThrowSelection";
 
 
 
@@ -82,7 +85,7 @@ function Gameboard({ navigation, route }) {
 
     }
     function navigateScore() {
-        navigation.navigate("Scoreboard",{score:{name:playerName,score:totalPoints}})
+        navigation.navigate("Scoreboard", { score: { name: playerName, score: totalPoints } })
         newGame()
     }
 
@@ -98,7 +101,7 @@ function Gameboard({ navigation, route }) {
         const arr = []
         const yläosa = ["Ykköset", "Kakkoset", "Kolmoset", "Neloset", "Viitoset", "Kuutoset"]
         for (let i = 0; i < yläosa.length; i++) {
-            arr.push({ rightValue: i + 1, name: yläosa[i], used: false, score: 0,icon:`dice-${i+1}` })
+            arr.push({ rightValue: i + 1, name: yläosa[i], used: false, score: 0, icon: `dice-${i + 1}` })
         }
         //console.log(arr,"MakeUpper")
         return arr
@@ -498,93 +501,55 @@ function Gameboard({ navigation, route }) {
         return sum
     }
 
+    const selectionData = [{
+        data: upper,
+        handleSelect: selectUpper,
+        horizontal: false,
+        dice: false,
+        text: "Yläosa",
+        textPara: [`Player: ${playerName}`, `Bonus: ${bonus}`, `Yläosan pisteet: ${upperTotal}`]
+    },
+    {
+        data: down,
+        handleSelect: selectDown,
+        horizontal: false,
+        dice: false,
+        text: "Alaosa",
+        textPara: [`Alaosan pisteet: ${downTotal}`]
+
+    }]
+    const diceData = {
+        data: dices,
+        handleSelect: selectDice,
+        horizontal: true,
+        dice: true,
+        numberOfThrows: numberOfThrows
+    }
+
+    const throwData={
+        handlePress:throwDices,
+        buttonText:status,
+        width:"100%",
+        height:"100%",
+        stylesheet:GameboardStyles,
+        numberOfThrows:numberOfThrows
+
+    }
     //console.log(dices)
     //console.log(upper)
     //console.log(down)
     return (
         <View style={Styles.gameboard}>
             <Header />
-            <View style={{ flex: 10, borderWidth: 1, flexDirection: "row", justifyContent: "space-between", alignItems: "center", gap: 15, padding: 5 }}>
-                <Selection 
-                data={upper}
-                handleSelect={selectUpper}
-                horizontal={false}
-                dice={false}
-                text={"Yläosa"}
-                textPara={[`Player: ${playerName}`,`Bonus: ${bonus}`,`Yläosan pisteet: ${upperTotal}`]}
-                />
-                <Selection 
-                data={down}
-                handleSelect={selectDown}
-                horizontal={false}
-                dice={false}
-                text={"Alaosa"}
-                textPara={[`Alaosan pisteet: ${downTotal}`]}
-                />
-                
-            </View>
-
-            <View style={{flex:1.25, borderWidth: 1, alignItems: "center", justifyContent: "center", backgroundColor: "#E6D2AA" }}>
-
-                {numberOfThrows===3?
-                    
-                <View >
-                <MaterialCommunityIcons name="dice-multiple" size={60} color="black" />
-                </View>
-
-                    :
-                    <CustomFlatlist
-                    data={dices}
-                    handleSelect={selectDice}
-                    horizontal={true}
-                    dice={true}
-                    
-                    />
-                    
-}
-
-            </View>
-
-
-            <View style={{ flex: 1, flexDirection: "row" }}>
-
-
-                <TouchableOpacity style={{ flex: 1, flexDirection: "row" }} onPress={numberOfThrows === 0 ? () => null : throwDices}>
-                    <View style={{ flex: 1, justifyContent: "center", alignItems: "center", borderWidth: 1, padding: 8 ,backgroundColor:"#42032C"}}>
-                        <Text style={{fontSize:20,fontWeight:"400",color:"white"}}>{status}</Text>
-
-                    </View>
-                </TouchableOpacity>
-
-
-                <View style={{ flex: 1, flexDirection: "column" }}>
-                <Text style={{textAlign:"center",color:"black"}}>Heittoja jäljellä:</Text>
-                    <View style={{ flex: 1, flexDirection: "row", justifyContent: "space-around", alignItems: "center" }}>
-                        
-                        <View >
-                            {numberOfThrows >= 1 ?
-                                <MaterialCommunityIcons name="numeric-1-circle" size={30} color="#D36B00" /> :
-                                <FontAwesome name="circle" size={30} color="#42032C" />}
-                        </View>
-
-                        <View>
-                            {numberOfThrows >= 2 ?
-                                <MaterialCommunityIcons name="numeric-2-circle" size={30} color="#D36B00" /> :
-                                <FontAwesome name="circle" size={30} color="#42032C" />}
-                        </View>
-
-                        <View>
-                            {numberOfThrows === 3 ?
-                                <MaterialCommunityIcons name="numeric-3-circle" size={30} color="#D36B00" /> :
-                                <FontAwesome name="circle" size={30} color="#42032C" />}
-                        </View>
-
-                    </View>
-                </View>
-            </View>
-
-
-
+            <YatzySelection
+                item={selectionData}
+            />
+            <DiceSelection
+                item={diceData}
+            />
+            <ThrowSelection
+            item={throwData}
+            />
             <Footer />
         </View>
     )

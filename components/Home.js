@@ -25,10 +25,7 @@ function Home({ navigation }) {
     return (
         <View style={Styles.container}>
             <Header />
-
             <Logo />
-
-
             {!hasPlayerName ?
                 <GiveName
                     setPlayerName={setPlayerName}
@@ -37,6 +34,7 @@ function Home({ navigation }) {
                     maxLength={10}
                     handlePress={() => handlePLayerName(playerName)}
                     buttonText={"OK"}
+                    stylesheet={Styles}
                 />
                 :
                 <Rules
@@ -44,12 +42,10 @@ function Home({ navigation }) {
                     textParas={[RULES, POINTS, AIM]}
                     navigation={() => navigation.navigate("Gameboard", { player: playerName })}
                     buttonText={"Yatzy"}
+                    stylesheet={Styles}
                 />
-
             }
-
             <Footer />
-
         </View >
     )
 }

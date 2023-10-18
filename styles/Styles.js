@@ -42,11 +42,12 @@ const Styles = StyleSheet.create({
     alignSelf:"center",
     alignItems:"center",
     backgroundColor:"#D36B00",
-    borderRadius:5
+    borderRadius:5,
+    
     
   },
   pressableText:{
-    padding:10
+    padding:10,
   },
   header: {
     height: "5%",
@@ -132,6 +133,53 @@ const Styles = StyleSheet.create({
     fontSize: 20
   }
 });
+const GameboardStyles = StyleSheet.create({
+  pressableContainer:{
+    ...Styles.pressableContainer,
+  borderRadius:0,
+  borderWidth:1,
+  backgroundColor:"#42032C"
+    
+  },
+  pressableText:{
+    padding:10,
+    fontSize:20,
+    color:"white"
+  },
+selectionContainer:{
+  flex: 10, 
+  borderWidth: 1, 
+  flexDirection: "row", 
+  justifyContent: "space-between", 
+  alignItems: "center",
+  gap: 15, 
+  padding: 5 
+},
+diceSelection:{
+  flex: 1.25,
+  borderWidth: 1,
+  alignItems: "center", 
+  justifyContent: "center", 
+  backgroundColor: "#E6D2AA"
+},
+throwSelectionContainer:{
+  flex: 1,
+  flexDirection: "row" 
+},
+throwsLeftContainer:{
+  flex: 1, 
+  flexDirection: "column" 
+},
+throwsLeftText:{
+  textAlign: "center",
+   color: "black" 
+},
+throwsLeftIconContainer:{
+  flex: 1,
+  flexDirection: "row",
+  justifyContent: "space-around",
+  alignItems: "center" 
+}
+})
 
-
-export { Styles }
+export { Styles ,GameboardStyles}
