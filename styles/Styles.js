@@ -18,16 +18,16 @@ const Styles = StyleSheet.create({
   },
   giveNameContainer: {
     flex: 5,
-    alignItems:"stretch",
+    alignItems: "stretch",
     justifyContent: "center",
-    
+
   },
-  nameInputContainer:{
-    flex:1,
+  nameInputContainer: {
+    flex: 1,
     justifyContent: "center",
     alignItems: "center",
     gap: 10, padding: 10,
-    height: "40%" 
+    height: "40%"
   },
   nameText: {
     color: "#000000"
@@ -37,17 +37,17 @@ const Styles = StyleSheet.create({
     width: "50%",
     height: 40
   },
-  pressableContainer:{
-    justifyContent:"center",
-    alignSelf:"center",
-    alignItems:"center",
-    backgroundColor:"#D36B00",
-    borderRadius:5,
-    
-    
+  pressableContainer: {
+    justifyContent: "center",
+    alignSelf: "center",
+    alignItems: "center",
+    backgroundColor: "#D36B00",
+    borderRadius: 5,
+
+
   },
-  pressableText:{
-    padding:10,
+  pressableText: {
+    padding: 10,
   },
   header: {
     height: "5%",
@@ -78,17 +78,17 @@ const Styles = StyleSheet.create({
     textAlign: 'center',
 
   },
-  textContainer:{
+  textContainer: {
     flex: 1,
-    justifyContent:"center",
+    justifyContent: "center",
     alignItems: "stretch",
     gap: 20
   },
-  customText:{
+  customText: {
     color: "black",
     textAlign: "left",
     paddingLeft: 15,
-    paddingRight: 15 
+    paddingRight: 15
   },
   gameboard: {
     flex: 1,
@@ -97,11 +97,11 @@ const Styles = StyleSheet.create({
     alignItems: "stretch",
     justifyContent: 'center'
   },
-  flatlistContainer:{
+  flatlistContainer: {
     flex: 1,
     alignItems: "left",
     width: "30%",
-    justifyContent: "flex-end" 
+    justifyContent: "flex-end"
   },
   gameinfo: {
 
@@ -134,52 +134,52 @@ const Styles = StyleSheet.create({
   }
 });
 const GameboardStyles = StyleSheet.create({
-  pressableContainer:{
+  pressableContainer: {
     ...Styles.pressableContainer,
-  borderRadius:0,
-  borderWidth:1,
-  backgroundColor:"#42032C"
-    
+    borderRadius: 0,
+    borderWidth: 1,
+    backgroundColor: "#42032C"
+
   },
-  pressableText:{
-    padding:10,
-    fontSize:20,
-    color:"white"
+  pressableText: {
+    padding: 10,
+    fontSize: 20,
+    color: "white"
   },
-selectionContainer:{
-  flex: 10, 
-  borderWidth: 1, 
-  flexDirection: "row", 
-  justifyContent: "space-between", 
-  alignItems: "center",
-  gap: 15, 
-  padding: 5 
-},
-diceSelection:{
-  flex: 1.25,
-  borderWidth: 1,
-  alignItems: "center", 
-  justifyContent: "center", 
-  backgroundColor: "#E6D2AA"
-},
-throwSelectionContainer:{
-  flex: 1,
-  flexDirection: "row" 
-},
-throwsLeftContainer:{
-  flex: 1, 
-  flexDirection: "column" 
-},
-throwsLeftText:{
-  textAlign: "center",
-   color: "black" 
-},
-throwsLeftIconContainer:{
-  flex: 1,
-  flexDirection: "row",
-  justifyContent: "space-around",
-  alignItems: "center" 
-}
+  selectionContainer: {
+    flex: 10,
+    borderWidth: 1,
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+    gap: 15,
+    padding: 5
+  },
+  diceSelection: {
+    flex: 1.25,
+    borderWidth: 1,
+    alignItems: "center",
+    justifyContent: "center",
+    backgroundColor: "#E6D2AA"
+  },
+  throwSelectionContainer: {
+    flex: 1,
+    flexDirection: "row"
+  },
+  throwsLeftContainer: {
+    flex: 1,
+    flexDirection: "column"
+  },
+  throwsLeftText: {
+    textAlign: "center",
+    color: "black"
+  },
+  throwsLeftIconContainer: {
+    flex: 1,
+    flexDirection: "row",
+    justifyContent: "space-around",
+    alignItems: "center"
+  }
 })
 
-export { Styles ,GameboardStyles}
+export { Styles, GameboardStyles }
