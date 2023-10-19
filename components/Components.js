@@ -1,10 +1,11 @@
-import { Image, TextInput, TouchableOpacity, View } from "react-native";
+import { Image, ScrollView, TextInput, TouchableOpacity, View } from "react-native";
 import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons"
 import { Pressable } from "react-native";
 import { Text } from "react-native";
 import { Styles } from "../styles/Styles"
 import YatzyLogo from "../assets/Yatzy_logo11.png"
 import { FlatList } from "react-native";
+import { DataTable } from "react-native-paper";
 
 
 
@@ -26,7 +27,7 @@ function Logo() {
 
 
 
-function PressableButton({ handlePress, buttonText, width, height ,stylesheet}) {
+function PressableButton({ handlePress, buttonText, width, height, stylesheet }) {
     return (
         <View style={{ flex: 1, justifyContent: "flex-start", alignItems: "stretch" }}>
             <TouchableOpacity style={[stylesheet.pressableContainer, { width: width, height: height }]} onPress={handlePress}>
@@ -37,7 +38,7 @@ function PressableButton({ handlePress, buttonText, width, height ,stylesheet}) 
     )
 }
 
-function NavigationTextButton({ navigation,stylesheet, buttonText, text, width, height }) {
+function NavigationTextButton({ navigation, stylesheet, buttonText, text, width, height }) {
     return (
         <View style={{ flex: 1, justifyContent: "center", alignItems: "stretch", gap: 10 }}>
 
@@ -78,18 +79,18 @@ function CustomTextInput({ text, setPlayerName, maxLength, placeholder }) {
 
 
 
-function CustomText({ text }) {
+function CustomText({ text,stylesheet }) {
     return (
-        <View style={{ flex: 1 }}>
-            <Text style={Styles.customText} multiline="true">{text}</Text>
+        <View style={stylesheet.customTextContainer}>
+            <Text style={stylesheet.customText} multiline="true">{text}</Text>
         </View>
     )
 }
-function CustomFlatlist({ data, handleSelect, text, horizontal,dice }) {
+function CustomFlatlist({ data, handleSelect, text, horizontal, dice }) {
     return (
         <>
             <FlatList
-                contentContainerStyle={{ paddingBottom: dice? 0: 20 }}
+                contentContainerStyle={{ paddingBottom: dice ? 0 : 20 }}
                 data={data}
                 extraData={data}
                 horizontal={horizontal}
@@ -107,7 +108,7 @@ function CustomFlatlist({ data, handleSelect, text, horizontal,dice }) {
         </>
     )
 }
-function Selection({ data, handleSelect, text, textPara, horizontal,dice }) {
+function Selection({ data, handleSelect, text, textPara, horizontal, dice ,stylesheet}) {
     return (
         <View style={Styles.flatlistContainer}>
             {!dice && <Text style={{ textAlign: "center", color: "black" }}>{text}</Text>}
@@ -118,25 +119,25 @@ function Selection({ data, handleSelect, text, textPara, horizontal,dice }) {
                 horizontal={horizontal}
                 dice={dice}
             />
-            <View style={{ flexGrow: 1,position:"absolute",bottom:0, marginTop: 2, width: "100%", backgroundColor: "#F1EFDC" }}>
-                {textPara.map((text, index) => <CustomText key={index} text={text} />)}
+            <View style={{ flexGrow: 1, position: "absolute", bottom: 0, marginTop: 2, width: "100%", backgroundColor: "#F1EFDC" }}>
+                {textPara.map((text, index) => <CustomText key={index} text={text} stylesheet={stylesheet}/>)}
             </View>
         </View>
     )
 }
-function Card({ dice ,item,handlePress,index}) {
+function Card({ dice, item, handlePress, index }) {
     return (
         <>
-            {dice ?<Dice
-             item={item}
-            handlePress={handlePress}
-               />
-            :
-            <SectionCard
-            item={item}
-            handlePress={handlePress}
-            index={index}
-            />}
+            {dice ? <Dice
+                item={item}
+                handlePress={handlePress}
+            />
+                :
+                <SectionCard
+                    item={item}
+                    handlePress={handlePress}
+                    index={index}
+                />}
         </>
     )
 }
@@ -164,4 +165,30 @@ function Dice({ item, handlePress }) {
     )
 }
 
-export { Dice, SectionCard, Logo, PressableButton, NavigationTextButton, CustomFlatlist, Selection ,CustomTextInput,CustomText}
+function CustomDataTable({ scoreData, titles ,stylesheet ,checkIndex }) {
+    return (
+        
+    <DataTable style={{ flex:1 }}>
+        <DataTable.Header style={{ backgroundColor: "#D36B00" }}>
+            {titles.map((title, index) =>
+                <DataTable.Title key={index} style={{ flex: index !== 2 ? 1 : 2 }}><Text style={stylesheet.dataTableTitleText}>{title}</Text></DataTable.Title>
+            )}
+        </DataTable.Header>
+        <ScrollView>
+        {scoreData.map((score, index) => (
+            <DataTable.Row style={[stylesheet.dataTableRow, { backgroundColor: checkIndex(index) ? "transparent" : "#E6D2AA" }]} key={index}>
+                <DataTable.Cell style={{ flex: 1 }}><Text style={stylesheet.dataTableCellText}>{score.key}.</Text></DataTable.Cell>
+                <DataTable.Cell style={{ flex: 1 }}><Text style={stylesheet.dataTableCellText}>{score.name}</Text></DataTable.Cell>
+                <DataTable.Cell style={{ flex: 2 }}><Text style={stylesheet.dataTableCellText}>{score.date}</Text></DataTable.Cell>
+                <DataTable.Cell style={{ flex: 1 }}><Text style={stylesheet.dataTableCellText}>{score.time}</Text></DataTable.Cell>
+                <DataTable.Cell style={{ flex: 1 }} numeric><Text style={stylesheet.dataTableCellText}>{score.score}</Text></DataTable.Cell>
+            </DataTable.Row>
+
+        ))}
+        </ScrollView>
+    </DataTable>
+  
+    )
+}
+
+export { Dice, SectionCard, Logo, PressableButton, NavigationTextButton, CustomFlatlist, Selection, CustomTextInput, CustomText ,CustomDataTable}

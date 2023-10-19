@@ -2,25 +2,36 @@ import { FlatList, Text, TouchableOpacity } from "react-native";
 import { View } from "react-native";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
-import { Styles } from "../styles/Styles";
+import { ScoreboardStyles, Styles } from "../styles/Styles";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useEffect, useState } from "react";
 import { NBR_OF_SCOREBOARD } from "../constants/Game";
+import { DataTable } from "react-native-paper";
+import { SCORE_KEY } from "../constants/Game";
+import { CustomDataTable, CustomText, PressableButton } from "../components/Components";
 
-const SCORE_KEY = '@score_key';
 
 
 function Scoreboard({ navigation, route }) {
     const [scoreData, setScoreData] = useState([])
+    const [isLoading, setIsLoading] = useState(true)
+
 
     useEffect(() => {
-        if (route.params?.score) {
+        getData();
+
+    }, [])
+
+    useEffect(() => {
+        if (route.params?.score && isLoading===false) {
             console.log(route.params.score, "dataaa")
             const newKey = scoreData.length + 1;
             const newScore = {
                 key: newKey.toString(),
                 name: route.params.score.name,
-                score: route.params.score.score
+                score: route.params.score.score,
+                date: route.params.score.date,
+                time: route.params.score.time
             }
             const newScores = [...scoreData, newScore];
             let arrangedScores = newScores.sort(({ score: a }, { score: b }) => b - a)
@@ -28,7 +39,7 @@ function Scoreboard({ navigation, route }) {
             storeData(arrangedScores);
         }
         getData();
-    }, [route.params?.score])
+    }, [route.params?.score,isLoading])
 
     const storeData = async (value) => {
         try {
@@ -49,6 +60,7 @@ function Scoreboard({ navigation, route }) {
                         json = [];
                     }
                     setScoreData(json);
+                    setIsLoading(false)
                 })
                 .catch(error => console.log(error))
         }
@@ -58,51 +70,64 @@ function Scoreboard({ navigation, route }) {
     }
     removeValue = async () => {
         try {
-          await AsyncStorage.removeItem(SCORE_KEY)
-          getData()
-        } catch(e) {
-          // remove error
+            await AsyncStorage.removeItem(SCORE_KEY)
+            getData()
+        } catch (e) {
+            // remove error
         }
-      
-        console.log('Done.')
-      }
 
-     
+        console.log('Done.')
+    }
+
+    function checkIndexIsEven(n) {
+        return n % 2 == 0;
+    }
 
     console.log(scoreData, "scoreData")
     return (
         <View style={Styles.container}>
+
             <Header />
-            <View style={{ flex: 1, flexDirection: "column", justifyContent: "center", alignItems: "center", backgroundColor: "#F1EFDC", padding: 10 }}>
-                <Text style={{fontSize:20,color:"black",marginBottom:10}}>Top 5:</Text>
-                <FlatList
-                    data={scoreData}
-                    extraData={scoreData}
-                    renderItem={({ item, index }) =>
 
-                        <View key={index} style={{ width: 200, height: 60, flexDirection: "row", justifyContent: "flex-start", alignItems: "center", gap: 20, backgroundColor: "orange", marginBottom: 10 ,padding:10,borderRadius:5}}>
-                            <Text>Pelaaja: {item.name}</Text>
-                            <Text>Pisteet: {item.score}</Text>
-                        </View>
+            <View style={{ flex: 1, flexDirection: "column", justifyContent: "center", alignItems: "stretch", backgroundColor: "#F1EFDC",gap:20}}>
 
-                    }
+                <CustomText stylesheet={ScoreboardStyles} text={`Top ${NBR_OF_SCOREBOARD}:`} />
+                <View style={{ flex: 4}}>
+                {scoreData.length === 0 ?
+                    <CustomText stylesheet={ScoreboardStyles} text={"Huippupisteitä ei ole vielä tehtynä."} />
+                    :
+                    
+                        <CustomDataTable
+                            scoreData={scoreData}
+                            titles={["Sija", "Nimi", "Pvm", "Aika", "Pisteet"]}
+                            stylesheet={ScoreboardStyles}
+                            checkIndex={checkIndexIsEven}
+
+                        />
+                    
+                }
+</View>
+                <PressableButton
+                    handlePress={() => removeValue()}
+                    buttonText={"Resetoi pisteet"}
+                    stylesheet={ScoreboardStyles}
+                    width={"80%"}
+                    height={"75%"}
+
 
                 />
-                <TouchableOpacity onPress={()=>removeValue()}>
-                    <View style={{borderWidth:1,justifyContent:"center",alignItems:"center",padding:10,backgroundColor:"orange",borderRadius:10}}>
-                        <Text style={{fontSize:20}}>Resetoi pisteet</Text>
-                    </View>
-
-                </TouchableOpacity>
-                
-                </View>
-                <Footer />
             </View>
 
 
 
-            )
+            <Footer />
+
+        </View>
+
+
+
+    )
 }
 
 
-            export default Scoreboard
+export default Scoreboard

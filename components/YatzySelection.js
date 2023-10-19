@@ -22,6 +22,7 @@ function YatzySelection({item}){
         dice={selection.dice}
         text={selection.text}
         textPara={selection.textPara}
+        stylesheet={selection.stylesheet}
         />
        )}
        

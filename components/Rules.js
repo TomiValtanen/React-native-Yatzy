@@ -22,7 +22,7 @@ function Rules({ text, textParas, navigation, buttonText,stylesheet }) {
                 />
                 <View style={Styles.textContainer}>
                     {
-                        textParas.map((para, index) => <CustomText key={index} text={para} />)
+                        textParas.map((para, index) => <CustomText key={index} text={para} stylesheet={Styles}/>)
                     }
                 </View>
                 <NavigationTextButton

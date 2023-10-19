@@ -34,7 +34,8 @@ function Gameboard({ navigation, route }) {
     }, [])
     useEffect(() => {
         if (gameIsOn === false) {
-            Alert.alert("Peli loppui", `Pelaaja: ${playerName}\nPisteet:\nYläosasta: ${upperTotal}\nAlaosasta: ${downTotal}\nBonus: ${bonus}\n\nYhteensä: ${totalPoints}`, [
+            const dateTime=date()
+            Alert.alert("Peli loppui", `Pelaaja: ${playerName}\nPäivämäärä ja aika :${dateTime.date} ${dateTime.time}\nPisteet:\nYläosasta: ${upperTotal}\nAlaosasta: ${downTotal}\nBonus: ${bonus}\n\nYhteensä: ${totalPoints}`, [
                 {
                     text: 'Aloita uudestaan',
                     onPress: () => newGame(),
@@ -81,10 +82,28 @@ function Gameboard({ navigation, route }) {
 
     }
     function navigateScore() {
-        navigation.navigate("Scoreboard", { score: { name: playerName, score: totalPoints } })
+        const dateTime=date()
+        navigation.navigate("Scoreboard", { score: { name: playerName, score: totalPoints ,date:dateTime.date,time:dateTime.time} })
         newGame()
     }
+    function addZero(i){
+        if(i<10){
+            i=`0${i}`
+        }
+        return i
+    }
+function date(){
 
+
+    const d=new Date()
+    const day=d.getDate()
+    const month=d.getMonth()+1
+    const year=d.getFullYear()
+    const hours=addZero(d.getHours())
+    const minutes=addZero(d.getMinutes())
+
+   return dateAndTime ={date:`${day}.${month}.${year}`,time:`${hours}:${minutes}`}
+}
     function makeDices() {
         const arr = []
         for (let i = 0; i < NBR_OF_DICES; i++) {
@@ -210,7 +229,8 @@ function Gameboard({ navigation, route }) {
         horizontal: false,
         dice: false,
         text: "Yläosa",
-        textPara: [`Player: ${playerName}`, `Bonus: ${bonus}`, `Yläosan pisteet: ${upperTotal}`]
+        textPara: [`Player: ${playerName}`, `Bonus: ${bonus}`, `Yläosan pisteet: ${upperTotal}`],
+        stylesheet:GameboardStyles
     },
     {
         data: down,
@@ -218,7 +238,8 @@ function Gameboard({ navigation, route }) {
         horizontal: false,
         dice: false,
         text: "Alaosa",
-        textPara: [`Alaosan pisteet: ${downTotal}`]
+        textPara: [`Alaosan pisteet: ${downTotal}`],
+        stylesheet:GameboardStyles
 
     }]
     const diceData = {

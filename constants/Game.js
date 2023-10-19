@@ -2,7 +2,8 @@ export const NBR_OF_DICES=5
 export const NBR_OF_THROWS=3
 export const BONUS_POINTS_LIMIT=63
 export const BONUS_POINTS=50
-export const NBR_OF_SCOREBOARD=5
+export const NBR_OF_SCOREBOARD=10
+export const SCORE_KEY = '@score_key'
 export const RULES=`Yatzy:${"\n"}
 Pöytäkirja jakautuu kahteen osaa: ylä- ja alapuoleen.${"\n"}
 Yläpuolella on kohdat:${"\n"}

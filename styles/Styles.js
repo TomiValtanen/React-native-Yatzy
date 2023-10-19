@@ -84,6 +84,9 @@ const Styles = StyleSheet.create({
     alignItems: "stretch",
     gap: 20
   },
+  customTextContainer: {
+    flex: 1
+  },
   customText: {
     color: "black",
     textAlign: "left",
@@ -179,7 +182,49 @@ const GameboardStyles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-around",
     alignItems: "center"
-  }
+  },
+  customTextContainer: {
+    flex: 1
+  },
+  customText: {
+    ...Styles.customText
+  },
+  
 })
 
-export { Styles, GameboardStyles }
+const ScoreboardStyles = StyleSheet.create({
+  dataTableRow: {
+    backgroundColor: "red"
+  },
+  dataTableTitleText: {
+    color: "white",
+    fontSize: 15
+  },
+  dataTableCellText: {
+    fontSize: 15
+  },
+  pressableContainer: {
+    ...Styles.pressableContainer,
+    borderRadius: 5,
+    borderWidth: 1,
+    backgroundColor: '#D36B00'
+
+  },
+  pressableText: {
+    padding: 10,
+    fontSize: 20,
+    color: "white"
+  },
+  customTextContainer: {
+    flex: 0.7,
+    justifyContent:"center",
+    alignItems:"center"
+  },
+  customText: {
+    ...Styles.customText,
+    fontSize: 35,
+
+  },
+})
+
+export { Styles, GameboardStyles, ScoreboardStyles }
