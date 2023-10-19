@@ -1,18 +1,14 @@
 import { useEffect, useState } from "react"
-import { FlatList, Pressable, Text, TouchableOpacity, View } from "react-native"
+import {  View } from "react-native"
 import { GameboardStyles, Styles } from "../styles/Styles";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
-import { NBR_OF_DICES, NBR_OF_THROWS, MIN_SPOT, MAX_SPOT, BONUS_POINTS, BONUS_POINTS_LIMIT } from "../constants/Game";
-import { Container, Row, Col } from 'react-native-flex-grid';
-import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons"
-import { CustomFlatlist, Dice, DownSectionCard, UpperSectionCard, Selection, PressableButton } from "../components/Components";
-import { Button } from "react-native";
+import { NBR_OF_DICES, NBR_OF_THROWS, BONUS_POINTS, BONUS_POINTS_LIMIT } from "../constants/Game";
 import { Alert } from "react-native";
-import { FontAwesome } from '@expo/vector-icons';
 import YatzySelection from "../components/YatzySelection";
 import DiceSelection from "../components/DiceSelection";
 import ThrowSelection from "../components/ThrowSelection";
+import { checkNumbers, returnSum} from "../components/GameboardFunctions";
 
 
 
@@ -178,18 +174,7 @@ function Gameboard({ navigation, route }) {
         setNumberOfThrows(3)
         unSelectAllDices()
     }
-    function checkNumbers(numbers, wantedNumber) {
 
-        let counter = 0
-        numbers.map(number => {
-            if (Number(number.value) === Number(wantedNumber)) {
-
-                counter = counter + 1
-            }
-        })
-
-        return counter
-    }
 
     function selectDown(item) {
         if (numberOfThrows !== 0) {
@@ -200,39 +185,8 @@ function Gameboard({ navigation, route }) {
         }
         const arr = []
         console.log(item)
-        //const sum = pairCheck(dices, false)
-        let sum = ""
-        switch (item.name) {
-            case "Yksi pari":
-                sum = pairCheck(dices, true);
-                break;
-            case "Kaksi paria":
-                sum = pairCheck(dices, false);
-                break;
-            case "Kolmoisluku":
-                sum = triplets(dices, true);
-                break;
-            case "Neloisluku":
-                sum = triplets(dices, false);
-                break;
-            case "Pieni suora":
-                sum = straight(dices, true);
-                break;
-            case "Suuri suora":
-                sum = straight(dices, false);
-                break;
-            case "Täyskäsi":
-                sum = fullHouse(dices);
-                break;
-            case "Sattuma":
-                sum = chance(dices);
-                break;
-            case "Yatzy":
-                sum = yatzy(dices);
-                break;
-            default:
-                console.log("MENI VITUIKSI");
-        }
+
+        let sum = returnSum(item,dices)
 
         console.log(sum, "Summa selectDown")
         down.map(down => {
@@ -249,257 +203,6 @@ function Gameboard({ navigation, route }) {
 
     }
 
-    function pairCheck(numbers, onePair) {
-        const numbersArray = []
-        const pair = []
-        const secondPair = []
-        let pairSum = 0
-        let secondPairSum = 0
-        console.log(numbers, "Pair check")
-        numbers.map(number =>
-            numbersArray.push(number.value)
-        )
-        console.log(numbersArray, "ARRAY")
-
-        for (let i = 0; i < numbersArray.length; i++) {
-            for (let j = i + 1; j < numbersArray.length + 1; j++) {
-                if (numbersArray[i] === numbersArray[j]) {
-                    if (pair.length !== 0 && pair.indexOf(numbersArray[i]) === -1) {
-                        console.log(pair, "if lauseen sisällä forrissa")
-                        console.log(numbersArray[i], "Yksittäinen iffinsisäsässä")
-                        pair.push(numbersArray[j], numbersArray[i])
-
-                    } else if (pair.length === 0) {
-                        pair.push(numbersArray[j], numbersArray[i])
-                    }
-
-                }
-            }
-        }
-        console.log(pair, "Parit forrien jälkeen")
-
-        if (pair.length === 3) {
-            pair.splice(2)
-        }
-        else if (pair.length === 4) {
-            secondPair.push(pair[2], pair[3])
-            pair.splice(2)
-        }
-
-        if (onePair === true) {
-            if (secondPair.length !== 0) {
-                for (let i = 0; i < pair.length; i++) {
-                    pairSum += pair[i]
-                }
-                for (let i = 0; i < secondPair.length; i++) {
-                    secondPairSum += secondPair[i]
-                }
-                return pairSum >= secondPairSum ? pairSum : secondPairSum
-            } else {
-                for (let i = 0; i < pair.length; i++) {
-                    pairSum += pair[i]
-                }
-                return pairSum
-            }
-
-        } else {
-            if (secondPair.length !== 0) {
-                for (let i = 0; i < pair.length; i++) {
-                    pairSum += pair[i]
-                }
-                for (let i = 0; i < secondPair.length; i++) {
-                    secondPairSum += secondPair[i]
-                }
-                return pairSum + secondPairSum
-            } else {
-                return pairSum
-            }
-
-        }
-    }
-
-    function triplets(numbers, tripletScore) {
-        const numbersArray = []
-        const checkingNumbers = []
-        let tripletSum = 0
-
-        numbers.map(number =>
-            numbersArray.push(number.value))
-
-        const numbersSet = new Set(numbersArray)
-
-        numbersSet.forEach(function (value) {
-            checkingNumbers.push(value)
-        })
-
-
-        const sameNum = sameNumbersCalculate(numbersArray, checkingNumbers)
-
-
-        if (sameNum) {
-            if (tripletScore === true) {
-                if (Number(sameNum[0].index) === 4) {
-                    tripletSum = Number(sameNum[0].numero) * Number(sameNum[0].index - 1)
-                }
-                else if (Number(sameNum[0].index) === 5) {
-                    tripletSum = Number(sameNum[0].numero) * Number(sameNum[0].index - 2)
-                }
-                else {
-                    tripletSum = Number(sameNum[0].numero) * Number(sameNum[0].index)
-                }
-            }
-            if (tripletScore === false) {
-                if (Number(sameNum[0].index) === 4) {
-                    tripletSum = Number(sameNum[0].numero) * Number(sameNum[0].index)
-                }
-                else if (Number(sameNum[0].index) === 5) {
-                    tripletSum = Number(sameNum[0].numero) * Number(sameNum[0].index - 1)
-                }
-                else {
-                    tripletSum = 0
-                }
-            }
-
-        } else {
-            tripletSum = 0
-        }
-
-
-        console.log(numbers, "triplets check")
-        console.log(numbersArray, "ARRAY")
-        console.log(numbersSet, "setti")
-        console.log(checkingNumbers, "tarkistus numerot array")
-        console.log(sameNum, "testin jälkeen")
-        return tripletSum
-    }
-    const indexOfAll = (arr, val) => arr.reduce((acc, el, i) => (el === val ? [...acc, i] : acc), []);
-
-    function sameNumbersCalculate(numbersArray, checkingNumbers) {
-        let array = []
-        let result = []
-        for (let i = 0; i < checkingNumbers.length; i++) {
-            array = indexOfAll(numbersArray, checkingNumbers[i])
-            if (array.length >= 3) {
-                result.push({ numero: checkingNumbers[i], index: array.length })
-                return result
-            }
-
-        }
-        return result = false
-    }
-
-    function straight(numbers, smallStraight) {
-        const numbersArray = []
-        const smallStraightValues = [1, 2, 3, 4, 5]
-        const bigStraightValues = [2, 3, 4, 5, 6]
-        let sum = 0
-        numbers.map(number =>
-            numbersArray.push(number.value))
-
-        numbersArray.sort(function (a, b) { return a - b })
-
-        if (smallStraight) {
-            if (equalsCheck(numbersArray, smallStraightValues)) {
-                sum = 15
-            }
-        } else {
-            if (equalsCheck(numbersArray, bigStraightValues)) {
-                sum = 20
-            }
-        }
-        console.log(numbersArray, "ARRAy")
-        return sum
-
-
-
-    }
-    const equalsCheck = (a, b) => {
-        return JSON.stringify(a) === JSON.stringify(b);
-    }
-
-    function chance(numbers) {
-        const numbersArray = []
-        let sum = 0
-        numbers.map(number =>
-            numbersArray.push(number.value))
-
-        sum = numbersArray.reduce(chanceSum)
-
-        return sum
-    }
-
-    function chanceSum(total, num) {
-        return total + num;
-    }
-    function yatzy(numbers) {
-        const numbersArray = []
-        let sum = 0
-        numbers.map(number =>
-            numbersArray.push(number.value))
-
-        if (allEqual(numbersArray)) {
-            sum = 50
-        }
-        console.log("YATZY")
-        return sum
-    }
-    const allEqual = arr => arr.every(val => val === arr[0])
-
-    function fullHouse(numbers) {
-        const numbersArray = []
-        const checkingNumbers = []
-        let sum = 0
-
-        numbers.map(number =>
-            numbersArray.push(number.value))
-
-        const numbersSet = new Set(numbersArray)
-
-        numbersSet.forEach(function (value) {
-            checkingNumbers.push(value)
-        })
-
-
-        if (checkingNumbers.length === 2) {
-            console.log("Käyty iffissä sameNumberFullHouse")
-            sum = sameNumbersFullHouse(numbersArray, checkingNumbers)
-        }
-
-
-        console.log(checkingNumbers, "checkingnumbers")
-        console.log(sum, "sum")
-        return sum
-
-
-
-    }
-    function sameNumbersFullHouse(numbersArray, checkingNumbers) {
-        let array = []
-        let pair = []
-        let triplets = []
-        let sum = 0
-        for (let i = 0; i < checkingNumbers.length; i++) {
-            array = indexOfAll(numbersArray, checkingNumbers[i])
-            if (array.length === 3) {
-                triplets.push({ numero: checkingNumbers[i], index: array.length })
-                array = []
-            } else if (array.length === 2) {
-                pair.push({ numero: checkingNumbers[i], index: array.length })
-                array = []
-            }
-
-        }
-        console.log(pair, "Pair FUll house hommassa")
-        console.log(triplets, "Triplets fullhouse hommassa")
-        if (pair[0].index === 2 && triplets[0].index === 3) {
-            const tripletsSum = Number(triplets[0].numero) * Number(triplets[0].index)
-            const pairSum = Number(pair[0].numero) * Number(pair[0].index)
-            sum = tripletsSum + pairSum
-
-        }
-        console.log(sum, "SUMMA LOPUSSA")
-        return sum
-    }
 
     const selectionData = [{
         data: upper,
@@ -526,13 +229,13 @@ function Gameboard({ navigation, route }) {
         numberOfThrows: numberOfThrows
     }
 
-    const throwData={
-        handlePress:throwDices,
-        buttonText:status,
-        width:"100%",
-        height:"100%",
-        stylesheet:GameboardStyles,
-        numberOfThrows:numberOfThrows
+    const throwData = {
+        handlePress: throwDices,
+        buttonText: status,
+        width: "100%",
+        height: "100%",
+        stylesheet: GameboardStyles,
+        numberOfThrows: numberOfThrows
 
     }
     //console.log(dices)
@@ -548,7 +251,7 @@ function Gameboard({ navigation, route }) {
                 item={diceData}
             />
             <ThrowSelection
-            item={throwData}
+                item={throwData}
             />
             <Footer />
         </View>

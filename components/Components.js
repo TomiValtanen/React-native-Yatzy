@@ -1,4 +1,4 @@
-import { Image, ScrollView, TextInput, TouchableOpacity, View } from "react-native";
+import { Image, TextInput, TouchableOpacity, View } from "react-native";
 import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons"
 import { Pressable } from "react-native";
 import { Text } from "react-native";

@@ -1,8 +1,3 @@
-import { StatusBar } from 'expo-status-bar';
-import { Text, View } from 'react-native';
-import Header from './components/Header';
-import Footer from './components/Footer';
-import { Styles } from './styles/Styles';
 import Gameboard from "./screens/Gameboard"
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
