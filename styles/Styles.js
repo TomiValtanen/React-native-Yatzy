@@ -193,6 +193,14 @@ const GameboardStyles = StyleSheet.create({
 })
 
 const ScoreboardStyles = StyleSheet.create({
+  scoreTableContainer:{
+    flex: 1,
+    flexDirection: "column",
+    justifyContent: "center",
+    alignItems: "stretch", 
+    backgroundColor: "#F1EFDC",
+    gap: 20 
+  },
   dataTableRow: {
     backgroundColor: "red"
   },

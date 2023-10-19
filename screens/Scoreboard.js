@@ -1,4 +1,3 @@
-import { FlatList, Text, TouchableOpacity } from "react-native";
 import { View } from "react-native";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
@@ -6,13 +5,12 @@ import { ScoreboardStyles, Styles } from "../styles/Styles";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useEffect, useState } from "react";
 import { NBR_OF_SCOREBOARD } from "../constants/Game";
-import { DataTable } from "react-native-paper";
 import { SCORE_KEY } from "../constants/Game";
-import { CustomDataTable, CustomText, PressableButton } from "../components/Components";
+import ScoreTable from "../components/ScoreTable";
 
 
 
-function Scoreboard({ navigation, route }) {
+function Scoreboard({ route }) {
     const [scoreData, setScoreData] = useState([])
     const [isLoading, setIsLoading] = useState(true)
 
@@ -23,7 +21,7 @@ function Scoreboard({ navigation, route }) {
     }, [])
 
     useEffect(() => {
-        if (route.params?.score && isLoading===false) {
+        if (route.params?.score && isLoading === false) {
             console.log(route.params.score, "dataaa")
             const newKey = scoreData.length + 1;
             const newScore = {
@@ -39,7 +37,7 @@ function Scoreboard({ navigation, route }) {
             storeData(arrangedScores);
         }
         getData();
-    }, [route.params?.score,isLoading])
+    }, [route.params?.score, isLoading])
 
     const storeData = async (value) => {
         try {
@@ -82,46 +80,29 @@ function Scoreboard({ navigation, route }) {
     function checkIndexIsEven(n) {
         return n % 2 == 0;
     }
+    
+    const scoreboardData = {
+        scoreData: scoreData,
+        titles: ["Sija", "Nimi", "Pvm", "Aika", "Pisteet"],
+        checkIndex: checkIndexIsEven,
+        handlePress: () => removeValue(),
+        buttonText: "Resetoi pisteet",
+        stylesheet: ScoreboardStyles,
+        width: "80%",
+        height: "75%",
+        cusText1: `Top ${NBR_OF_SCOREBOARD}:`,
+        cusText2: "Huippupisteitä ei ole vielä tehtynä."
+    }
 
     console.log(scoreData, "scoreData")
+
     return (
         <View style={Styles.container}>
-
             <Header />
-
-            <View style={{ flex: 1, flexDirection: "column", justifyContent: "center", alignItems: "stretch", backgroundColor: "#F1EFDC",gap:20}}>
-
-                <CustomText stylesheet={ScoreboardStyles} text={`Top ${NBR_OF_SCOREBOARD}:`} />
-                <View style={{ flex: 4}}>
-                {scoreData.length === 0 ?
-                    <CustomText stylesheet={ScoreboardStyles} text={"Huippupisteitä ei ole vielä tehtynä."} />
-                    :
-                    
-                        <CustomDataTable
-                            scoreData={scoreData}
-                            titles={["Sija", "Nimi", "Pvm", "Aika", "Pisteet"]}
-                            stylesheet={ScoreboardStyles}
-                            checkIndex={checkIndexIsEven}
-
-                        />
-                    
-                }
-</View>
-                <PressableButton
-                    handlePress={() => removeValue()}
-                    buttonText={"Resetoi pisteet"}
-                    stylesheet={ScoreboardStyles}
-                    width={"80%"}
-                    height={"75%"}
-
-
-                />
-            </View>
-
-
-
+            <ScoreTable
+                item={scoreboardData}
+            />
             <Footer />
-
         </View>
 
 
