@@ -1,7 +1,7 @@
 import { FlatList, Text, TouchableOpacity } from "react-native";
 import { View } from "react-native";
-import Header from "./Header";
-import Footer from "./Footer";
+import Header from "../components/Header";
+import Footer from "../components/Footer";
 import { Styles } from "../styles/Styles";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useEffect, useState } from "react";

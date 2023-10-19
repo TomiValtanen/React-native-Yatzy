@@ -3,9 +3,11 @@ import { RULES, POINTS, AIM } from "../constants/Game";
 import { Styles } from "../styles/Styles";
 import { useState } from "react";
 import { Keyboard } from "react-native";
-import Header from "./Header";
-import Footer from "./Footer";
-import { GiveName, Logo, Rules } from "./Components";
+import Header from "../components/Header";
+import Footer from "../components/Footer";
+import { Logo } from "../components/Components";
+import GiveName from "../components/GiveName";
+import Rules from "../components/Rules";
 
 
 
@@ -27,6 +29,7 @@ function Home({ navigation }) {
             <Header />
             <Logo />
             {!hasPlayerName ?
+            
                 <GiveName
                     setPlayerName={setPlayerName}
                     text={"Anna nimesi pistetilastointia varten..."}

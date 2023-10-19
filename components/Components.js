@@ -24,29 +24,7 @@ function Logo() {
     )
 }
 
-function GiveName({ setPlayerName, text, placeholder, maxLength, stylesheet, handlePress, buttonText }) {
-    return (
-        <View style={Styles.giveNameContainer}>
-            <CustomTextInput
-                text={text}
-                setPlayerName={setPlayerName}
-                maxLength={maxLength}
-                placeholder={placeholder}
 
-            />
-
-
-            <PressableButton
-                handlePress={handlePress}
-                buttonText={buttonText}
-                width={"50%"}
-                height={"30%"}
-                stylesheet={stylesheet}
-            />
-
-        </View>
-    )
-}
 
 function PressableButton({ handlePress, buttonText, width, height ,stylesheet}) {
     return (
@@ -98,34 +76,7 @@ function CustomTextInput({ text, setPlayerName, maxLength, placeholder }) {
     )
 }
 
-function Rules({ text, textParas, navigation, buttonText,stylesheet }) {
-    return (
-        <View style={{ flex: 5 }}>
-            <ScrollView
-                contentContainerStyle={{ justifyContent: "center", alignItems: "center", gap: 30 }}
-                style={{ flexGrow: 1, marginBottom: 20, marginTop: 20 }}>
-                <MaterialCommunityIcons
-                    name="information"
-                    size={90}
-                    color={"#faa449"}
-                />
-                <View style={Styles.textContainer}>
-                    {
-                        textParas.map((para, index) => <CustomText key={index} text={para} />)
-                    }
-                </View>
-                <NavigationTextButton
-                    navigation={navigation}
-                    text={text}
-                    buttonText={buttonText}
-                    width={"100%"}
-                    height={"100%"}
-                    stylesheet={stylesheet}
-                />
-            </ScrollView>
-        </View>
-    )
-}
+
 
 function CustomText({ text }) {
     return (
@@ -213,4 +164,4 @@ function Dice({ item, handlePress }) {
     )
 }
 
-export { Dice, SectionCard, Logo, GiveName, PressableButton, Rules, CustomFlatlist, Selection }
+export { Dice, SectionCard, Logo, PressableButton, NavigationTextButton, CustomFlatlist, Selection ,CustomTextInput,CustomText}

@@ -1,18 +1,18 @@
 import { useEffect, useState } from "react"
 import { FlatList, Pressable, Text, TouchableOpacity, View } from "react-native"
 import { GameboardStyles, Styles } from "../styles/Styles";
-import Header from "./Header";
-import Footer from "./Footer";
+import Header from "../components/Header";
+import Footer from "../components/Footer";
 import { NBR_OF_DICES, NBR_OF_THROWS, MIN_SPOT, MAX_SPOT, BONUS_POINTS, BONUS_POINTS_LIMIT } from "../constants/Game";
 import { Container, Row, Col } from 'react-native-flex-grid';
 import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons"
-import { CustomFlatlist, Dice, DownSectionCard, UpperSectionCard, Selection, PressableButton } from "./Components";
+import { CustomFlatlist, Dice, DownSectionCard, UpperSectionCard, Selection, PressableButton } from "../components/Components";
 import { Button } from "react-native";
 import { Alert } from "react-native";
 import { FontAwesome } from '@expo/vector-icons';
-import YatzySelection from "./YatzySelection";
-import DiceSelection from "./DiceSelection";
-import ThrowSelection from "./ThrowSelection";
+import YatzySelection from "../components/YatzySelection";
+import DiceSelection from "../components/DiceSelection";
+import ThrowSelection from "../components/ThrowSelection";
 
 
 

@@ -3,12 +3,12 @@ import { Text, View } from 'react-native';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import { Styles } from './styles/Styles';
-import Gameboard from './components/Gameboard';
+import Gameboard from "./screens/Gameboard"
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
-import Home from './components/Home';
+import Home from "./screens/Home"
 import { NavigationContainer } from '@react-navigation/native';
-import Scoreboard from './components/Scoreboard';
+import Scoreboard from "./screens/Scoreboard"
 
 
 
