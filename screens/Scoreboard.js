@@ -7,10 +7,11 @@ import { useEffect, useState } from "react";
 import { NBR_OF_SCOREBOARD } from "../constants/Game";
 import { SCORE_KEY } from "../constants/Game";
 import ScoreTable from "../components/ScoreTable";
+import { Alert } from "react-native";
 
 
 
-function Scoreboard({ route }) {
+function Scoreboard({navigation, route }) {
     const [scoreData, setScoreData] = useState([])
     const [isLoading, setIsLoading] = useState(true)
 
@@ -19,6 +20,31 @@ function Scoreboard({ route }) {
         getData();
 
     }, [])
+
+    useEffect(() => {
+        const unsubscribe = navigation.addListener('tabPress', (e) => {
+          // Prevent default behavior
+    
+          e.preventDefault();
+          Alert.alert(
+            'Haluatko varmasti jättää pelin kesken',
+            'Peli alkaa alusta, jos poistut näkymästä?',
+            [
+                {
+                    text: 'Haluan jättää pelin kesken',
+                    style: 'destructive',
+                    // If the user confirmed, then we dispatch the action we blocked earlier
+                    // This will continue the action that had triggered the removal of the screen
+                    onPress: () => navigation.navigate("Scoreboard"),
+                  },
+              { text: "Jää", style: 'cancel', onPress: () => {} },
+             
+            ]
+          );
+        });
+      
+        return unsubscribe;
+      }, [navigation]);
 
     useEffect(() => {
         if (route.params?.score && isLoading === false) {

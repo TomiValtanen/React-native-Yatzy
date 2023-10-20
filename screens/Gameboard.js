@@ -9,7 +9,7 @@ import YatzySelection from "../components/YatzySelection";
 import DiceSelection from "../components/DiceSelection";
 import ThrowSelection from "../components/ThrowSelection";
 import { checkNumbers, returnSum} from "../components/GameboardFunctions";
-
+import { useIsFocused } from "@react-navigation/native";
 
 
 function Gameboard({ navigation, route }) {
@@ -25,20 +25,28 @@ function Gameboard({ navigation, route }) {
     const [status, setStatus] = useState("Start round")
     const [gameIsOn, setGameIsOn] = useState(true)
 
+    const isFocused = useIsFocused();
+
+
+  
+
     useEffect(() => {
-       
-    
-        return unsubscribe;
-      }, [navigation]);
-
-
+        console.log(isFocused,"Isfocused")
+        newGame()
+      }, [isFocused]);
 
     useEffect(() => {
         if (playerName === "" && route.params?.player) {
             setPlayerName(route.params.player)
-
+           
+        }else if(playerName !== route.params?.player){
+            setPlayerName(route.params.player)
         }
-    }, [])
+        console.log("Tämä nimi homma tapahtui")
+    }, [route.params?.player])
+
+   
+
     useEffect(() => {
         if (gameIsOn === false) {
             const dateTime=date()
