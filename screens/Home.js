@@ -28,30 +28,7 @@ const resetPlayerName=()=>{
     setHasPlayerName(false)
 }
 
-useEffect(() => {
-    const unsubscribe = navigation.addListener('tabPress', (e) => {
-      // Prevent default behavior
 
-      e.preventDefault();
-      Alert.alert(
-        'Haluatko varmasti jättää pelin kesken',
-        'Peli alkaa alusta, jos poistut näkymästä?',
-        [
-            {
-                text: 'Haluan jättää pelin kesken',
-                style: 'destructive',
-                // If the user confirmed, then we dispatch the action we blocked earlier
-                // This will continue the action that had triggered the removal of the screen
-                onPress: () => navigation.navigate("Home"),
-              },
-          { text: "Jää", style: 'cancel', onPress: () => {} },
-         
-        ]
-      );
-    });
-  
-    return unsubscribe;
-  }, [navigation]);
 
 
     return (
