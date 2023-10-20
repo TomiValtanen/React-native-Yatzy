@@ -140,8 +140,9 @@ function date(){
     function makeDownSection() {
         const arr = []
         const downSection = ["Yksi pari", "Kaksi paria", "Kolmoisluku", "Neloisluku", "Pieni suora", "Suuri suora", "Täyskäsi", "Sattuma", "Yatzy"]
+        const downSectionIcons=["numeric-1-box-multiple","numeric-2-box-multiple","numeric-3-box-multiple","numeric-4-box-multiple","cards-outline","cards","home","progress-question","crown"]
         for (let i = 0; i < downSection.length; i++) {
-            arr.push({ name: downSection[i], used: false, score: 0, icon: "cards" })
+            arr.push({ name: downSection[i], used: false, score: 0, icon: downSectionIcons[i] })
         }
         return arr
     }
