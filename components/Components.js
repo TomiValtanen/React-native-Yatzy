@@ -3,7 +3,7 @@ import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons"
 import { Pressable } from "react-native";
 import { Text } from "react-native";
 import { Styles } from "../styles/Styles"
-import YatzyLogo from "../assets/Yatzy_logo11.png"
+import YatzyLogo from "../assets/Yatzy_logo1.png"
 import { FlatList } from "react-native";
 import { DataTable } from "react-native-paper";
 
@@ -175,7 +175,7 @@ function CustomDataTable({ scoreData, titles ,stylesheet ,checkIndex }) {
         <ScrollView>
         {scoreData.map((score, index) => (
             <DataTable.Row style={[stylesheet.dataTableRow, { backgroundColor: checkIndex(index) ? "transparent" : "#E6D2AA" }]} key={index}>
-                <DataTable.Cell style={{ flex: 1 }}><Text style={stylesheet.dataTableCellText}>{score.key}.</Text></DataTable.Cell>
+                <DataTable.Cell style={{ flex: 1 }}><Text style={stylesheet.dataTableCellText}>{index+1}.</Text></DataTable.Cell>
                 <DataTable.Cell style={{ flex: 1 }}><Text style={stylesheet.dataTableCellText}>{score.name}</Text></DataTable.Cell>
                 <DataTable.Cell style={{ flex: 2 }}><Text style={stylesheet.dataTableCellText}>{score.date}</Text></DataTable.Cell>
                 <DataTable.Cell style={{ flex: 1 }}><Text style={stylesheet.dataTableCellText}>{score.time}</Text></DataTable.Cell>
