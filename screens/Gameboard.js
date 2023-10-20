@@ -31,7 +31,7 @@ function Gameboard({ navigation, route }) {
   
 
     useEffect(() => {
-        console.log(isFocused,"Isfocused")
+     
         newGame()
       }, [isFocused]);
 
