@@ -86,12 +86,9 @@ function Scoreboard({ route }) {
         titles: ["Sija", "Nimi", "Pvm", "Aika", "Pisteet"],
         checkIndex: checkIndexIsEven,
         handlePress: () => removeValue(),
-        buttonText: "Resetoi pisteet",
         stylesheet: ScoreboardStyles,
         width: "80%",
         height: "75%",
-        cusText1: `Top ${NBR_OF_SCOREBOARD}:`,
-        cusText2: "Huippupisteitä ei ole vielä tehtynä."
     }
 
     console.log(scoreData, "scoreData")

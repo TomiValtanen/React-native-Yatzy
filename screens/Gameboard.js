@@ -25,6 +25,13 @@ function Gameboard({ navigation, route }) {
     const [status, setStatus] = useState("Start round")
     const [gameIsOn, setGameIsOn] = useState(true)
 
+    useEffect(() => {
+       
+    
+        return unsubscribe;
+      }, [navigation]);
+
+
 
     useEffect(() => {
         if (playerName === "" && route.params?.player) {
@@ -166,16 +173,21 @@ function date(){
         setDices(arr)
         setNumberOfThrows(prev => prev - 1)
     }
-
-    function selectUpper(item) {
-
+    function checkAlerts(item){
         if (numberOfThrows !== 0) {
             return Alert.alert("Info", "Heitä kaikki kerrat loppuun ja valitse sitten")
         }
-        if (item.used === true) {
+        else if (item.used === true) {
             return Alert.alert("Info", "Et voi valita tätä uudestaan")
+        }else{
+            return false
         }
+    }
+    function selectUpper(item) {
 
+       if(checkAlerts(item)!==false){
+        return
+       } 
         const arr = []
         const sameNumbers = checkNumbers(dices, item.rightValue)
         const sum = item.rightValue * sameNumbers
@@ -196,12 +208,11 @@ function date(){
 
 
     function selectDown(item) {
-        if (numberOfThrows !== 0) {
-            return Alert.alert("Info", "Heitä kaikki kerrat loppuun ja valitse sitten")
-        }
-        if (item.used === true) {
-            return Alert.alert("Info", "Et voi valita tätä uudestaan")
-        }
+
+        if(checkAlerts(item)!==false){
+            return
+           } 
+
         const arr = []
         console.log(item)
 
@@ -253,8 +264,6 @@ function date(){
     const throwData = {
         handlePress: throwDices,
         buttonText: status,
-        width: "100%",
-        height: "100%",
         stylesheet: GameboardStyles,
         numberOfThrows: numberOfThrows
 

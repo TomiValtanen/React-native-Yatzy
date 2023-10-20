@@ -22,7 +22,10 @@ function Home({ navigation }) {
             Keyboard.dismiss()
         }
     }
-
+const resetPlayerName=()=>{
+    setPlayerName("")
+    setHasPlayerName(false)
+}
 
     return (
         <View style={Styles.container}>
@@ -32,11 +35,7 @@ function Home({ navigation }) {
             
                 <GiveName
                     setPlayerName={setPlayerName}
-                    text={"Anna nimesi pistetilastointia varten..."}
-                    placeholder={"Nimi"}
-                    maxLength={10}
                     handlePress={() => handlePLayerName(playerName)}
-                    buttonText={"OK"}
                     stylesheet={Styles}
                 />
                 :
@@ -44,8 +43,9 @@ function Home({ navigation }) {
                     text={` Mukavia peli hetkiä sinulle , ${playerName}`}
                     textParas={[RULES, POINTS, AIM]}
                     navigation={() => navigation.navigate("Gameboard", { player: playerName })}
-                    buttonText={"Yatzy"}
-                    stylesheet={Styles}
+                    handlePress={()=>resetPlayerName()}
+                    
+                    
                 />
             }
             <Footer />

@@ -1,6 +1,6 @@
 import { ScrollView, View } from "react-native"
-import { CustomText, NavigationTextButton } from "./Components"
-import { Styles } from "../styles/Styles"
+import { CustomText, NavigationTextButton, PressableButton } from "./Components"
+import { RulesStyles, Styles } from "../styles/Styles"
 import { MaterialCommunityIcons } from "@expo/vector-icons"
 
 
@@ -8,7 +8,7 @@ import { MaterialCommunityIcons } from "@expo/vector-icons"
 
 
 
-function Rules({ text, textParas, navigation, buttonText,stylesheet }) {
+function Rules({ text, textParas, navigation,handlePress }) {
     return (
         
         <View style={{ flex: 5 }}>
@@ -25,14 +25,21 @@ function Rules({ text, textParas, navigation, buttonText,stylesheet }) {
                         textParas.map((para, index) => <CustomText key={index} text={para} stylesheet={Styles}/>)
                     }
                 </View>
+                <View style={{flex:1 ,justifyContent:"center",alignItems:"stretch",gap:20}}>
                 <NavigationTextButton
                     navigation={navigation}
                     text={text}
-                    buttonText={buttonText}
-                    width={"100%"}
-                    height={"100%"}
-                    stylesheet={stylesheet}
+                    buttonText={"Siirry pelaamaan"}
+                    stylesheet={RulesStyles}
                 />
+                <PressableButton
+                handlePress={handlePress}
+                buttonText={"Vaihda nimeä"}
+                stylesheet={RulesStyles}
+                
+                />
+                </View>
+               
             </ScrollView>
         </View>
     )

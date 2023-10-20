@@ -14,8 +14,6 @@ function ThrowSelection({item}) {
             <PressableButton
                 handlePress={item.numberOfThrows === 0 ? () => null : item.handlePress}
                 buttonText={item.buttonText}
-                width={"100%"}
-                height={"100%"}
                 stylesheet={item.stylesheet}
             />
             <View style={item.stylesheet.throwsLeftContainer}>

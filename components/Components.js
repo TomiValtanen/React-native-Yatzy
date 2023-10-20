@@ -27,10 +27,10 @@ function Logo() {
 
 
 
-function PressableButton({ handlePress, buttonText, width, height, stylesheet }) {
+function PressableButton({ handlePress, buttonText, stylesheet }) {
     return (
         <View style={{ flex: 1, justifyContent: "flex-start", alignItems: "stretch" }}>
-            <TouchableOpacity style={[stylesheet.pressableContainer, { width: width, height: height }]} onPress={handlePress}>
+            <TouchableOpacity style={stylesheet.pressableContainer} onPress={handlePress}>
                 <Text style={stylesheet.pressableText}>{buttonText}</Text>
             </TouchableOpacity>
         </View>
@@ -38,7 +38,7 @@ function PressableButton({ handlePress, buttonText, width, height, stylesheet })
     )
 }
 
-function NavigationTextButton({ navigation, stylesheet, buttonText, text, width, height }) {
+function NavigationTextButton({ navigation, stylesheet, buttonText, text }) {
     return (
         <View style={{ flex: 1, justifyContent: "center", alignItems: "stretch", gap: 10 }}>
 
@@ -48,8 +48,6 @@ function NavigationTextButton({ navigation, stylesheet, buttonText, text, width,
             <PressableButton
                 handlePress={navigation}
                 buttonText={buttonText}
-                width={width}
-                height={height}
                 stylesheet={stylesheet}
             />
         </View>

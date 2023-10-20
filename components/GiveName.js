@@ -5,24 +5,22 @@ import { Styles } from "../styles/Styles"
 
 
 
-function GiveName({ setPlayerName, text, placeholder, maxLength, stylesheet, handlePress, buttonText }) {
+function GiveName({ setPlayerName, stylesheet, handlePress}) {
     return (
         
         <View style={Styles.giveNameContainer}>
             <CustomTextInput
-                text={text}
+                text={"Anna nimesi pistetilastointia varten..."}
                 setPlayerName={setPlayerName}
-                maxLength={maxLength}
-                placeholder={placeholder}
+                maxLength={10}
+                placeholder={"Nimi"}
 
             />
 
 
             <PressableButton
                 handlePress={handlePress}
-                buttonText={buttonText}
-                width={"50%"}
-                height={"30%"}
+                buttonText={"OK"}
                 stylesheet={stylesheet}
             />
 
