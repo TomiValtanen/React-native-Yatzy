@@ -32,18 +32,41 @@ function Gameboard({ navigation, route }) {
 
 
 
-
     useEffect(() => {
+        const unsubscribe = navigation.addListener('tabLongPress', () => {
+            Alert.alert(
+                'Haluatko varmasti aloittaa uuden pelin?',
+                'Pelisi alkaa alusta , eikä sitä voida palauttaa',
+                [
+                    {
+                        text: 'Uusi peli',
+                        style: 'destructive',
+                        // If the user confirmed, then we dispatch the action we blocked earlier
+                        // This will continue the action that had triggered the removal of the screen
+                        onPress: () => newGame(),
+                      },
+                  { text: "Jatka pelaamista", style: 'cancel', onPress: () => {} },
+                 
+                ]
+              );
 
-        newGame()
-    }, [isFocused]);
+
+
+        });
+      
+        return unsubscribe;
+      }, [navigation]);
+
+    
 
     useEffect(() => {
         if (playerName === "" && route.params?.player) {
             setPlayerName(route.params.player)
+            newGame()
 
         } else if (playerName !== route.params?.player) {
             setPlayerName(route.params.player)
+            newGame()
         }
         console.log("Tämä nimi homma tapahtui")
     }, [route.params?.player])
