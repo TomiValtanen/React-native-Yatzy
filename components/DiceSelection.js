@@ -12,7 +12,7 @@ function DiceSelection({item}){
         <View style={GameboardStyles.diceSelection}>
                 {item.numberOfThrows === 3 ?
                     <View >
-                        <MaterialCommunityIcons name="dice-multiple" size={60} color="black" />
+                        <MaterialCommunityIcons name="dice-multiple" size={60} color="#42032C" />
                     </View>
                     :
                     <CustomFlatlist
