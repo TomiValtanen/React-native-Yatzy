@@ -3,7 +3,7 @@ import { View } from "react-native"
 import { GameboardStyles, Styles } from "../styles/Styles";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
-import { NBR_OF_DICES, NBR_OF_THROWS, BONUS_POINTS, BONUS_POINTS_LIMIT } from "../constants/Game";
+import { NBR_OF_DICES, NBR_OF_THROWS, BONUS_POINTS, BONUS_POINTS_LIMIT, YLÄOSA, UPPER_SECTION, DOWN_SECTION, DOWN_SECTION_ICONS } from "../constants/Game";
 import { Alert } from "react-native";
 import YatzySelection from "../components/YatzySelection";
 import DiceSelection from "../components/DiceSelection";
@@ -12,7 +12,6 @@ import { checkNumbers, returnSum } from "../components/GameboardFunctions";
 import { useIsFocused } from "@react-navigation/native";
 import BackgroundImg from "../assets/background.png"
 import { ImageBackground } from "react-native";
-import { Text } from "react-native";
 import PlayerStats from "../components/PlayerStats";
 
 
@@ -133,9 +132,8 @@ function Gameboard({ navigation, route }) {
 
     function makeUpperSection() {
         const arr = []
-        const yläosa = ["Ykköset", "Kakkoset", "Kolmoset", "Neloset", "Viitoset", "Kuutoset"]
-        for (let i = 0; i < yläosa.length; i++) {
-            arr.push({ rightValue: i + 1, name: yläosa[i], used: false, score: 0, icon: `dice-${i + 1}` })
+        for (let i = 0; i < UPPER_SECTION.length; i++) {
+            arr.push({ rightValue: i + 1, name: UPPER_SECTION[i], used: false, score: 0, icon: `dice-${i + 1}` })
         }
         //console.log(arr,"MakeUpper")
         return arr
@@ -143,10 +141,8 @@ function Gameboard({ navigation, route }) {
 
     function makeDownSection() {
         const arr = []
-        const downSection = ["Yksi pari", "Kaksi paria", "Kolmoisluku", "Neloisluku", "Pieni suora", "Suuri suora", "Täyskäsi", "Sattuma", "Yatzy"]
-        const downSectionIcons = ["numeric-1-box-multiple", "numeric-2-box-multiple", "numeric-3-box-multiple", "numeric-4-box-multiple", "cards-outline", "cards", "home", "progress-question", "crown"]
-        for (let i = 0; i < downSection.length; i++) {
-            arr.push({ name: downSection[i], used: false, score: 0, icon: downSectionIcons[i] })
+        for (let i = 0; i < DOWN_SECTION.length; i++) {
+            arr.push({ name: DOWN_SECTION[i], used: false, score: 0, icon: DOWN_SECTION_ICONS[i] })
         }
         return arr
     }
@@ -246,6 +242,14 @@ function Gameboard({ navigation, route }) {
 
     }
 
+    function handleBonus(){
+        let  toBonus=BONUS_POINTS_LIMIT-upperTotal
+        if(toBonus<0){
+          toBonus=0
+        }
+        return toBonus
+      }
+
 
     const selectionData = [{
         data: upper,
@@ -294,6 +298,7 @@ function Gameboard({ navigation, route }) {
                     bonus={bonus}
                     upperTotal={upperTotal}
                     downTotal={downTotal}
+                    handleBonus={handleBonus()}
                 />
                 <DiceSelection
                     item={diceData}

@@ -140,7 +140,7 @@ function Card({ dice, item, handlePress, index }) {
 function SectionCard({ item, handlePress, index }) {
     return (
         <Pressable onPress={() => handlePress(item)}>
-            <View key={index} style={{ flex: 1, flexDirection: "row", borderWidth: 1, alignItems: "center", justifyContent: "space-between", padding: 5, marginBottom: 5, backgroundColor: item.used ? '#D36B00' : "#E6D2AA" }}>
+            <View key={index} style={{ flex: 1, flexDirection: "row", borderWidth: 1,borderRadius:4, alignItems: "center", justifyContent: "space-between", padding: 5, marginBottom: 5, backgroundColor: item.used ? '#D36B00' : "#E6D2AA" }}>
                 <MaterialCommunityIcons name={item.icon} size={30} color="#42032C" />
                 <Text>{item.name}</Text>
                 <Text>{item.score}</Text>

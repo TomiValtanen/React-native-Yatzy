@@ -3,7 +3,14 @@ export const NBR_OF_THROWS=3
 export const BONUS_POINTS_LIMIT=63
 export const BONUS_POINTS=50
 export const NBR_OF_SCOREBOARD=10
+export const UPPER_SECTION = ["Ykköset", "Kakkoset", "Kolmoset", "Neloset", "Viitoset", "Kuutoset"]
+export const DOWN_SECTION = ["Yksi pari", "Kaksi paria", "Kolmoisluku", "Neloisluku", "Pieni suora", "Suuri suora", "Täyskäsi", "Sattuma", "Yatzy"]
+export const DOWN_SECTION_ICONS = ["numeric-1-box-multiple", "numeric-2-box-multiple", "numeric-3-box-multiple", "numeric-4-box-multiple", "cards-outline", "cards", "home", "progress-question", "crown"]
 export const SCORE_KEY = '@score_key'
+
+
+//Tekstit
+//Säännöt
 export const RULES=`Yatzy:${"\n"}
 Pöytäkirja jakautuu kahteen osaa: ylä- ja alapuoleen.${"\n"}
 Yläpuolella on kohdat:${"\n"}
@@ -28,7 +35,9 @@ Täyskäsi eli mökki: kolmoisluku ja pari. 3-3-3-5-5 = 3+3+3+5+5 = 19 pistettä
 Sattuma: mitä tahansa. Tähän kelpaa mitä tahansa, pisteiksi lasketaan silmälukujen summa.${"\n"}
 Yatzy: viisi samaa silmälukua. ${BONUS_POINTS} pistettä.${"\n"}
 Pelaajan peli on ohi, kun kaikki kohdat pöytäkirjasta on täytetty. Lopputulos saadaan laskemalla pelaajan pisteet yhteen.`
+//Pisteytys
 export const POINTS=`PISTEYTYS: Pisteet voidaan laitta ylä- tai alapuoleen, kun on heittänyt noppia kolme kertaa. Pisteytys jakautuu yllä olevien ohjeiden mukaisesti.`
+//Pelin tavoite
 export const AIM=`TAVOITE: Saada mahdollisimman paljon pisteitä pelin aikana.Yläosasta on mahdollista saada bonus pisteitä ${BONUS_POINTS} , jos saa yläosasta yhteensä ${BONUS_POINTS_LIMIT} pistettä tai enemmän.`
 
 

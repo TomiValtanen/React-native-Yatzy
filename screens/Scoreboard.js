@@ -92,8 +92,6 @@ function Scoreboard({navigation, route }) {
         checkIndex: checkIndexIsEven,
         handlePress: () => removeValue(),
         stylesheet: ScoreboardStyles,
-        width: "80%",
-        height: "75%",
     }
 
     console.log(scoreData, "scoreData")

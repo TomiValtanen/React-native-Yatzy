@@ -155,6 +155,7 @@ const GameboardStyles = StyleSheet.create({
     ...Styles.pressableContainer,
     borderRadius: 0,
     borderWidth: 1,
+    borderColor:"#42032C",
     backgroundColor: "#42032C",
     width:"100%",
     height:"100%"

@@ -44,8 +44,8 @@ export default function App() {
 
             />
           },
-          tabBarActiveTintColor: "steelblue",
-          tabBarInactiveTintColor: "gray"
+          tabBarActiveTintColor: "#D36B00",
+          tabBarInactiveTintColor: "#42032C"
         })}
       >
         <Tab.Screen
