@@ -8,7 +8,8 @@ import { NBR_OF_SCOREBOARD } from "../constants/Game";
 import { SCORE_KEY } from "../constants/Game";
 import ScoreTable from "../components/ScoreTable";
 import { Alert } from "react-native";
-
+import { ImageBackground } from "react-native";
+import BackgroundImg from "../assets/background.png"
 
 
 function Scoreboard({navigation, route }) {
@@ -99,11 +100,13 @@ function Scoreboard({navigation, route }) {
 
     return (
         <View style={Styles.container}>
+            <ImageBackground style={{ flex: 1 }} source={BackgroundImg} reziseMode="cover">
             <Header />
             <ScoreTable
                 item={scoreboardData}
             />
             <Footer />
+            </ImageBackground>
         </View>
 
 

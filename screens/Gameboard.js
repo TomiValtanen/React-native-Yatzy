@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import {  View } from "react-native"
+import { View } from "react-native"
 import { GameboardStyles, Styles } from "../styles/Styles";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
@@ -8,8 +8,12 @@ import { Alert } from "react-native";
 import YatzySelection from "../components/YatzySelection";
 import DiceSelection from "../components/DiceSelection";
 import ThrowSelection from "../components/ThrowSelection";
-import { checkNumbers, returnSum} from "../components/GameboardFunctions";
+import { checkNumbers, returnSum } from "../components/GameboardFunctions";
 import { useIsFocused } from "@react-navigation/native";
+import BackgroundImg from "../assets/background.png"
+import { ImageBackground } from "react-native";
+import { Text } from "react-native";
+import PlayerStats from "../components/PlayerStats";
 
 
 function Gameboard({ navigation, route }) {
@@ -28,28 +32,28 @@ function Gameboard({ navigation, route }) {
     const isFocused = useIsFocused();
 
 
-  
+
 
     useEffect(() => {
-     
+
         newGame()
-      }, [isFocused]);
+    }, [isFocused]);
 
     useEffect(() => {
         if (playerName === "" && route.params?.player) {
             setPlayerName(route.params.player)
-           
-        }else if(playerName !== route.params?.player){
+
+        } else if (playerName !== route.params?.player) {
             setPlayerName(route.params.player)
         }
         console.log("Tämä nimi homma tapahtui")
     }, [route.params?.player])
 
-   
+
 
     useEffect(() => {
         if (gameIsOn === false) {
-            const dateTime=date()
+            const dateTime = date()
             Alert.alert("Peli loppui", `Pelaaja: ${playerName}\nPäivämäärä ja aika :${dateTime.date} ${dateTime.time}\nPisteet:\nYläosasta: ${upperTotal}\nAlaosasta: ${downTotal}\nBonus: ${bonus}\n\nYhteensä: ${totalPoints}`, [
                 {
                     text: 'Aloita uudestaan',
@@ -97,28 +101,28 @@ function Gameboard({ navigation, route }) {
 
     }
     function navigateScore() {
-        const dateTime=date()
-        navigation.navigate("Scoreboard", { score: { name: playerName, score: totalPoints ,date:dateTime.date,time:dateTime.time} })
+        const dateTime = date()
+        navigation.navigate("Scoreboard", { score: { name: playerName, score: totalPoints, date: dateTime.date, time: dateTime.time } })
         newGame()
     }
-    function addZero(i){
-        if(i<10){
-            i=`0${i}`
+    function addZero(i) {
+        if (i < 10) {
+            i = `0${i}`
         }
         return i
     }
-function date(){
+    function date() {
 
 
-    const d=new Date()
-    const day=d.getDate()
-    const month=d.getMonth()+1
-    const year=d.getFullYear()
-    const hours=addZero(d.getHours())
-    const minutes=addZero(d.getMinutes())
+        const d = new Date()
+        const day = d.getDate()
+        const month = d.getMonth() + 1
+        const year = d.getFullYear()
+        const hours = addZero(d.getHours())
+        const minutes = addZero(d.getMinutes())
 
-   return dateAndTime ={date:`${day}.${month}.${year}`,time:`${hours}:${minutes}`}
-}
+        return dateAndTime = { date: `${day}.${month}.${year}`, time: `${hours}:${minutes}` }
+    }
     function makeDices() {
         const arr = []
         for (let i = 0; i < NBR_OF_DICES; i++) {
@@ -140,7 +144,7 @@ function date(){
     function makeDownSection() {
         const arr = []
         const downSection = ["Yksi pari", "Kaksi paria", "Kolmoisluku", "Neloisluku", "Pieni suora", "Suuri suora", "Täyskäsi", "Sattuma", "Yatzy"]
-        const downSectionIcons=["numeric-1-box-multiple","numeric-2-box-multiple","numeric-3-box-multiple","numeric-4-box-multiple","cards-outline","cards","home","progress-question","crown"]
+        const downSectionIcons = ["numeric-1-box-multiple", "numeric-2-box-multiple", "numeric-3-box-multiple", "numeric-4-box-multiple", "cards-outline", "cards", "home", "progress-question", "crown"]
         for (let i = 0; i < downSection.length; i++) {
             arr.push({ name: downSection[i], used: false, score: 0, icon: downSectionIcons[i] })
         }
@@ -182,21 +186,21 @@ function date(){
         setDices(arr)
         setNumberOfThrows(prev => prev - 1)
     }
-    function checkAlerts(item){
+    function checkAlerts(item) {
         if (numberOfThrows !== 0) {
             return Alert.alert("Info", "Heitä kaikki kerrat loppuun ja valitse sitten")
         }
         else if (item.used === true) {
             return Alert.alert("Info", "Et voi valita tätä uudestaan")
-        }else{
+        } else {
             return false
         }
     }
     function selectUpper(item) {
 
-       if(checkAlerts(item)!==false){
-        return
-       } 
+        if (checkAlerts(item) !== false) {
+            return
+        }
         const arr = []
         const sameNumbers = checkNumbers(dices, item.rightValue)
         const sum = item.rightValue * sameNumbers
@@ -218,14 +222,14 @@ function date(){
 
     function selectDown(item) {
 
-        if(checkAlerts(item)!==false){
+        if (checkAlerts(item) !== false) {
             return
-           } 
+        }
 
         const arr = []
         console.log(item)
 
-        let sum = returnSum(item,dices)
+        let sum = returnSum(item, dices)
 
         console.log(sum, "Summa selectDown")
         down.map(down => {
@@ -249,8 +253,7 @@ function date(){
         horizontal: false,
         dice: false,
         text: "Yläosa",
-        textPara: [`Player: ${playerName}`, `Bonus: ${bonus}`, `Yläosan pisteet: ${upperTotal}`],
-        stylesheet:GameboardStyles
+        stylesheet: GameboardStyles
     },
     {
         data: down,
@@ -258,8 +261,7 @@ function date(){
         horizontal: false,
         dice: false,
         text: "Alaosa",
-        textPara: [`Alaosan pisteet: ${downTotal}`],
-        stylesheet:GameboardStyles
+        stylesheet: GameboardStyles
 
     }]
     const diceData = {
@@ -282,17 +284,25 @@ function date(){
     //console.log(down)
     return (
         <View style={Styles.gameboard}>
-            <Header />
-            <YatzySelection
-                item={selectionData}
-            />
-            <DiceSelection
-                item={diceData}
-            />
-            <ThrowSelection
-                item={throwData}
-            />
-            <Footer />
+            <ImageBackground style={{ flex: 1 }} source={BackgroundImg} reziseMode="cover">
+                <Header />
+                <YatzySelection
+                    item={selectionData}
+                />
+                <PlayerStats
+                    playerName={playerName}
+                    bonus={bonus}
+                    upperTotal={upperTotal}
+                    downTotal={downTotal}
+                />
+                <DiceSelection
+                    item={diceData}
+                />
+                <ThrowSelection
+                    item={throwData}
+                />
+                <Footer />
+            </ImageBackground>
         </View>
     )
 }

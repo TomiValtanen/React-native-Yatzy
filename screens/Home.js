@@ -1,4 +1,4 @@
-import { View } from "react-native";
+import { ImageBackground, View } from "react-native";
 import { RULES, POINTS, AIM } from "../constants/Game";
 import { Styles } from "../styles/Styles";
 import { useEffect, useState } from "react";
@@ -9,6 +9,7 @@ import { Logo } from "../components/Components";
 import GiveName from "../components/GiveName";
 import Rules from "../components/Rules";
 import { Alert } from "react-native";
+import BackgroundImg from "../assets/background.png"
 
 
 
@@ -33,7 +34,9 @@ const resetPlayerName=()=>{
 
     return (
         <View style={Styles.container}>
+            <ImageBackground source={BackgroundImg} style={{flex:1}}>
             <Header />
+            
             <Logo />
             {!hasPlayerName ?
             
@@ -52,7 +55,9 @@ const resetPlayerName=()=>{
                     
                 />
             }
+             
             <Footer />
+            </ImageBackground>
         </View >
     )
 }

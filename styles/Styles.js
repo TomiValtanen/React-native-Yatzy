@@ -104,7 +104,6 @@ const Styles = StyleSheet.create({
   flatlistContainer: {
     flex: 1,
     alignItems: "left",
-    width: "30%",
     justifyContent: "flex-end"
   },
   gameinfo: {
@@ -167,12 +166,11 @@ const GameboardStyles = StyleSheet.create({
     color: "white"
   },
   selectionContainer: {
-    flex: 10,
-    borderWidth: 1,
+    flex: 9,
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
-    gap: 15,
+    gap: 10,
     padding: 5
   },
   diceSelection: {
@@ -184,7 +182,8 @@ const GameboardStyles = StyleSheet.create({
   },
   throwSelectionContainer: {
     flex: 1,
-    flexDirection: "row"
+    flexDirection: "row",
+    
   },
   throwsLeftContainer: {
     flex: 1,
@@ -201,10 +200,12 @@ const GameboardStyles = StyleSheet.create({
     alignItems: "center"
   },
   customTextContainer: {
-    flex: 1
+    flex: 1,
+    gap:0,
+    justifyContent:"flex-end"
   },
   customText: {
-    ...Styles.customText
+    ...Styles.customText,
   },
   
 })
@@ -215,7 +216,6 @@ const ScoreboardStyles = StyleSheet.create({
     flexDirection: "column",
     justifyContent: "center",
     alignItems: "stretch", 
-    backgroundColor: "#F1EFDC",
     gap: 20 
   },
   dataTableRow: {
