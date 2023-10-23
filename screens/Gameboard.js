@@ -41,19 +41,13 @@ function Gameboard({ navigation, route }) {
                     {
                         text: 'Uusi peli',
                         style: 'destructive',
-                        // If the user confirmed, then we dispatch the action we blocked earlier
-                        // This will continue the action that had triggered the removal of the screen
                         onPress: () => newGame(),
                       },
                   { text: "Jatka pelaamista", style: 'cancel', onPress: () => {} },
                  
                 ]
               );
-
-
-
         });
-      
         return unsubscribe;
       }, [navigation]);
 

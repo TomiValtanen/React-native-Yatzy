@@ -6,6 +6,7 @@ import { Styles } from "../styles/Styles"
 import YatzyLogo from "../assets/Yatzy_logo1.png"
 import { FlatList } from "react-native";
 import { DataTable } from "react-native-paper";
+import { useIsFocused } from "@react-navigation/native";
 
 
 
@@ -38,11 +39,11 @@ function PressableButton({ handlePress, buttonText, stylesheet }) {
     )
 }
 
-function NavigationTextButton({ navigation, stylesheet, buttonText, text }) {
+function NavigationTextButton({ navigation, stylesheet, buttonText, text ,fontFam}) {
     return (
         <View style={{ flex: 1, justifyContent: "center", alignItems: "stretch", gap: 10 }}>
 
-            <Text style={{ color: "black" }}>{text}</Text>
+            <Text style={{color: "black" ,fontFamily:fontFam}}>{text}</Text>
 
 
             <PressableButton
@@ -54,10 +55,10 @@ function NavigationTextButton({ navigation, stylesheet, buttonText, text }) {
     )
 }
 
-function CustomTextInput({ text, setPlayerName, maxLength, placeholder }) {
+function CustomTextInput({ text, setPlayerName, maxLength, placeholder ,fontFam}) {
     return (
         <View style={Styles.nameInputContainer}>
-            <Text style={Styles.nameText}>{text}</Text>
+            <Text style={[Styles.nameText,{fontFamily:fontFam}]}>{text}</Text>
             <TextInput
                 style={Styles.textInput}
                 onChangeText={setPlayerName}
@@ -67,6 +68,8 @@ function CustomTextInput({ text, setPlayerName, maxLength, placeholder }) {
                 maxLength={maxLength}
                 placeholder={placeholder}
                 textAlign="center"
+               
+                
 
             />
 
@@ -77,10 +80,10 @@ function CustomTextInput({ text, setPlayerName, maxLength, placeholder }) {
 
 
 
-function CustomText({ text,stylesheet }) {
+function CustomText({ text,stylesheet,fontFam }) {
     return (
         <View style={stylesheet.customTextContainer}>
-            <Text style={stylesheet.customText} multiline="true">{text}</Text>
+            <Text style={[stylesheet.customText,{fontFamily:fontFam}]} multiline="true">{text}</Text>
         </View>
     )
 }

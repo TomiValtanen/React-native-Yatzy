@@ -5,7 +5,7 @@ import { Styles } from "../styles/Styles"
 
 
 
-function GiveName({ setPlayerName, stylesheet, handlePress}) {
+function GiveName({ setPlayerName, stylesheet, handlePress,fontFam}) {
     return (
         
         <View style={Styles.giveNameContainer}>
@@ -14,6 +14,7 @@ function GiveName({ setPlayerName, stylesheet, handlePress}) {
                 setPlayerName={setPlayerName}
                 maxLength={10}
                 placeholder={"Nimi"}
+               fontFam={fontFam}
 
             />
 

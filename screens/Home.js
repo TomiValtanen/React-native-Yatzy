@@ -1,7 +1,7 @@
 import { ImageBackground, View } from "react-native";
 import { RULES, POINTS, AIM } from "../constants/Game";
-import { Styles } from "../styles/Styles";
-import { useEffect, useState } from "react";
+import { Styles ,exampleAsync} from "../styles/Styles";
+import { useCallback, useEffect, useState } from "react";
 import { Keyboard } from "react-native";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
@@ -10,6 +10,10 @@ import GiveName from "../components/GiveName";
 import Rules from "../components/Rules";
 import { Alert } from "react-native";
 import BackgroundImg from "../assets/background.png"
+import { useFonts } from 'expo-font';
+import * as SplashScreen from 'expo-splash-screen';
+
+SplashScreen.preventAutoHideAsync();
 
 
 
@@ -17,6 +21,17 @@ import BackgroundImg from "../assets/background.png"
 function Home({ navigation }) {
     const [playerName, setPlayerName] = useState("")
     const [hasPlayerName, setHasPlayerName] = useState(false)
+    const [fontsLoaded] = useFonts({'AcmeRegular': require('../assets/fonts/Acme-Regular.ttf'),});
+    
+      const onLayoutRootView = useCallback(async () => {
+        if (fontsLoaded) {
+          await SplashScreen.hideAsync();
+        }
+      }, [fontsLoaded]);
+    
+      if (!fontsLoaded) {
+        return null;
+      }
 
     const handlePLayerName = (value) => {
         if (value.trim().length > 0) {
@@ -33,7 +48,7 @@ const resetPlayerName=()=>{
 
 
     return (
-        <View style={Styles.container}>
+        <View style={Styles.container} onLayout={onLayoutRootView}>
             <ImageBackground source={BackgroundImg} style={{flex:1}}>
             <Header />
             
@@ -44,6 +59,7 @@ const resetPlayerName=()=>{
                     setPlayerName={setPlayerName}
                     handlePress={() => handlePLayerName(playerName)}
                     stylesheet={Styles}
+                    fontFam={"AcmeRegular"}
                 />
                 :
                 <Rules
@@ -51,6 +67,7 @@ const resetPlayerName=()=>{
                     textParas={[RULES, POINTS, AIM]}
                     navigation={() => navigation.navigate("Gameboard", { player: playerName })}
                     handlePress={()=>resetPlayerName()}
+                    fontFam={"AcmeRegular"}
                     
                     
                 />

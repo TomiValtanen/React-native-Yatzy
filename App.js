@@ -7,8 +7,8 @@ import Scoreboard from "./screens/Scoreboard"
 
 
 
-const Tab = createBottomTabNavigator();
 
+const Tab = createBottomTabNavigator();
 export default function App() {
   return (
     <NavigationContainer>

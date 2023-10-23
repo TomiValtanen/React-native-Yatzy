@@ -1,6 +1,8 @@
 import { StyleSheet } from 'react-native';
 import Constants from "expo-constants";
 
+
+
 const Styles = StyleSheet.create({
 
   container: {
@@ -8,7 +10,8 @@ const Styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "strech",
-    backgroundColor: "#F1EFDC"
+    backgroundColor: "#F1EFDC",
+    
   },
   logoContainer: {
     flex: 3,
@@ -30,7 +33,7 @@ const Styles = StyleSheet.create({
     height: "40%"
   },
   nameText: {
-    color: "#000000"
+    color: "#000000",
   },
   textInput: {
     backgroundColor: "#ffffff",
@@ -51,14 +54,12 @@ const Styles = StyleSheet.create({
     padding: 10,
   },
   header: {
-    height: "5%",
     backgroundColor: '#D36B00',
     flexDirection: 'row',
     padding: 5,
     alignItems: "center"
   },
   footer: {
-    height: "5%",
     backgroundColor: '#D36B00',
     flexDirection: 'row',
     padding: 5,
@@ -213,7 +214,7 @@ const GameboardStyles = StyleSheet.create({
 
 const ScoreboardStyles = StyleSheet.create({
   scoreTableContainer:{
-    flex: 1,
+    flex: 9,
     flexDirection: "column",
     justifyContent: "center",
     alignItems: "stretch", 
