@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react"
-import { View } from "react-native"
 import { GameboardStyles, Styles } from "../styles/Styles";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
@@ -9,10 +8,9 @@ import YatzySelection from "../components/YatzySelection";
 import DiceSelection from "../components/DiceSelection";
 import ThrowSelection from "../components/ThrowSelection";
 import { checkNumbers, returnSum } from "../components/GameboardFunctions";
-import { useIsFocused } from "@react-navigation/native";
-import BackgroundImg from "../assets/background.png"
-import { ImageBackground } from "react-native";
 import PlayerStats from "../components/PlayerStats";
+import { BackgroundTemplate } from "../components/Components";
+
 
 
 function Gameboard({ navigation, route }) {
@@ -28,10 +26,6 @@ function Gameboard({ navigation, route }) {
     const [status, setStatus] = useState("Start round")
     const [gameIsOn, setGameIsOn] = useState(true)
 
-    const isFocused = useIsFocused();
-
-
-
     useEffect(() => {
         const unsubscribe = navigation.addListener('tabLongPress', () => {
             Alert.alert(
@@ -42,16 +36,16 @@ function Gameboard({ navigation, route }) {
                         text: 'Uusi peli',
                         style: 'destructive',
                         onPress: () => newGame(),
-                      },
-                  { text: "Jatka pelaamista", style: 'cancel', onPress: () => {} },
-                 
+                    },
+                    { text: "Jatka pelaamista", style: 'cancel', onPress: () => { } },
+
                 ]
-              );
+            );
         });
         return unsubscribe;
-      }, [navigation]);
+    }, [navigation]);
 
-    
+
 
     useEffect(() => {
         if (playerName === "" && route.params?.player) {
@@ -259,13 +253,13 @@ function Gameboard({ navigation, route }) {
 
     }
 
-    function handleBonus(){
-        let  toBonus=BONUS_POINTS_LIMIT-upperTotal
-        if(toBonus<0){
-          toBonus=0
+    function handleBonus() {
+        let toBonus = BONUS_POINTS_LIMIT - upperTotal
+        if (toBonus < 0) {
+            toBonus = 0
         }
         return toBonus
-      }
+    }
 
 
     const selectionData = [{
@@ -300,32 +294,31 @@ function Gameboard({ navigation, route }) {
         numberOfThrows: numberOfThrows
 
     }
+
     //console.log(dices)
     //console.log(upper)
     //console.log(down)
     return (
-        <View style={Styles.gameboard}>
-            <ImageBackground style={{ flex: 1 }} source={BackgroundImg} reziseMode="cover">
-                <Header />
-                <YatzySelection
-                    item={selectionData}
-                />
-                <PlayerStats
-                    playerName={playerName}
-                    bonus={bonus}
-                    upperTotal={upperTotal}
-                    downTotal={downTotal}
-                    handleBonus={handleBonus()}
-                />
-                <DiceSelection
-                    item={diceData}
-                />
-                <ThrowSelection
-                    item={throwData}
-                />
-                <Footer />
-            </ImageBackground>
-        </View>
+        <BackgroundTemplate>
+            <Header />
+            <YatzySelection
+                item={selectionData}
+            />
+            <PlayerStats
+                playerName={playerName}
+                bonus={bonus}
+                upperTotal={upperTotal}
+                downTotal={downTotal}
+                handleBonus={handleBonus()}
+            />
+            <DiceSelection
+                item={diceData}
+            />
+            <ThrowSelection
+                item={throwData}
+            />
+            <Footer />
+        </BackgroundTemplate>
     )
 }
 export default Gameboard

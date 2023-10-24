@@ -1,7 +1,28 @@
 import { StyleSheet } from 'react-native';
 import Constants from "expo-constants";
+import { PixelRatio } from "react-native";
 
+const fontScale = PixelRatio.getFontScale()
+const getFontSize = size => size / fontScale
 
+const ColorPalette = StyleSheet.create({
+backgroundColor:"#F1EFDC",
+colorOne:"#D36B00",
+secondaryColor:"#E6D2AA",
+thirdColor:"#42032C",
+lightTextColor:"#ffffff",
+darkTextColor:"#000000",
+inputColor:"#ffffff"
+})
+
+const TexSizes=StyleSheet.create({
+  small:12,
+  normal:15,
+  medium:18,
+  large:20,
+  xl:25,
+  xxl:30
+})
 
 const Styles = StyleSheet.create({
 
@@ -10,7 +31,7 @@ const Styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "strech",
-    backgroundColor: "#F1EFDC",
+    backgroundColor:ColorPalette.backgroundColor,
     
   },
   logoContainer: {
@@ -33,18 +54,20 @@ const Styles = StyleSheet.create({
     height: "40%"
   },
   nameText: {
-    color: "#000000",
+    color: ColorPalette.darkTextColor,
+    fontSize:getFontSize(TexSizes.normal)
   },
   textInput: {
-    backgroundColor: "#ffffff",
-    width: "50%",
-    height: 40
+    padding:5,
+    backgroundColor:ColorPalette.inputColor,
+    width: "60%",
+    fontSize:getFontSize(TexSizes.normal)
   },
   pressableContainer: {
     justifyContent: "center",
     alignSelf: "center",
     alignItems: "center",
-    backgroundColor: "#D36B00",
+    backgroundColor:ColorPalette.colorOne,
     borderRadius: 5,
     width:"50%",
     height:"30%"
@@ -52,31 +75,32 @@ const Styles = StyleSheet.create({
   },
   pressableText: {
     padding: 10,
+    fontSize:getFontSize(TexSizes.normal)
   },
   header: {
-    backgroundColor: '#D36B00',
+    backgroundColor: ColorPalette.colorOne,
     flexDirection: 'row',
     padding: 5,
     alignItems: "center"
   },
   footer: {
-    backgroundColor: '#D36B00',
+    backgroundColor:ColorPalette.colorOne,
     flexDirection: 'row',
     padding: 5,
     alignItems: "center"
   },
   title: {
-    color: '#fff',
+    color:ColorPalette.lightTextColor,
     fontWeight: 'bold',
     flex: 1,
-    fontSize: 15,
+    fontSize:getFontSize(TexSizes.medium),
     textAlign: 'center',
   },
   author: {
     color: '#fff',
     fontWeight: 'bold',
     flex: 1,
-    fontSize: 15,
+    fontSize: getFontSize(TexSizes.medium),
     textAlign: 'center',
 
   },
@@ -93,49 +117,18 @@ const Styles = StyleSheet.create({
     color: "black",
     textAlign: "left",
     paddingLeft: 15,
-    paddingRight: 15
+    paddingRight: 15,
+    fontSize:getFontSize(TexSizes.normal)
   },
-  gameboard: {
-    flex: 1,
-    marginTop: Constants.statusBarHeight + 5,
-    backgroundColor: "#F1EFDC",
-    alignItems: "stretch",
-    justifyContent: 'center'
+  navigationText:{
+    color:ColorPalette.darkTextColor,
+    fontSize:getFontSize(TexSizes.normal)
   },
   flatlistContainer: {
     flex: 1,
     alignItems: "left",
     justifyContent: "flex-end"
   },
-  gameinfo: {
-
-    backgroundColor: '#fff',
-    textAlign: 'center',
-    justifyContent: 'center',
-    fontSize: 20,
-    marginTop: 10
-  },
-  row: {
-    marginTop: 20,
-    padding: 10
-  },
-  flex: {
-    flexDirection: "row"
-  },
-  button: {
-    margin: 30,
-    flexDirection: "row",
-    padding: 10,
-    backgroundColor: "#73CED6",
-    width: 150,
-    borderRadius: 15,
-    justifyContent: 'center',
-    alignItems: 'center'
-  },
-  buttonText: {
-    color: "#2B2B52",
-    fontSize: 20
-  }
 });
 
 const RulesStyles=StyleSheet.create({
@@ -148,7 +141,7 @@ const RulesStyles=StyleSheet.create({
   pressableText: {
     padding: 10,
     fontSize: 20,
-    color: "white"
+    color: ColorPalette.lightTextColor
   },
 })
 const GameboardStyles = StyleSheet.create({
@@ -156,8 +149,8 @@ const GameboardStyles = StyleSheet.create({
     ...Styles.pressableContainer,
     borderRadius: 0,
     borderWidth: 1,
-    borderColor:"#42032C",
-    backgroundColor: "#42032C",
+    borderColor:ColorPalette.thirdColor,
+    backgroundColor: ColorPalette.thirdColor,
     width:"100%",
     height:"100%"
 
@@ -165,7 +158,7 @@ const GameboardStyles = StyleSheet.create({
   pressableText: {
     padding: 10,
     fontSize: 20,
-    color: "white"
+    color: ColorPalette.lightTextColor
   },
   selectionContainer: {
     flex: 9,
@@ -180,7 +173,7 @@ const GameboardStyles = StyleSheet.create({
     borderWidth: 1,
     alignItems: "center",
     justifyContent: "center",
-    backgroundColor: "#E6D2AA"
+    backgroundColor: ColorPalette.secondaryColor
   },
   throwSelectionContainer: {
     flex: 1,
@@ -225,10 +218,10 @@ const ScoreboardStyles = StyleSheet.create({
   },
   dataTableTitleText: {
     color: "white",
-    fontSize: 15
+    fontSize:getFontSize(TexSizes.normal)
   },
   dataTableCellText: {
-    fontSize: 15
+    fontSize:getFontSize(TexSizes.normal)
   },
   pressableContainer: {
     ...Styles.pressableContainer,
@@ -240,8 +233,8 @@ const ScoreboardStyles = StyleSheet.create({
   },
   pressableText: {
     padding: 10,
-    fontSize: 20,
-    color: "white"
+    fontSize:getFontSize(TexSizes.large),
+    color: ColorPalette.lightTextColor
   },
   customTextContainer: {
     flex: 0.7,
@@ -250,9 +243,9 @@ const ScoreboardStyles = StyleSheet.create({
   },
   customText: {
     ...Styles.customText,
-    fontSize: 35,
+    fontSize:getFontSize(TexSizes.xxl)
 
   },
 })
 
-export { Styles, GameboardStyles, ScoreboardStyles ,RulesStyles}
+export { Styles, GameboardStyles, ScoreboardStyles ,RulesStyles,ColorPalette,TexSizes}

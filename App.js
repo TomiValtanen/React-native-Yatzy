@@ -6,15 +6,12 @@ import { NavigationContainer } from '@react-navigation/native';
 import Scoreboard from "./screens/Scoreboard"
 
 
-
-
 const Tab = createBottomTabNavigator();
 export default function App() {
   return (
-    <NavigationContainer>
+  <NavigationContainer>
       <Tab.Navigator
         //initialRouteName="Home"
-        
         sceneContainerStyle={{ backgroundColor: "transparent" }}
         screenOptions={({ route }) => ({
           tabBarIcon: ({ focused, color, size }) => {
@@ -70,6 +67,6 @@ export default function App() {
 
       </Tab.Navigator>
     </NavigationContainer>
-
+ 
   );
 }

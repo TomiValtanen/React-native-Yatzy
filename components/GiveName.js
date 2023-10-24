@@ -5,7 +5,7 @@ import { Styles } from "../styles/Styles"
 
 
 
-function GiveName({ setPlayerName, stylesheet, handlePress,fontFam}) {
+function GiveName({ setPlayerName, handlePress}) {
     return (
         
         <View style={Styles.giveNameContainer}>
@@ -14,7 +14,7 @@ function GiveName({ setPlayerName, stylesheet, handlePress,fontFam}) {
                 setPlayerName={setPlayerName}
                 maxLength={10}
                 placeholder={"Nimi"}
-               fontFam={fontFam}
+               
 
             />
 
@@ -22,7 +22,7 @@ function GiveName({ setPlayerName, stylesheet, handlePress,fontFam}) {
             <PressableButton
                 handlePress={handlePress}
                 buttonText={"OK"}
-                stylesheet={stylesheet}
+                stylesheet={Styles}
             />
 
         </View>

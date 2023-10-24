@@ -8,7 +8,7 @@ import { MaterialCommunityIcons } from "@expo/vector-icons"
 
 
 
-function Rules({ text, textParas, navigation,handlePress ,fontFam}) {
+function Rules({ text, textParas, navigation,handlePress}) {
     return (
         
         <View style={{ flex: 5 }}>
@@ -22,7 +22,7 @@ function Rules({ text, textParas, navigation,handlePress ,fontFam}) {
                 />
                 <View style={Styles.textContainer}>
                     {
-                        textParas.map((para, index) => <CustomText key={index} text={para} stylesheet={Styles} fontFam={fontFam}/>)
+                        textParas.map((para, index) => <CustomText key={index} text={para} stylesheet={Styles} />)
                     }
                 </View>
                 <View style={{flex:1 ,justifyContent:"center",alignItems:"stretch",gap:20}}>
@@ -31,7 +31,7 @@ function Rules({ text, textParas, navigation,handlePress ,fontFam}) {
                     text={text}
                     buttonText={"Siirry pelaamaan"}
                     stylesheet={RulesStyles}
-                    fontFam={fontFam}
+                    
                 />
                 <PressableButton
                 handlePress={handlePress}

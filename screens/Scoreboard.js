@@ -3,13 +3,15 @@ import Header from "../components/Header";
 import Footer from "../components/Footer";
 import { ScoreboardStyles, Styles } from "../styles/Styles";
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { NBR_OF_SCOREBOARD } from "../constants/Game";
 import { SCORE_KEY } from "../constants/Game";
 import ScoreTable from "../components/ScoreTable";
 import { Alert } from "react-native";
 import { ImageBackground } from "react-native";
 import BackgroundImg from "../assets/background.png"
+import { BackgroundTemplate } from "../components/Components";
+
 
 
 function Scoreboard({navigation, route }) {
@@ -97,15 +99,13 @@ function Scoreboard({navigation, route }) {
     console.log(scoreData, "scoreData")
 
     return (
-        <View style={Styles.container}>
-            <ImageBackground style={{ flex: 1 }} source={BackgroundImg} reziseMode="cover">
+        <BackgroundTemplate>
             <Header />
             <ScoreTable
                 item={scoreboardData}
             />
             <Footer />
-            </ImageBackground>
-        </View>
+            </BackgroundTemplate>
 
 
 
