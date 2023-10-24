@@ -1,6 +1,6 @@
 import { View } from "react-native";
 import { Text } from "react-native";
-import { BONUS_POINTS_LIMIT } from "../constants/Game";
+
 
 
 
