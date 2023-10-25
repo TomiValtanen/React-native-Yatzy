@@ -1,6 +1,6 @@
 import { View } from "react-native"
 import { CustomTextInput, PressableButton } from "./Components"
-import { Styles } from "../styles/Styles"
+import { GiveNameStyles } from "../styles/Styles"
 
 
 
@@ -8,7 +8,7 @@ import { Styles } from "../styles/Styles"
 function GiveName({ setPlayerName, handlePress}) {
     return (
         
-        <View style={Styles.giveNameContainer}>
+        <View style={GiveNameStyles.giveNameContainer}>
             <CustomTextInput
                 text={"Anna nimesi pistetilastointia varten..."}
                 setPlayerName={setPlayerName}
@@ -22,7 +22,7 @@ function GiveName({ setPlayerName, handlePress}) {
             <PressableButton
                 handlePress={handlePress}
                 buttonText={"OK"}
-                stylesheet={Styles}
+                stylesheet={GiveNameStyles}
             />
 
         </View>

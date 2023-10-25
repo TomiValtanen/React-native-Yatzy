@@ -14,7 +14,7 @@ function PlayerStats({playerName,bonus,upperTotal,downTotal,handleBonus}){
         <View style={{flex:1,justifyContent:"center",alignItems:"flex-start",paddingLeft:5}}>
 
         <Text>Pelaaja: {playerName}</Text>
-        <Text>Bonus:{bonus===0 ? `Tarvitset ${handleBonus}`:bonus}</Text>
+        <Text>Bonus:{bonus===0 ? ` Tarvitset ${handleBonus}`:bonus}</Text>
         </View>
 
         <View style={{flex:1,justifyContent:"center",alignItems:"flex-start",paddingLeft:5}}>

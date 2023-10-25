@@ -43,16 +43,16 @@ function Home({ navigation }) {
                 <GiveName
                     setPlayerName={setPlayerName}
                     handlePress={() => handlePLayerName(playerName)}
-                    stylesheet={Styles}
-                    fontFam={"AcmeRegular"}
+                   
+                   
                 />
                 :
                 <Rules
-                    text={` Mukavia peli hetkiä sinulle , ${playerName}`}
+                    playerName={playerName}
                     textParas={[RULES, POINTS, AIM]}
                     navigation={() => navigation.navigate("Gameboard", { player: playerName })}
                     handlePress={() => resetPlayerName()}
-                    fontFam={"AcmeRegular"}
+                   
 
 
                 />

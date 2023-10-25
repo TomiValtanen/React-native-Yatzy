@@ -1,6 +1,6 @@
 import { ScrollView, View } from "react-native"
 import { CustomText, NavigationTextButton, PressableButton } from "./Components"
-import { RulesStyles, Styles } from "../styles/Styles"
+import { RulesStyles } from "../styles/Styles"
 import { MaterialCommunityIcons } from "@expo/vector-icons"
 
 
@@ -8,27 +8,27 @@ import { MaterialCommunityIcons } from "@expo/vector-icons"
 
 
 
-function Rules({ text, textParas, navigation,handlePress}) {
+function Rules({ playerName, textParas, navigation,handlePress}) {
     return (
         
-        <View style={{ flex: 5 }}>
+        <View style={RulesStyles.rulesContainer}>
             <ScrollView
-                contentContainerStyle={{ justifyContent: "center", alignItems: "center", gap: 30 }}
-                style={{ flexGrow: 1, marginBottom: 20, marginTop: 20 }}>
+                contentContainerStyle={RulesStyles.scrollViewContentContainer}
+                style={RulesStyles.scrollViewContainer}>
                 <MaterialCommunityIcons
                     name="information"
-                    size={90}
-                    color={"#faa449"}
+                    size={RulesStyles.iconSize}
+                    color={RulesStyles.iconColor}
                 />
-                <View style={Styles.textContainer}>
+                <View style={RulesStyles.textContainer}>
                     {
-                        textParas.map((para, index) => <CustomText key={index} text={para} stylesheet={Styles} />)
+                        textParas.map((para, index) => <CustomText key={index} text={para} stylesheet={RulesStyles} />)
                     }
                 </View>
-                <View style={{flex:1 ,justifyContent:"center",alignItems:"stretch",gap:20}}>
+                <View style={RulesStyles.buttonsContainer}>
                 <NavigationTextButton
                     navigation={navigation}
-                    text={text}
+                    text={` Mukavia peli hetkiä sinulle , ${playerName}`}
                     buttonText={"Siirry pelaamaan"}
                     stylesheet={RulesStyles}
                     
