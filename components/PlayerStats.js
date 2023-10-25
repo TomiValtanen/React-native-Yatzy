@@ -1,5 +1,6 @@
 import { View } from "react-native";
 import { Text } from "react-native";
+import { PlayerStatsStyles } from "../styles/Styles";
 
 
 
@@ -10,17 +11,17 @@ function PlayerStats({playerName,bonus,upperTotal,downTotal,handleBonus}){
  
     return(
        
-        <View style={{flex:1,backgroundColor:"transparent",flexDirection:"row",justifyContent:"center",alignItems:"center"}}>
-        <View style={{flex:1,justifyContent:"center",alignItems:"flex-start",paddingLeft:5}}>
+        <View style={PlayerStatsStyles.container}>
+        <View style={PlayerStatsStyles.textContainer}>
 
-        <Text>Pelaaja: {playerName}</Text>
-        <Text>Bonus:{bonus===0 ? ` Tarvitset ${handleBonus}`:bonus}</Text>
+        <Text style={PlayerStatsStyles.text}>Pelaaja: {playerName}</Text>
+        <Text style={PlayerStatsStyles.text}>Bonus:{bonus===0 ? ` Tarvitset ${handleBonus}`:bonus}</Text>
         </View>
 
-        <View style={{flex:1,justifyContent:"center",alignItems:"flex-start",paddingLeft:5}}>
+        <View style={PlayerStatsStyles.textContainer}>
 
-        <Text>Yläosan pisteet: {upperTotal}</Text>
-        <Text>Alaosan pisteet: {downTotal}</Text>
+        <Text style={PlayerStatsStyles.text}>Yläosan pisteet: {upperTotal}</Text>
+        <Text style={PlayerStatsStyles.text}>Alaosan pisteet: {downTotal}</Text>
         </View>
     
     

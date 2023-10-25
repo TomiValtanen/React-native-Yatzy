@@ -120,11 +120,7 @@ const Styles = StyleSheet.create({
     color: ColorPalette.darkTextColor,
     fontSize: getFontSize(TexSizes.normal)
   },
-  flatlistContainer: {
-    flex: 1,
-    alignItems: "left",
-    justifyContent: "flex-end"
-  },
+
 });
 
 
@@ -208,10 +204,83 @@ const RulesStyles = StyleSheet.create({
 
 })
 
+const YatzySelectionStyles = StyleSheet.create({
+  unSelected: ColorPalette.secondaryColor,
+  selected: ColorPalette.colorOne,
+  iconColor: ColorPalette.thirdColor,
+  iconSize: getFontSize(30),
+  selectionContainer: {
+    flex: 9,
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+    gap: 10,
+    padding: 5
+  },
+  flatlistContainer: {
+    flex: 1,
+    alignItems: "left",
+    justifyContent: "flex-end"
+  },
+  flatlistHeading: {
+    textAlign: "center",
+    color: ColorPalette.darkTextColor,
+    fontSize: getFontSize(TexSizes.medium),
+    marginBottom: 4
+  },
+  sectionCardContainer: {
+    flex: 1,
+    flexDirection: "row",
+    borderWidth: 1,
+    borderRadius: 4,
+    alignItems: "center",
+    justifyContent: "space-between",
+    padding: 5,
+    marginBottom: 5,
+  },
+  sectionCardText: {
+    fontSize: getFontSize(TexSizes.normal)
+  }
 
+})
 
+const PlayerStatsStyles=StyleSheet.create({
+  container:{
+    flex:1,
+    backgroundColor:"transparent",
+    flexDirection:"row",
+    justifyContent:"center",
+    alignItems:"center"
+  },
+  textContainer:{
+    flex:1,
+    justifyContent:"center",
+    alignItems:"flex-start",
+    paddingLeft:5
+  },
+  text:{
+    fontSize:getFontSize(TexSizes.normal),
+    color:ColorPalette.darkTextColor
+  }
+})
 
-
+const DiceSelectionStyles=StyleSheet.create({
+  unSelected:ColorPalette.thirdColor,
+  selected:ColorPalette.colorOne,
+  iconSize:getFontSize(60),
+  diceSelectionContainer: {
+    flex: 1.25,
+    borderWidth: 1,
+    alignItems: "center",
+    justifyContent: "center",
+    backgroundColor: ColorPalette.secondaryColor
+  },
+  diceContainer:{
+    flex: 1,
+     justifyContent: "center",
+      alignItems: "center" 
+  }
+})
 
 
 const GameboardStyles = StyleSheet.create({
@@ -230,21 +299,8 @@ const GameboardStyles = StyleSheet.create({
     fontSize: 20,
     color: ColorPalette.lightTextColor
   },
-  selectionContainer: {
-    flex: 9,
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
-    gap: 10,
-    padding: 5
-  },
-  diceSelection: {
-    flex: 1.25,
-    borderWidth: 1,
-    alignItems: "center",
-    justifyContent: "center",
-    backgroundColor: ColorPalette.secondaryColor
-  },
+
+ 
   throwSelectionContainer: {
     flex: 1,
     flexDirection: "row",
@@ -318,4 +374,4 @@ const ScoreboardStyles = StyleSheet.create({
   },
 })
 
-export { Styles, GameboardStyles, ScoreboardStyles, RulesStyles, ColorPalette, TexSizes, GiveNameStyles }
+export { Styles, GameboardStyles, ScoreboardStyles, RulesStyles, ColorPalette, TexSizes, GiveNameStyles, YatzySelectionStyles ,PlayerStatsStyles,DiceSelectionStyles}

@@ -267,8 +267,7 @@ function Gameboard({ navigation, route }) {
         handleSelect: selectUpper,
         horizontal: false,
         dice: false,
-        text: "Yläosa",
-        stylesheet: GameboardStyles
+        text: "Yläosa", 
     },
     {
         data: down,
@@ -276,8 +275,6 @@ function Gameboard({ navigation, route }) {
         horizontal: false,
         dice: false,
         text: "Alaosa",
-        stylesheet: GameboardStyles
-
     }]
     const diceData = {
         data: dices,
@@ -286,7 +283,6 @@ function Gameboard({ navigation, route }) {
         dice: true,
         numberOfThrows: numberOfThrows
     }
-
     const throwData = {
         handlePress: throwDices,
         buttonText: status,

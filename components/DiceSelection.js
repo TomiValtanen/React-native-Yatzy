@@ -1,7 +1,8 @@
 import { MaterialCommunityIcons } from "@expo/vector-icons"
 import { View } from "react-native"
 import { CustomFlatlist } from "./Components"
-import { GameboardStyles } from "../styles/Styles"
+import { DiceSelectionStyles} from "../styles/Styles"
+import { NBR_OF_THROWS } from "../constants/Game"
 
 
 
@@ -9,10 +10,10 @@ import { GameboardStyles } from "../styles/Styles"
 
 function DiceSelection({item}){
     return(
-        <View style={GameboardStyles.diceSelection}>
-                {item.numberOfThrows === 3 ?
+        <View style={DiceSelectionStyles.diceSelectionContainer}>
+                {item.numberOfThrows === NBR_OF_THROWS ?
                     <View >
-                        <MaterialCommunityIcons name="dice-multiple" size={60} color="#42032C" />
+                        <MaterialCommunityIcons name="dice-multiple" size={DiceSelectionStyles.iconSize} color={DiceSelectionStyles.unSelected}/>
                     </View>
                     :
                     <CustomFlatlist
@@ -20,6 +21,7 @@ function DiceSelection({item}){
                         handleSelect={item.handleSelect}
                         horizontal={item.horizontal}
                         dice={item.dice}
+                        stylesheet={DiceSelectionStyles}
                     />
                 }
             </View>

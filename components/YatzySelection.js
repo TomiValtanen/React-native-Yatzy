@@ -1,5 +1,5 @@
 import { View } from "react-native"
-import { GameboardStyles } from "../styles/Styles"
+import {  YatzySelectionStyles } from "../styles/Styles"
 import { Selection } from "./Components"
 
 
@@ -10,7 +10,7 @@ function YatzySelection({item}){
     
     return(
         
-        <View style={GameboardStyles.selectionContainer}>
+        <View style={YatzySelectionStyles.selectionContainer}>
         
        {item.map((selection,index) => 
        
@@ -21,8 +21,7 @@ function YatzySelection({item}){
         horizontal={selection.horizontal}
         dice={selection.dice}
         text={selection.text}
-        textPara={selection.textPara}
-        stylesheet={selection.stylesheet}
+        stylesheet={YatzySelectionStyles}
         />
        )}
        

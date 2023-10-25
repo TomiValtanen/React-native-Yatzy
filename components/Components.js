@@ -97,7 +97,7 @@ function CustomText({ text, stylesheet }) {
         </View>
     )
 }
-function CustomFlatlist({ data, handleSelect, text, horizontal, dice }) {
+function CustomFlatlist({ data, handleSelect, text, horizontal, dice,stylesheet }) {
     return (
         <>
             <FlatList
@@ -111,6 +111,7 @@ function CustomFlatlist({ data, handleSelect, text, horizontal, dice }) {
                         item={item}
                         handlePress={handleSelect}
                         index={`${text}${index}`}
+                        stylesheet={stylesheet}
 
                     />
                 }
@@ -121,52 +122,55 @@ function CustomFlatlist({ data, handleSelect, text, horizontal, dice }) {
 }
 function Selection({ data, handleSelect, text, horizontal, dice, stylesheet }) {
     return (
-        <View style={Styles.flatlistContainer}>
+        <View style={stylesheet.flatlistContainer}>
 
-            {!dice && <Text style={{ textAlign: "center", color:ColorPalette.darkTextColor }}>{text}</Text>}
+            {!dice && <Text style={stylesheet.flatlistHeading}>{text}</Text>}
             <CustomFlatlist
                 data={data}
                 handleSelect={handleSelect}
                 text={text}
                 horizontal={horizontal}
                 dice={dice}
+                stylesheet={stylesheet}
             />
         </View>
     )
 }
-function Card({ dice, item, handlePress, index }) {
+function Card({ dice, item, handlePress, index,stylesheet }) {
     return (
         <>
             {dice ? <Dice
                 item={item}
                 handlePress={handlePress}
+                stylesheet={stylesheet}
             />
                 :
                 <SectionCard
                     item={item}
                     handlePress={handlePress}
                     index={index}
+                    stylesheet={stylesheet}
                 />}
         </>
     )
 }
-function SectionCard({ item, handlePress, index }) {
+function SectionCard({ item, handlePress, index ,stylesheet }) {
     return (
         <Pressable onPress={() => handlePress(item)}>
-            <View key={index} style={{ flex: 1, flexDirection: "row", borderWidth: 1, borderRadius: 4, alignItems: "center", justifyContent: "space-between", padding: 5, marginBottom: 5, backgroundColor: item.used ? '#D36B00' : "#E6D2AA" }}>
-                <MaterialCommunityIcons name={item.icon} size={30} color="#42032C" />
-                <Text>{item.name}</Text>
-                <Text>{item.score}</Text>
+            <View key={index} style={[stylesheet.sectionCardContainer,{ backgroundColor: item.used ? stylesheet.selected : stylesheet.unSelected }]}>
+                <MaterialCommunityIcons name={item.icon} size={stylesheet.iconSize} color={stylesheet.iconColor} />
+                <Text style={stylesheet.sectionCardText}>{item.name}</Text>
+                <Text style={stylesheet.sectionCardText}>{item.score}</Text>
             </View>
         </Pressable>
     )
 }
 
-function Dice({ item, handlePress }) {
+function Dice({ item, handlePress ,stylesheet}) {
     return (
         <Pressable onPress={() => handlePress(item.key)}>
-            <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }} key={item.key}>
-                <MaterialCommunityIcons name={`dice-${item.value}`} size={60} color={item.selected ? '#D36B00' : "#42032C"} />
+            <View style={stylesheet.diceContainer} key={item.key}>
+                <MaterialCommunityIcons name={`dice-${item.value}`} size={stylesheet.iconSize} color={item.selected ? stylesheet.selected : stylesheet.unSelected} />
             </View>
         </Pressable>
 
