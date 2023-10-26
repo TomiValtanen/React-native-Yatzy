@@ -1,15 +1,10 @@
-import { View } from "react-native";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
-import { ScoreboardStyles, Styles } from "../styles/Styles";
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { useCallback, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { NBR_OF_SCOREBOARD } from "../constants/Game";
 import { SCORE_KEY } from "../constants/Game";
 import ScoreTable from "../components/ScoreTable";
-import { Alert } from "react-native";
-import { ImageBackground } from "react-native";
-import BackgroundImg from "../assets/background.png"
 import { BackgroundTemplate } from "../components/Components";
 
 

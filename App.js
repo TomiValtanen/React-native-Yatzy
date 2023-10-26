@@ -16,19 +16,19 @@ export default function App() {
         screenOptions={({ route }) => ({
           tabBarIcon: ({ focused, color, size }) => {
             let iconName
-            if (route.name === "Home") {
+            if (route.name === "Info") {
               iconName = focused ?
                 "information"
                 :
                 "information-outline"
             }
-            else if (route.name === "Gameboard") {
+            else if (route.name === "Pelilauta") {
               iconName = focused ?
                 "dice-multiple"
                 :
                 "dice-multiple-outline"
             }
-            else if (route.name === "Scoreboard") {
+            else if (route.name === "Pistetaulu") {
               iconName = focused ?
                 "view-list"
                 :
@@ -46,7 +46,7 @@ export default function App() {
         })}
       >
         <Tab.Screen
-          name="Home"
+          name="Info"
           component={Home}
           options={{
             tabBarStyle: { display: "none" },
@@ -54,13 +54,13 @@ export default function App() {
           }}
         />
         <Tab.Screen
-          name="Gameboard"
+          name="Pelilauta"
           component={Gameboard}
           options={{ headerShown: false }}
 
         />
         <Tab.Screen
-          name="Scoreboard"
+          name="Pistetaulu"
           component={Scoreboard}
           options={{ headerShown: false }}
         />

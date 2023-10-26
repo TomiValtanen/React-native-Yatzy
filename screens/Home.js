@@ -43,7 +43,7 @@ function Home({ navigation }) {
                 <Rules
                     playerName={playerName}
                     textParas={[RULES, POINTS, AIM]}
-                    navigation={() => navigation.navigate("Gameboard", { player: playerName })}
+                    navigation={() => navigation.navigate("Pelilauta", { player: playerName })}
                     handlePress={() => resetPlayerName()}
                 />
             }

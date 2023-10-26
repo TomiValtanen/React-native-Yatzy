@@ -2,12 +2,12 @@ import { Image, ImageBackground, ScrollView, TextInput, TouchableOpacity, View }
 import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons"
 import { Pressable } from "react-native";
 import { Text } from "react-native";
-import { ColorPalette, ScoreTableStyles, Styles,TexSizes } from "../styles/Styles"
+import { Styles} from "../styles/Styles"
 import YatzyLogo from "../assets/Yatzy_logo1.png"
 import { FlatList } from "react-native";
 import { DataTable } from "react-native-paper";
 import BackgroundImg from "../assets/background.png"
-import ScoreTable from "./ScoreTable";
+
 
 
 
@@ -20,8 +20,6 @@ function BackgroundTemplate({ children}) {
         </View>
     )
 }
-
-
 
 function Logo() {
     return (

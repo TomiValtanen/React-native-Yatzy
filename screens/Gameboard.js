@@ -112,7 +112,7 @@ function Gameboard({ navigation, route }) {
     }
     function navigateScore() {
         const dateTime = date()
-        navigation.navigate("Scoreboard", { score: { name: playerName, score: totalPoints, date: dateTime.date, time: dateTime.time } })
+        navigation.navigate("Pistetaulu", { score: { name: playerName, score: totalPoints, date: dateTime.date, time: dateTime.time } })
         newGame()
     }
     function addZero(i) {
