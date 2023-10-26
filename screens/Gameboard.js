@@ -63,7 +63,7 @@ function Gameboard({ navigation, route }) {
     useEffect(() => {
         if (gameIsOn === false) {
             const dateTime = date()
-            Alert.alert("Peli loppui", `Pelaaja: ${playerName}\nPäivämäärä ja aika :${dateTime.date} ${dateTime.time}\nPisteet:\nYläosasta: ${upperTotal}\nAlaosasta: ${downTotal}\nBonus: ${bonus}\n\nYhteensä: ${totalPoints}`, [
+            Alert.alert("Peli loppui", `Pelaaja: ${playerName}\nPäivämäärä: ${dateTime.date}\nKellonaika: ${dateTime.time}\nPisteet:\nYläosasta: ${upperTotal}\nAlaosasta: ${downTotal}\nBonus: ${bonus}\n\nYhteensä: ${totalPoints}`, [
                 {
                     text: 'Aloita uudestaan',
                     onPress: () => newGame(),

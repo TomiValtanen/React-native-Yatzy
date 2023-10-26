@@ -275,7 +275,6 @@ const YatzySelectionStyles = StyleSheet.create({
 
   },
   sectionCardText: {
-    ...Shadows.textLightShadow,
     fontWeight:"400",
     fontSize: getFontSize(TexSizes.normal),
 
