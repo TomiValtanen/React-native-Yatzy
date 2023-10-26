@@ -55,7 +55,7 @@ function Gameboard({ navigation, route }) {
             setPlayerName(route.params.player)
             newGame()
         }
-        console.log("Tämä nimi homma tapahtui")
+       // console.log("Tämä nimi homma tapahtui")
     }, [route.params?.player])
 
 
@@ -88,7 +88,7 @@ function Gameboard({ navigation, route }) {
     useEffect(() => {
         const checkUpper = Array.prototype.every.call(upper, (item) => item.used === true)
         const checkDown = Array.prototype.every.call(down, (item) => item.used === true)
-        console.log(checkUpper, "UseEffect checkkeri Bonukselle")
+       // console.log(checkUpper, "UseEffect checkkeri Bonukselle")
         if (checkUpper && upperTotal >= BONUS_POINTS_LIMIT) {
             setBonus(BONUS_POINTS)
         }
@@ -234,11 +234,11 @@ function Gameboard({ navigation, route }) {
         }
 
         const arr = []
-        console.log(item)
+       // console.log(item)
 
         let sum = returnSum(item, dices)
 
-        console.log(sum, "Summa selectDown")
+       // console.log(sum, "Summa selectDown")
         down.map(down => {
             if (item.name === down.name) {
                 arr.push({ ...down, used: true, score: sum })

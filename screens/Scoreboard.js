@@ -24,7 +24,7 @@ function Scoreboard({ route }) {
 
     useEffect(() => {
         if (route.params?.score && isLoading === false) {
-            console.log(route.params.score, "dataaa")
+           // console.log(route.params.score, "dataaa")
             const newKey = scoreData.length + 1;
             const newScore = {
                 key: newKey.toString(),
@@ -91,7 +91,7 @@ function Scoreboard({ route }) {
         handlePress: () => removeValue(),
     }
 
-    console.log(scoreData, "scoreData")
+    //console.log(scoreData, "scoreData")
 
     return (
         <BackgroundTemplate>

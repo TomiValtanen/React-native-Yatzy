@@ -40,18 +40,18 @@ function pairCheck(numbers, onePair) {
     const secondPair = []
     let pairSum = 0
     let secondPairSum = 0
-    console.log(numbers, "Pair check")
+    // console.log(numbers, "Pair check")
     numbers.map(number =>
         numbersArray.push(number.value)
     )
-    console.log(numbersArray, "ARRAY")
+    //console.log(numbersArray, "ARRAY")
 
     for (let i = 0; i < numbersArray.length; i++) {
         for (let j = i + 1; j < numbersArray.length + 1; j++) {
             if (numbersArray[i] === numbersArray[j]) {
                 if (pair.length !== 0 && pair.indexOf(numbersArray[i]) === -1) {
-                    console.log(pair, "if lauseen sisällä forrissa")
-                    console.log(numbersArray[i], "Yksittäinen iffinsisäsässä")
+                    // console.log(pair, "if lauseen sisällä forrissa")
+                    // console.log(numbersArray[i], "Yksittäinen iffinsisäsässä")
                     pair.push(numbersArray[j], numbersArray[i])
 
                 } else if (pair.length === 0) {
@@ -61,7 +61,7 @@ function pairCheck(numbers, onePair) {
             }
         }
     }
-    console.log(pair, "Parit forrien jälkeen")
+    //console.log(pair, "Parit forrien jälkeen")
 
     if (pair.length === 3) {
         pair.splice(2)
@@ -107,8 +107,8 @@ function triplets(numbers, tripletScore) {
     const numbersArray = []
     const checkingNumbers = []
     let tripletSum = 0
-    console.log(numbers, "Triplets")
-    console.log(tripletScore, "score")
+    // console.log(numbers, "Triplets")
+    // console.log(tripletScore, "score")
     numbers.map(number =>
         numbersArray.push(number.value))
 
@@ -151,11 +151,11 @@ function triplets(numbers, tripletScore) {
     }
 
 
-    console.log(numbers, "triplets check")
-    console.log(numbersArray, "ARRAY")
-    console.log(numbersSet, "setti")
-    console.log(checkingNumbers, "tarkistus numerot array")
-    console.log(sameNum, "testin jälkeen")
+    // console.log(numbers, "triplets check")
+    // console.log(numbersArray, "ARRAY")
+    // console.log(numbersSet, "setti")
+    // console.log(checkingNumbers, "tarkistus numerot array")
+    // console.log(sameNum, "testin jälkeen")
     return tripletSum
 }
 const indexOfAll = (arr, val) => arr.reduce((acc, el, i) => (el === val ? [...acc, i] : acc), []);
@@ -193,7 +193,7 @@ function straight(numbers, smallStraight) {
             sum = 20
         }
     }
-    console.log(numbersArray, "ARRAy")
+    //console.log(numbersArray, "ARRAy")
     return sum
 
 
@@ -226,7 +226,7 @@ function yatzy(numbers) {
     if (allEqual(numbersArray)) {
         sum = 50
     }
-    console.log("YATZY")
+    // console.log("YATZY")
     return sum
 }
 const allEqual = arr => arr.every(val => val === arr[0])
@@ -247,13 +247,13 @@ function fullHouse(numbers) {
 
 
     if (checkingNumbers.length === 2) {
-        console.log("Käyty iffissä sameNumberFullHouse")
+        //console.log("Käyty iffissä sameNumberFullHouse")
         sum = sameNumbersFullHouse(numbersArray, checkingNumbers)
     }
 
 
-    console.log(checkingNumbers, "checkingnumbers")
-    console.log(sum, "sum")
+    // console.log(checkingNumbers, "checkingnumbers")
+    // console.log(sum, "sum")
     return sum
 
 
@@ -275,8 +275,8 @@ function sameNumbersFullHouse(numbersArray, checkingNumbers) {
         }
 
     }
-    console.log(pair.length, "Pair FUll house hommassa")
-    console.log(triplets.length, "Triplets fullhouse hommassa")
+    // console.log(pair.length, "Pair FUll house hommassa")
+    // console.log(triplets.length, "Triplets fullhouse hommassa")
     if (pair.length === 0 || triplets.length === 0) {
         sum = 0
     }
@@ -286,7 +286,7 @@ function sameNumbersFullHouse(numbersArray, checkingNumbers) {
         sum = tripletsSum + pairSum
 
     }
-    console.log(sum, "SUMMA LOPUSSA")
+    // console.log(sum, "SUMMA LOPUSSA")
     return sum
 }
 
