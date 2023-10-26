@@ -44,4 +44,17 @@ Kun kaikki pöytäkirjan kohdat ovat valittuina peli loppuu.
 - Scoreboard: Follows the requirements (clear is not absolute necessity) :heavy_check_mark:
 
 ### Sovelluksesta kuvia
+Itselläni on ollut käytössä sovellusta tehdessäni OnePlus Nord (AC2003) puhelin, millä olen tehnyt testaamisen.
+  Aloitusnäyttö | Säännöt | Pelilauta | Pistetaulu 
+  --- | --- | --- | ---
+  <img src="https://github.com/TomiValtanen/React-native-Yatzy/assets/101732234/e23ff0e1-5489-48ee-a522-c759957f1acc" width="200" height="350"> |   <img src="https://github.com/TomiValtanen/React-native-Yatzy/assets/101732234/21b01a29-6742-4c55-ad9f-8035f84ea417" width="200" height="350"> |   <img src="https://github.com/TomiValtanen/React-native-Yatzy/assets/101732234/35a1ee39-19d8-4df1-9000-0814d1128a00" width="200" height="350"> |   <img src="https://github.com/TomiValtanen/React-native-Yatzy/assets/101732234/8b9f84af-9c33-4f1a-b6f0-7f8ff330072b" width="200" height="350"> 
+### Pelin aikana
+   Peli käynnissä | Peli info 1 | Peli info 2 | Peli loppui 
+  --- | --- | --- | ---
+  <img src="https://github.com/TomiValtanen/React-native-Yatzy/assets/101732234/7e1aa334-e63b-4e79-b669-33911009794b" width="200" height="350"> |   <img src="https://github.com/TomiValtanen/React-native-Yatzy/assets/101732234/a028fcf9-13a3-4860-9001-333adc06100a" width="200" height="350"> |   <img src="https://github.com/TomiValtanen/React-native-Yatzy/assets/101732234/f239dd69-4890-4a7d-aefc-64eec518cbbe" width="200" height="350"> |   <img src="https://github.com/TomiValtanen/React-native-Yatzy/assets/101732234/f92607ab-4fff-4a1c-96e1-67c5bef7850d" width="200" height="350"> 
+  ### Pistetaulu
+  Yhden henkilön pisteet | Useamman pelaajan pisteet 
+ --- | ---
+<img src="https://github.com/TomiValtanen/React-native-Yatzy/assets/101732234/d72d8f0c-b94e-4225-aa48-91efd5b5f3bd" width="200" height="350"> |   <img src="https://github.com/TomiValtanen/React-native-Yatzy/assets/101732234/ecd3d8fa-1fe8-4aee-a529-e0bf1572b125" width="200" height="350">
+
 
