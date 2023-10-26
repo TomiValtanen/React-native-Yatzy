@@ -1,32 +1,32 @@
-function returnSum(item,dices){
+function returnSum(item, dices) {
     switch (item.name) {
         case "Yksi pari":
             return pairCheck(dices, true);
-           
+
         case "Kaksi paria":
             return pairCheck(dices, false);
-           
+
         case "Kolmoisluku":
             return triplets(dices, true);
-           
+
         case "Neloisluku":
             return triplets(dices, false);
-           
+
         case "Pieni suora":
             return straight(dices, true);
-           
+
         case "Suuri suora":
             return straight(dices, false);
-           
+
         case "Täyskäsi":
             return fullHouse(dices);
-           
+
         case "Sattuma":
             return chance(dices);
-           
+
         case "Yatzy":
             return yatzy(dices);
-           
+
         default:
             console.log("Eihän se näin pitänyt mennä");
     }
@@ -275,9 +275,12 @@ function sameNumbersFullHouse(numbersArray, checkingNumbers) {
         }
 
     }
-    console.log(pair, "Pair FUll house hommassa")
-    console.log(triplets, "Triplets fullhouse hommassa")
-    if (pair[0].index === 2 && triplets[0].index === 3) {
+    console.log(pair.length, "Pair FUll house hommassa")
+    console.log(triplets.length, "Triplets fullhouse hommassa")
+    if (pair.length === 0 || triplets.length === 0) {
+        sum = 0
+    }
+    else if (pair[0].index === 2 && triplets[0].index === 3) {
         const tripletsSum = Number(triplets[0].numero) * Number(triplets[0].index)
         const pairSum = Number(pair[0].numero) * Number(pair[0].index)
         sum = tripletsSum + pairSum
@@ -300,4 +303,4 @@ function checkNumbers(numbers, wantedNumber) {
     return counter
 }
 
-export {checkNumbers,returnSum}
+export { checkNumbers, returnSum }

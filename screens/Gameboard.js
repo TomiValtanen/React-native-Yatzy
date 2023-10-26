@@ -108,6 +108,7 @@ function Gameboard({ navigation, route }) {
         setDownTotal(0)
         setUpperTotal(0)
         setBonus(0)
+        setNumberOfThrows(3)
 
     }
     function navigateScore() {
@@ -286,7 +287,6 @@ function Gameboard({ navigation, route }) {
     const throwData = {
         handlePress: throwDices,
         buttonText: status,
-        stylesheet: GameboardStyles,
         numberOfThrows: numberOfThrows
 
     }

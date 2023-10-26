@@ -282,6 +282,54 @@ const DiceSelectionStyles=StyleSheet.create({
   }
 })
 
+const ThrowSelectionStyles=StyleSheet.create({
+  iconColorOne:ColorPalette.colorOne,
+  iconColorTwo:ColorPalette.thirdColor,
+  iconSize:getFontSize(30),
+  throwSelectionContainer: {
+    flex: 1.10,
+    flexDirection: "row",
+    
+
+  },
+  pressableContainer: {
+    ...Styles.pressableContainer,
+  },
+  pressableButton:{
+    ...Styles.pressableButton,
+    borderRadius: 0,
+    borderWidth: 1,
+    borderColor: ColorPalette.thirdColor,
+    backgroundColor: ColorPalette.thirdColor,
+    width: "100%",
+    height: "100%"
+  },
+  pressableText: {
+    padding: 10,
+    fontSize: 20,
+    color: ColorPalette.lightTextColor
+  },
+  throwsLeftContainer: {
+    flex: 1,
+    flexDirection: "column",
+  },
+  throwsLeftText: {
+    textAlign: "center",
+    color: "black",
+    fontSize:getFontSize(TexSizes.normal)
+  },
+  throwsLeftIconContainer: {
+    flex: 1,
+    flexDirection: "row",
+    justifyContent: "space-around",
+    alignItems: "center"
+  },
+
+
+
+})
+
+
 
 const GameboardStyles = StyleSheet.create({
   pressableContainer: {
@@ -374,4 +422,4 @@ const ScoreboardStyles = StyleSheet.create({
   },
 })
 
-export { Styles, GameboardStyles, ScoreboardStyles, RulesStyles, ColorPalette, TexSizes, GiveNameStyles, YatzySelectionStyles ,PlayerStatsStyles,DiceSelectionStyles}
+export { Styles, GameboardStyles, ScoreboardStyles, RulesStyles, ColorPalette, TexSizes, GiveNameStyles, YatzySelectionStyles ,PlayerStatsStyles,DiceSelectionStyles,ThrowSelectionStyles}
