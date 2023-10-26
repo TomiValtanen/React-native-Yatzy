@@ -23,22 +23,23 @@ const TexSizes = StyleSheet.create({
   xl: 25,
   xxl: 30
 })
-const Shadows=StyleSheet.create({
-  card:{
-    shadowColor:"#000000",  
+
+const Shadows = StyleSheet.create({
+  card: {
+    shadowColor: "#000000",
     elevation: 5,
   },
-  textDarkShadow:{
+  textDarkShadow: {
     textShadowColor: "#000000",
-    textShadowOffset: {width: 1, height:0 },
+    textShadowOffset: { width: 1, height: 0 },
     textShadowRadius: 1
   },
-  textLightShadow:{
+  textLightShadow: {
     textShadowColor: "#ffffff",
-    textShadowOffset: {width: 1, height:0 },
+    textShadowOffset: { width: 1, height: 0 },
     textShadowRadius: 1
   }
- 
+
 })
 
 
@@ -50,13 +51,11 @@ const Styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "strech",
     backgroundColor: ColorPalette.backgroundColor,
-
   },
   logoContainer: {
     flex: 3,
     justifyContent: "center",
     alignItems: "center"
-
   },
   nameInputContainer: {
     flex: 1,
@@ -76,13 +75,11 @@ const Styles = StyleSheet.create({
     backgroundColor: ColorPalette.inputColor,
     width: "60%",
     fontSize: getFontSize(TexSizes.normal),
-    
   },
   pressableContainer: {
     flex: 1,
     justifyContent: "flex-start",
     alignItems: "stretch",
-    
   },
   pressableButton: {
     justifyContent: "center",
@@ -95,7 +92,6 @@ const Styles = StyleSheet.create({
   pressableText: {
     padding: 10,
     fontSize: getFontSize(TexSizes.normal),
-   
   },
   header: {
     backgroundColor: ColorPalette.colorOne,
@@ -115,6 +111,7 @@ const Styles = StyleSheet.create({
     flex: 1,
     fontSize: getFontSize(TexSizes.medium),
     textAlign: 'center',
+    ...Shadows.textDarkShadow
   },
   author: {
     color: '#fff',
@@ -122,7 +119,7 @@ const Styles = StyleSheet.create({
     flex: 1,
     fontSize: getFontSize(TexSizes.medium),
     textAlign: 'center',
-
+    ...Shadows.textDarkShadow
   },
   customTextContainer: {
     flex: 1
@@ -131,7 +128,6 @@ const Styles = StyleSheet.create({
     textAlign: "left",
     paddingLeft: 15,
     paddingRight: 15,
-
   },
   navigationTextContainer: {
     flex: 1,
@@ -143,9 +139,8 @@ const Styles = StyleSheet.create({
     ...Shadows.textLightShadow,
     color: ColorPalette.darkTextColor,
     fontSize: getFontSize(TexSizes.normal),
-    fontWeight:"500",
+    fontWeight: "500",
   },
-
 });
 
 
@@ -157,7 +152,6 @@ const GiveNameStyles = StyleSheet.create({
   },
   pressableContainer: {
     ...Styles.pressableContainer,
-
   },
   pressableButton: {
     ...Styles.pressableButton,
@@ -166,7 +160,7 @@ const GiveNameStyles = StyleSheet.create({
   },
   pressableText: {
     ...Styles.pressableText,
-    color:ColorPalette.lightTextColor,
+    color: ColorPalette.lightTextColor,
     ...Shadows.textDarkShadow
   }
 })
@@ -176,12 +170,14 @@ const RulesStyles = StyleSheet.create({
   iconColor: ColorPalette.colorOne,
   iconSize: getFontSize(90),
   rulesContainer: {
-    flex: 5
+    flex: 5,
   },
   scrollViewContentContainer: {
     justifyContent: "center",
     alignItems: "center",
-    gap: 30
+    gap: 30,
+    paddingBottom: 20,
+    paddingTop: 20
   },
   scrollViewContainer: {
     flexGrow: 1,
@@ -190,7 +186,6 @@ const RulesStyles = StyleSheet.create({
   },
   pressableContainer: {
     ...Styles.pressableContainer,
-
   },
   textContainer: {
     flex: 1,
@@ -206,8 +201,8 @@ const RulesStyles = StyleSheet.create({
     ...Shadows.textLightShadow,
     color: ColorPalette.darkTextColor,
     fontSize: getFontSize(TexSizes.normal),
-    fontWeight:"500",
-    textAlign:"center"
+    fontWeight: "500",
+    textAlign: "center"
   },
   buttonsContainer: {
     flex: 1,
@@ -231,9 +226,7 @@ const RulesStyles = StyleSheet.create({
     ...Shadows.textDarkShadow,
     fontSize: getFontSize(TexSizes.large),
     color: ColorPalette.lightTextColor,
-
   },
-
 })
 
 const YatzySelectionStyles = StyleSheet.create({
@@ -258,7 +251,7 @@ const YatzySelectionStyles = StyleSheet.create({
     ...Shadows.textLightShadow,
     textAlign: "center",
     color: ColorPalette.darkTextColor,
-    fontWeight:"400",
+    fontWeight: "400",
     fontSize: getFontSize(TexSizes.medium),
     marginBottom: 4
   },
@@ -272,14 +265,11 @@ const YatzySelectionStyles = StyleSheet.create({
     padding: 5,
     marginBottom: 5,
     ...Shadows.card
-
   },
   sectionCardText: {
-    fontWeight:"400",
+    fontWeight: "400",
     fontSize: getFontSize(TexSizes.normal),
-
   }
-
 })
 
 const PlayerStatsStyles = StyleSheet.create({
@@ -300,8 +290,7 @@ const PlayerStatsStyles = StyleSheet.create({
     ...Shadows.textLightShadow,
     fontSize: getFontSize(TexSizes.normal),
     color: ColorPalette.darkTextColor,
-    fontWeight:"400",
-
+    fontWeight: "400",
   }
 })
 
@@ -330,8 +319,6 @@ const ThrowSelectionStyles = StyleSheet.create({
   throwSelectionContainer: {
     flex: 1.10,
     flexDirection: "row",
-
-
   },
   pressableContainer: {
     ...Styles.pressableContainer,
@@ -348,10 +335,9 @@ const ThrowSelectionStyles = StyleSheet.create({
   pressableText: {
     ...Shadows.textDarkShadow,
     padding: 10,
-    fontSize:getFontSize(TexSizes.large),
+    fontSize: getFontSize(TexSizes.large),
     color: ColorPalette.lightTextColor,
-    fontWeight:"400",
-
+    fontWeight: "400",
   },
   throwsLeftContainer: {
     flex: 1,
@@ -360,10 +346,9 @@ const ThrowSelectionStyles = StyleSheet.create({
   throwsLeftText: {
     ...Shadows.textLightShadow,
     textAlign: "center",
-    color: "black",
+    color: ColorPalette.darkTextColor,
     fontSize: getFontSize(TexSizes.normal),
-    fontWeight:"400",
-
+    fontWeight: "400",
   },
   throwsLeftIconContainer: {
     flex: 1,
@@ -396,12 +381,12 @@ const ScoreTableStyles = StyleSheet.create({
     ...Shadows.textDarkShadow,
     color: ColorPalette.lightTextColor,
     fontSize: getFontSize(TexSizes.normal),
-    fontWeight:"400",
+    fontWeight: "400",
   },
   dataTableCellText: {
     ...Shadows.textLightShadow,
     fontSize: getFontSize(TexSizes.normal),
-    fontWeight:"400",
+    fontWeight: "400",
   },
   pressableContainer: {
     ...Styles.pressableContainer,
@@ -426,10 +411,9 @@ const ScoreTableStyles = StyleSheet.create({
   customText: {
     ...Styles.customText,
     ...Shadows.textLightShadow,
-    fontWeight:"400",
+    fontWeight: "400",
     fontSize: getFontSize(TexSizes.xxl)
-
   },
 })
 
-export { Styles, ScoreTableStyles, RulesStyles, ColorPalette, TexSizes, GiveNameStyles, YatzySelectionStyles, PlayerStatsStyles, DiceSelectionStyles, ThrowSelectionStyles,Shadows }
+export { Styles, ScoreTableStyles, RulesStyles, ColorPalette, TexSizes, GiveNameStyles, YatzySelectionStyles, PlayerStatsStyles, DiceSelectionStyles, ThrowSelectionStyles, Shadows }
