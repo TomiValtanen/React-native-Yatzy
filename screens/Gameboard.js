@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import Header from "../components/Header";
 import Footer from "../components/Footer";
-import { NBR_OF_DICES, NBR_OF_THROWS, BONUS_POINTS, BONUS_POINTS_LIMIT, YLÄOSA, UPPER_SECTION, DOWN_SECTION, DOWN_SECTION_ICONS } from "../constants/Game";
+import { NBR_OF_DICES, NBR_OF_THROWS, BONUS_POINTS, BONUS_POINTS_LIMIT, UPPER_SECTION, DOWN_SECTION, DOWN_SECTION_ICONS } from "../constants/Game";
 import { Alert } from "react-native";
 import YatzySelection from "../components/YatzySelection";
 import DiceSelection from "../components/DiceSelection";
