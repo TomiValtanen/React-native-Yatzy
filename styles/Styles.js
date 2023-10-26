@@ -23,6 +23,24 @@ const TexSizes = StyleSheet.create({
   xl: 25,
   xxl: 30
 })
+const Shadows=StyleSheet.create({
+  card:{
+    shadowColor:"#000000",  
+    elevation: 5,
+  },
+  textDarkShadow:{
+    textShadowColor: "#000000",
+    textShadowOffset: {width: 1, height:0 },
+    textShadowRadius: 1
+  },
+  textLightShadow:{
+    textShadowColor: "#ffffff",
+    textShadowOffset: {width: 1, height:0 },
+    textShadowRadius: 1
+  }
+ 
+})
+
 
 const Styles = StyleSheet.create({
 
@@ -50,18 +68,21 @@ const Styles = StyleSheet.create({
   },
   nameText: {
     color: ColorPalette.darkTextColor,
-    fontSize: getFontSize(TexSizes.normal)
+    fontSize: getFontSize(TexSizes.normal),
+    ...Shadows.textLightShadow
   },
   textInput: {
     padding: 5,
     backgroundColor: ColorPalette.inputColor,
     width: "60%",
-    fontSize: getFontSize(TexSizes.normal)
+    fontSize: getFontSize(TexSizes.normal),
+    
   },
   pressableContainer: {
     flex: 1,
     justifyContent: "flex-start",
-    alignItems: "stretch"
+    alignItems: "stretch",
+    
   },
   pressableButton: {
     justifyContent: "center",
@@ -69,10 +90,12 @@ const Styles = StyleSheet.create({
     alignItems: "center",
     backgroundColor: ColorPalette.colorOne,
     borderRadius: 5,
+    ...Shadows.card
   },
   pressableText: {
     padding: 10,
-    fontSize: getFontSize(TexSizes.normal)
+    fontSize: getFontSize(TexSizes.normal),
+   
   },
   header: {
     backgroundColor: ColorPalette.colorOne,
@@ -117,8 +140,10 @@ const Styles = StyleSheet.create({
     gap: 10
   },
   navigationText: {
+    ...Shadows.textLightShadow,
     color: ColorPalette.darkTextColor,
-    fontSize: getFontSize(TexSizes.normal)
+    fontSize: getFontSize(TexSizes.normal),
+    fontWeight:"500",
   },
 
 });
@@ -140,7 +165,9 @@ const GiveNameStyles = StyleSheet.create({
     height: "30%"
   },
   pressableText: {
-    ...Styles.pressableText
+    ...Styles.pressableText,
+    color:ColorPalette.lightTextColor,
+    ...Shadows.textDarkShadow
   }
 })
 
@@ -176,8 +203,11 @@ const RulesStyles = StyleSheet.create({
   },
   customText: {
     ...Styles.customText,
+    ...Shadows.textLightShadow,
     color: ColorPalette.darkTextColor,
-    fontSize: getFontSize(TexSizes.normal)
+    fontSize: getFontSize(TexSizes.normal),
+    fontWeight:"500",
+    textAlign:"center"
   },
   buttonsContainer: {
     flex: 1,
@@ -189,7 +219,7 @@ const RulesStyles = StyleSheet.create({
     ...Styles.navigationTextContainer
   },
   navigationText: {
-    ...Styles.navigationText
+    ...Styles.navigationText,
   },
   pressableButton: {
     ...Styles.pressableButton,
@@ -198,8 +228,10 @@ const RulesStyles = StyleSheet.create({
   },
   pressableText: {
     ...Styles.pressableText,
+    ...Shadows.textDarkShadow,
     fontSize: getFontSize(TexSizes.large),
-    color: ColorPalette.lightTextColor
+    color: ColorPalette.lightTextColor,
+
   },
 
 })
@@ -223,8 +255,10 @@ const YatzySelectionStyles = StyleSheet.create({
     justifyContent: "flex-end"
   },
   flatlistHeading: {
+    ...Shadows.textLightShadow,
     textAlign: "center",
     color: ColorPalette.darkTextColor,
+    fontWeight:"400",
     fontSize: getFontSize(TexSizes.medium),
     marginBottom: 4
   },
@@ -237,9 +271,14 @@ const YatzySelectionStyles = StyleSheet.create({
     justifyContent: "space-between",
     padding: 5,
     marginBottom: 5,
+    ...Shadows.card
+
   },
   sectionCardText: {
-    fontSize: getFontSize(TexSizes.normal)
+    ...Shadows.textLightShadow,
+    fontWeight:"400",
+    fontSize: getFontSize(TexSizes.normal),
+
   }
 
 })
@@ -259,8 +298,11 @@ const PlayerStatsStyles = StyleSheet.create({
     paddingLeft: 5
   },
   text: {
+    ...Shadows.textLightShadow,
     fontSize: getFontSize(TexSizes.normal),
-    color: ColorPalette.darkTextColor
+    color: ColorPalette.darkTextColor,
+    fontWeight:"400",
+
   }
 })
 
@@ -305,18 +347,24 @@ const ThrowSelectionStyles = StyleSheet.create({
     height: "100%"
   },
   pressableText: {
+    ...Shadows.textDarkShadow,
     padding: 10,
-    fontSize: 20,
-    color: ColorPalette.lightTextColor
+    fontSize:getFontSize(TexSizes.large),
+    color: ColorPalette.lightTextColor,
+    fontWeight:"400",
+
   },
   throwsLeftContainer: {
     flex: 1,
     flexDirection: "column",
   },
   throwsLeftText: {
+    ...Shadows.textLightShadow,
     textAlign: "center",
     color: "black",
-    fontSize: getFontSize(TexSizes.normal)
+    fontSize: getFontSize(TexSizes.normal),
+    fontWeight:"400",
+
   },
   throwsLeftIconContainer: {
     flex: 1,
@@ -343,14 +391,18 @@ const ScoreTableStyles = StyleSheet.create({
     flex: 1
   },
   dataTableHeader: {
-    backgroundColor: ColorPalette.colorOne
+    backgroundColor: ColorPalette.colorOne,
   },
   dataTableTitleText: {
+    ...Shadows.textDarkShadow,
     color: ColorPalette.lightTextColor,
-    fontSize: getFontSize(TexSizes.normal)
+    fontSize: getFontSize(TexSizes.normal),
+    fontWeight:"400",
   },
   dataTableCellText: {
-    fontSize: getFontSize(TexSizes.normal)
+    ...Shadows.textLightShadow,
+    fontSize: getFontSize(TexSizes.normal),
+    fontWeight:"400",
   },
   pressableContainer: {
     ...Styles.pressableContainer,
@@ -358,14 +410,14 @@ const ScoreTableStyles = StyleSheet.create({
   pressableButton: {
     ...Styles.pressableButton,
     borderRadius: 5,
-    borderWidth: 1,
     width: "60%",
     height: "60%"
   },
   pressableText: {
     ...Styles.pressableText,
     fontSize: getFontSize(TexSizes.large),
-    color: ColorPalette.lightTextColor
+    color: ColorPalette.lightTextColor,
+    ...Shadows.textDarkShadow
   },
   customTextContainer: {
     flex: 0.7,
@@ -374,9 +426,11 @@ const ScoreTableStyles = StyleSheet.create({
   },
   customText: {
     ...Styles.customText,
+    ...Shadows.textLightShadow,
+    fontWeight:"400",
     fontSize: getFontSize(TexSizes.xxl)
 
   },
 })
 
-export { Styles, ScoreTableStyles, RulesStyles, ColorPalette, TexSizes, GiveNameStyles, YatzySelectionStyles, PlayerStatsStyles, DiceSelectionStyles, ThrowSelectionStyles }
+export { Styles, ScoreTableStyles, RulesStyles, ColorPalette, TexSizes, GiveNameStyles, YatzySelectionStyles, PlayerStatsStyles, DiceSelectionStyles, ThrowSelectionStyles,Shadows }
