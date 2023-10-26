@@ -1,6 +1,7 @@
 import { View } from "react-native"
 import { CustomDataTable, CustomText, PressableButton } from "./Components"
 import { NBR_OF_SCOREBOARD } from "../constants/Game"
+import { ScoreTableStyles } from "../styles/Styles"
 
 
 
@@ -9,17 +10,17 @@ import { NBR_OF_SCOREBOARD } from "../constants/Game"
 
 function ScoreTable({item}){
     return(
-        <View style={item.stylesheet.scoreTableContainer}>
+        <View style={ScoreTableStyles.scoreTableContainer}>
 
-                <CustomText stylesheet={item.stylesheet} text={`Top ${NBR_OF_SCOREBOARD}:`} />
-                <View style={{ flex: 4 }}>
+                <CustomText stylesheet={ScoreTableStyles} text={`Top ${NBR_OF_SCOREBOARD}:`} />
+                <View style={ScoreTableStyles.dataContainer}>
                     {item.scoreData.length === 0 ?
-                        <CustomText stylesheet={item.stylesheet} text={"Huippupisteitä ei ole vielä tehtynä."} />
+                        <CustomText stylesheet={ScoreTableStyles} text={"Huippupisteitä ei ole vielä tehtynä."} />
                         :
                         <CustomDataTable
                             scoreData={item.scoreData}
                             titles={item.titles}
-                            stylesheet={item.stylesheet}
+                            stylesheet={ScoreTableStyles}
                             checkIndex={item.checkIndex}
                         />
                     }
@@ -27,7 +28,7 @@ function ScoreTable({item}){
                 <PressableButton
                     handlePress={item.handlePress}
                     buttonText={"Resetoi pisteet"}
-                    stylesheet={item.stylesheet}
+                    stylesheet={ScoreTableStyles}
                  
                 />
             </View>

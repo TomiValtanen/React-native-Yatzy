@@ -2,11 +2,12 @@ import { Image, ImageBackground, ScrollView, TextInput, TouchableOpacity, View }
 import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons"
 import { Pressable } from "react-native";
 import { Text } from "react-native";
-import { ColorPalette, Styles,TexSizes } from "../styles/Styles"
+import { ColorPalette, ScoreTableStyles, Styles,TexSizes } from "../styles/Styles"
 import YatzyLogo from "../assets/Yatzy_logo1.png"
 import { FlatList } from "react-native";
 import { DataTable } from "react-native-paper";
 import BackgroundImg from "../assets/background.png"
+import ScoreTable from "./ScoreTable";
 
 
 
@@ -181,15 +182,15 @@ function Dice({ item, handlePress ,stylesheet}) {
 function CustomDataTable({ scoreData, titles, stylesheet, checkIndex }) {
     return (
 
-        <DataTable style={{ flex: 1 }}>
-            <DataTable.Header style={{ backgroundColor: "#D36B00" }}>
+        <DataTable style={stylesheet.dataTableContainer}>
+            <DataTable.Header style={stylesheet.dataTableHeader}>
                 {titles.map((title, index) =>
                     <DataTable.Title key={index} style={{ flex: index !== 2 && index !== 1 ? 1 : 2 }}><Text style={stylesheet.dataTableTitleText}>{title}</Text></DataTable.Title>
                 )}
             </DataTable.Header>
             <ScrollView>
                 {scoreData.map((score, index) => (
-                    <DataTable.Row style={[stylesheet.dataTableRow, { backgroundColor: checkIndex(index) ? "#F1EFDC" : "#E6D2AA" }]} key={index}>
+                    <DataTable.Row style={ { backgroundColor: checkIndex(index) ? stylesheet.dataTableRowColorDark: stylesheet.dataTableRowColorLight }} key={index}>
                         <DataTable.Cell style={{ flex: 1 }}><Text style={stylesheet.dataTableCellText}>{index + 1}.</Text></DataTable.Cell>
                         <DataTable.Cell style={{ flex: 2 }}><Text style={stylesheet.dataTableCellText}>{score.name}</Text></DataTable.Cell>
                         <DataTable.Cell style={{ flex: 2 }}><Text style={stylesheet.dataTableCellText}>{score.date}</Text></DataTable.Cell>

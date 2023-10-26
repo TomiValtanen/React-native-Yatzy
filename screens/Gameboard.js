@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react"
-import { GameboardStyles, Styles } from "../styles/Styles";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import { NBR_OF_DICES, NBR_OF_THROWS, BONUS_POINTS, BONUS_POINTS_LIMIT, YLÄOSA, UPPER_SECTION, DOWN_SECTION, DOWN_SECTION_ICONS } from "../constants/Game";

@@ -244,30 +244,30 @@ const YatzySelectionStyles = StyleSheet.create({
 
 })
 
-const PlayerStatsStyles=StyleSheet.create({
-  container:{
-    flex:1,
-    backgroundColor:"transparent",
-    flexDirection:"row",
-    justifyContent:"center",
-    alignItems:"center"
+const PlayerStatsStyles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: "transparent",
+    flexDirection: "row",
+    justifyContent: "center",
+    alignItems: "center"
   },
-  textContainer:{
-    flex:1,
-    justifyContent:"center",
-    alignItems:"flex-start",
-    paddingLeft:5
+  textContainer: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "flex-start",
+    paddingLeft: 5
   },
-  text:{
-    fontSize:getFontSize(TexSizes.normal),
-    color:ColorPalette.darkTextColor
+  text: {
+    fontSize: getFontSize(TexSizes.normal),
+    color: ColorPalette.darkTextColor
   }
 })
 
-const DiceSelectionStyles=StyleSheet.create({
-  unSelected:ColorPalette.thirdColor,
-  selected:ColorPalette.colorOne,
-  iconSize:getFontSize(60),
+const DiceSelectionStyles = StyleSheet.create({
+  unSelected: ColorPalette.thirdColor,
+  selected: ColorPalette.colorOne,
+  iconSize: getFontSize(60),
   diceSelectionContainer: {
     flex: 1.25,
     borderWidth: 1,
@@ -275,27 +275,27 @@ const DiceSelectionStyles=StyleSheet.create({
     justifyContent: "center",
     backgroundColor: ColorPalette.secondaryColor
   },
-  diceContainer:{
+  diceContainer: {
     flex: 1,
-     justifyContent: "center",
-      alignItems: "center" 
+    justifyContent: "center",
+    alignItems: "center"
   }
 })
 
-const ThrowSelectionStyles=StyleSheet.create({
-  iconColorOne:ColorPalette.colorOne,
-  iconColorTwo:ColorPalette.thirdColor,
-  iconSize:getFontSize(30),
+const ThrowSelectionStyles = StyleSheet.create({
+  iconColorOne: ColorPalette.colorOne,
+  iconColorTwo: ColorPalette.thirdColor,
+  iconSize: getFontSize(30),
   throwSelectionContainer: {
     flex: 1.10,
     flexDirection: "row",
-    
+
 
   },
   pressableContainer: {
     ...Styles.pressableContainer,
   },
-  pressableButton:{
+  pressableButton: {
     ...Styles.pressableButton,
     borderRadius: 0,
     borderWidth: 1,
@@ -316,7 +316,7 @@ const ThrowSelectionStyles=StyleSheet.create({
   throwsLeftText: {
     textAlign: "center",
     color: "black",
-    fontSize:getFontSize(TexSizes.normal)
+    fontSize: getFontSize(TexSizes.normal)
   },
   throwsLeftIconContainer: {
     flex: 1,
@@ -324,62 +324,11 @@ const ThrowSelectionStyles=StyleSheet.create({
     justifyContent: "space-around",
     alignItems: "center"
   },
-
-
-
 })
 
-
-
-const GameboardStyles = StyleSheet.create({
-  pressableContainer: {
-    ...Styles.pressableContainer,
-    borderRadius: 0,
-    borderWidth: 1,
-    borderColor: ColorPalette.thirdColor,
-    backgroundColor: ColorPalette.thirdColor,
-    width: "100%",
-    height: "100%"
-
-  },
-  pressableText: {
-    padding: 10,
-    fontSize: 20,
-    color: ColorPalette.lightTextColor
-  },
-
- 
-  throwSelectionContainer: {
-    flex: 1,
-    flexDirection: "row",
-
-  },
-  throwsLeftContainer: {
-    flex: 1,
-    flexDirection: "column"
-  },
-  throwsLeftText: {
-    textAlign: "center",
-    color: "black"
-  },
-  throwsLeftIconContainer: {
-    flex: 1,
-    flexDirection: "row",
-    justifyContent: "space-around",
-    alignItems: "center"
-  },
-  customTextContainer: {
-    flex: 1,
-    gap: 0,
-    justifyContent: "flex-end"
-  },
-  customText: {
-    ...Styles.customText,
-  },
-
-})
-
-const ScoreboardStyles = StyleSheet.create({
+const ScoreTableStyles = StyleSheet.create({
+  dataTableRowColorLight: ColorPalette.backgroundColor,
+  dataTableRowColorDark: ColorPalette.secondaryColor,
   scoreTableContainer: {
     flex: 9,
     flexDirection: "column",
@@ -387,11 +336,17 @@ const ScoreboardStyles = StyleSheet.create({
     alignItems: "stretch",
     gap: 20
   },
-  dataTableRow: {
-    backgroundColor: "red"
+  dataContainer: {
+    flex: 4
+  },
+  dataTableContainer: {
+    flex: 1
+  },
+  dataTableHeader: {
+    backgroundColor: ColorPalette.colorOne
   },
   dataTableTitleText: {
-    color: "white",
+    color: ColorPalette.lightTextColor,
     fontSize: getFontSize(TexSizes.normal)
   },
   dataTableCellText: {
@@ -399,14 +354,16 @@ const ScoreboardStyles = StyleSheet.create({
   },
   pressableContainer: {
     ...Styles.pressableContainer,
+  },
+  pressableButton: {
+    ...Styles.pressableButton,
     borderRadius: 5,
     borderWidth: 1,
     width: "60%",
     height: "60%"
-
   },
   pressableText: {
-    padding: 10,
+    ...Styles.pressableText,
     fontSize: getFontSize(TexSizes.large),
     color: ColorPalette.lightTextColor
   },
@@ -422,4 +379,4 @@ const ScoreboardStyles = StyleSheet.create({
   },
 })
 
-export { Styles, GameboardStyles, ScoreboardStyles, RulesStyles, ColorPalette, TexSizes, GiveNameStyles, YatzySelectionStyles ,PlayerStatsStyles,DiceSelectionStyles,ThrowSelectionStyles}
+export { Styles, ScoreTableStyles, RulesStyles, ColorPalette, TexSizes, GiveNameStyles, YatzySelectionStyles, PlayerStatsStyles, DiceSelectionStyles, ThrowSelectionStyles }

@@ -14,7 +14,7 @@ import { BackgroundTemplate } from "../components/Components";
 
 
 
-function Scoreboard({navigation, route }) {
+function Scoreboard({ route }) {
     const [scoreData, setScoreData] = useState([])
     const [isLoading, setIsLoading] = useState(true)
 
@@ -85,7 +85,8 @@ function Scoreboard({navigation, route }) {
     }
 
     function checkIndexIsEven(n) {
-        return n % 2 == 0;
+       
+        return n % 2 ;
     }
     
     const scoreboardData = {
@@ -93,7 +94,6 @@ function Scoreboard({navigation, route }) {
         titles: ["Sija", "Nimi", "Pvm", "Aika", "Pisteet"],
         checkIndex: checkIndexIsEven,
         handlePress: () => removeValue(),
-        stylesheet: ScoreboardStyles,
     }
 
     console.log(scoreData, "scoreData")
