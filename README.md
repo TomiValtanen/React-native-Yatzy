@@ -44,7 +44,7 @@ Kun kaikki pöytäkirjan kohdat ovat valittuina peli loppuu.
 - Scoreboard: Follows the requirements (clear is not absolute necessity) :heavy_check_mark:
 
 ### Sovelluksesta kuvia
-Itselläni on ollut käytössä sovellusta tehdessäni OnePlus Nord (AC2003) puhelin, millä olen tehnyt testaamisen. Taustakuva ja logo ovat vaihtuneet, muuten sovellusta ei ole muutettu.
+Itselläni on ollut käytössä sovellusta tehdessäni OnePlus Nord (AC2003) puhelin, millä olen tehnyt testaamisen. Taustakuva ja logo ovat vaihtuneet
   Aloitusnäyttö | Säännöt | Pelilauta | Pistetaulu 
   --- | --- | --- | ---
   <img src="https://github.com/TomiValtanen/React-native-Yatzy/assets/101732234/e23ff0e1-5489-48ee-a522-c759957f1acc" width="200" height="350"> |   <img src="https://github.com/TomiValtanen/React-native-Yatzy/assets/101732234/21b01a29-6742-4c55-ad9f-8035f84ea417" width="200" height="350"> |   <img src="https://github.com/TomiValtanen/React-native-Yatzy/assets/101732234/35a1ee39-19d8-4df1-9000-0814d1128a00" width="200" height="350"> |   <img src="https://github.com/TomiValtanen/React-native-Yatzy/assets/101732234/8b9f84af-9c33-4f1a-b6f0-7f8ff330072b" width="200" height="350"> 
