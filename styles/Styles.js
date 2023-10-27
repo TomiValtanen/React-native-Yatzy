@@ -148,7 +148,7 @@ const GiveNameStyles = StyleSheet.create({
   giveNameContainer: {
     flex: 5,
     alignItems: "stretch",
-    justifyContent: "center"
+    justifyContent: "center",
   },
   pressableContainer: {
     ...Styles.pressableContainer,
