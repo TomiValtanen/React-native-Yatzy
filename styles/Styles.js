@@ -342,6 +342,7 @@ const ThrowSelectionStyles = StyleSheet.create({
   throwsLeftContainer: {
     flex: 1,
     flexDirection: "column",
+    backgroundColor:ColorPalette.backgroundColor
   },
   throwsLeftText: {
     ...Shadows.textLightShadow,
