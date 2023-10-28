@@ -7,7 +7,7 @@
     "icon": "./assets/yatzy_icon.png",
     "userInterfaceStyle": "light",
     "splash": {
-      "image": "./assets/splash.png",
+      "image": "./assets/yatzy_icon.png",
       "resizeMode": "contain",
       "backgroundColor": "#F1EFDC"
     },

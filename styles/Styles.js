@@ -48,7 +48,7 @@ const Styles = StyleSheet.create({
   container: {
     marginTop: Constants.statusBarHeight + 5,
     flex: 1,
-    justifyContent: "center",
+    justifyContent:"flex-start",
     alignItems: "strech",
     backgroundColor: ColorPalette.backgroundColor,
   },
