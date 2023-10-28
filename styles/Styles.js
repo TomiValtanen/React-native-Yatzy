@@ -299,8 +299,10 @@ const DiceSelectionStyles = StyleSheet.create({
   selected: ColorPalette.colorOne,
   iconSize: getFontSize(60),
   diceSelectionContainer: {
+    ...Shadows.card,
     flex: 1.25,
-    borderWidth: 1,
+    borderTopWidth:1,
+    borderColor:"#0000003b",
     alignItems: "center",
     justifyContent: "center",
     backgroundColor: ColorPalette.secondaryColor

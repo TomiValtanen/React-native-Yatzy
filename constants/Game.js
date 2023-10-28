@@ -38,7 +38,7 @@ Pelaajan peli on ohi, kun kaikki kohdat pöytäkirjasta on täytetty. Lopputulos
 //Pisteytys
 export const POINTS=`PISTEYTYS: Pisteet voidaan laitta ylä- tai alapuoleen, kun on heittänyt noppia kolme kertaa. Pisteytys jakautuu yllä olevien ohjeiden mukaisesti.`
 //Pelin tavoite
-export const AIM=`TAVOITE: Saada mahdollisimman paljon pisteitä pelin aikana.Yläosasta on mahdollista saada bonus pisteitä ${BONUS_POINTS} , jos saa yläosasta yhteensä ${BONUS_POINTS_LIMIT} pistettä tai enemmän.\nPelin voi aloittaa alusta painamalla "Pelilauta" iconia pohjassa muutaman sekunnin ajan. Vaihtamalla nimen toiseen mitä ensiksi syötetty on aloittaa uuden pelin.`
+export const AIM=`TAVOITE: Saada mahdollisimman paljon pisteitä pelin aikana.Yläosasta on mahdollista saada bonus pisteitä ${BONUS_POINTS} , jos saa yläosasta yhteensä ${BONUS_POINTS_LIMIT} pistettä tai enemmän.\nPelin voi aloittaa alusta painamalla "Pelilauta" iconia pohjassa muutaman sekunnin ajan. Vaihtamalla nimen toiseen aloittaa uuden pelin.`
 
 
 
