@@ -21,16 +21,11 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      },
-      "package": "com.loru.Yatzy"
+      }
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    },
-    "extra": {
-      "eas": {
-        "projectId": "3ae53f37-5ab6-43c8-b4d4-b02db3a383d5"
-      }
     }
+    
   }
 }
