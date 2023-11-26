@@ -14,7 +14,7 @@ import BackgroundImg from "../assets/background.png"
 function BackgroundTemplate({ children}) {
     return (
         <View style={Styles.container}>
-            <ImageBackground source={BackgroundImg} style={{ flex: 1 }} blurRadius={3}>
+            <ImageBackground source={BackgroundImg} style={[Styles.backgroundImage,{ flex: 1,justifyContent:"flex-start",alignItems:"stretch" }]} blurRadius={3} resizeMode="cover">
                 {children}
             </ImageBackground>
         </View>

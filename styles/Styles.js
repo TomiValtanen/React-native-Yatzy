@@ -1,6 +1,7 @@
 import { StyleSheet } from 'react-native';
 import Constants from "expo-constants";
 import { PixelRatio } from "react-native";
+import { Dimensions } from 'react-native';
 
 const fontScale = PixelRatio.getFontScale()
 const getFontSize = size => size / fontScale
@@ -46,11 +47,13 @@ const Shadows = StyleSheet.create({
 const Styles = StyleSheet.create({
 
   container: {
-    marginTop: Constants.statusBarHeight + 5,
     flex: 1,
     justifyContent:"flex-start",
     alignItems: "strech",
     backgroundColor: ColorPalette.backgroundColor,
+  },
+  backgroundImage:{
+    marginTop: Constants.statusBarHeight,
   },
   logoContainer: {
     flex: 3,
@@ -97,13 +100,15 @@ const Styles = StyleSheet.create({
     backgroundColor: ColorPalette.colorOne,
     flexDirection: 'row',
     padding: 5,
-    alignItems: "center"
+    alignItems: "center",
+    height:Dimensions.get("window").height*0.04
   },
   footer: {
     backgroundColor: ColorPalette.colorOne,
     flexDirection: 'row',
     padding: 5,
-    alignItems: "center"
+    alignItems: "center",
+    height:Dimensions.get("window").height*0.04
   },
   title: {
     color: ColorPalette.lightTextColor,
